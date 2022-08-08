@@ -1,0 +1,8 @@
+{% block unit_header %}
+    <div class="xboxcontent">
+        <h3 class="block_header">{{ 'unitname'|t|replace({'%s':unit.code}) ~ ': ' ~ unit.name }}</h3>
+        {% if useApplicability and showApplicability %}
+            {{ block('oemSearch') }}
+        {% endif %}
+    </div>
+{% endblock %}

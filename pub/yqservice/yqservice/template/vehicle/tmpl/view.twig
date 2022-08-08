@@ -1,0 +1,37 @@
+{% use 'blocks/categories.twig' %}
+{% use 'blocks/units.twig' %}
+{% spaceless %}
+    <div class="flex align-items-center space-between">
+        <h1>{{ 'carname'|t|replace({'%s': vehicle.brand ~ ' ' ~ vehicle.name}) }}</h1>
+        {% if showListPartsIcon %}
+            <a class="parts-list-icon" target="_blank" href="{{ createUrl('listoemparts', '', '', {'c': vehicle.catalog ?: '', 'ssd': vehicle.ssd ?: ssd, 'format': 'raw'}) }}"></a>
+        {% endif %}
+    </div>
+    <div id="pagecontent" class="vehicle-page-wrapper">
+        {% block top_line %}
+            <div id="yqservice_toolbar" class="xboxcontent inline_block">
+                {% if cataloginfo.supportquickgroups and (user or showGrousToGuest) %}
+                    {% set qgroupsLink = createUrl('qgroups', '', '', {
+                    'c':vehicle.catalog,
+                    'vid':vehicle.vehicleid,
+                    'ssd':vehicle.ssd,
+                    }) %}
+                    <div class="sorting">
+                        <input type="radio" value="{{ qgroupsLink }}"  name="sortBy" id="byGroup">
+                        <label for="byGroup">By groups</label>
+                        <input type="radio" checked name="sortBy" id="byCats">
+                        <label for="byCats">By categories</label>
+                    </div>
+                {% endif %}
+                {% if useApplicability and showApplicability %}
+                    {{ block('oemSearch') }}
+                {% endif %}
+            </div>
+        {% endblock %}
+
+        <div class="flex space-between">
+            {{ block('categories') }}
+            {{ block('units') }}
+        </div>
+    </div>
+{% endspaceless %}

@@ -1,0 +1,52 @@
+& when (@media-target = 'desktop') {
+    nav.tm-navigation {
+        &.sidebar-nav {
+            display: none;
+        }
+    }
+
+    .sidebar {
+        nav.tm-navigation {
+            display: block;
+            margin-bottom: 20px;
+
+            > ul {
+                padding: 0;
+                margin: 10px 15px;
+            }
+
+            li.level0 {
+                display: block;
+                margin: 0;
+
+                a.level-top {
+                    display: block;
+                    padding-left: 0;
+                }
+
+                > .ui-menu {
+                    top: 0;
+                    left: 100%;
+                }
+            }
+
+            .megamenu-wrapper {
+                box-sizing: border-box;
+                width: calc(~'95vw - 100%');
+                @media (min-width: @screen__xl) {
+                    width: calc(~'@{layout__max-width} - 100%');
+                }
+            }
+        }
+    }
+}
+
+& when (@media-target = 'mobile') {
+    @media (max-width: (@screen__m - 1)) {
+        .sidebar {
+            nav.tm-navigation {
+                display: none;
+            }
+        }
+    }
+}

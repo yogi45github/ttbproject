@@ -1,0 +1,300 @@
+//
+//  Form styles
+//  _____________________________________________
+
+//Form layout
+.field {
+    position: relative;
+    padding: 8px 0;
+
+    &.additional,
+    &.choice {
+        margin-bottom: 0;
+    }
+    &.note {
+        margin-bottom: 16px;
+    }
+
+    &.custom-label {
+        padding: 8px 0;
+        transition: .3s ease;
+
+        .label {
+            position: absolute;
+            z-index: 2;
+            top: 18px;
+            left: 20px;
+            float: none;
+            padding: 0;
+            text-align: left;
+            pointer-events: none;
+            transition: .3s ease;
+            transform-origin: 0 0;
+            width: auto;
+        }
+
+        &.focus .label {
+            top: 6px;
+            transform: scale(0.7);
+            opacity: 0;
+        }
+    }
+
+    .checkbox {
+        margin: .75rem .5rem 0 0;
+    }
+
+    .field-tooltip-action {
+        outline: none !important;
+    }
+
+    &.required {
+        div.mage-error {
+            position: absolute;
+            top: ~'calc(100% + 4px)';
+            left: 0;
+            right: 0;
+            padding-left: 0;
+            font-size: 12px;
+            line-height: 1;
+        }
+
+        .control {
+            position: relative;
+
+            &._with-tooltip input.input-text + div.mage-error {
+                top: auto;
+                bottom: 24px;
+            }
+
+            .field-tooltip.toggle {
+                top: -25px;
+            }
+        }
+
+        input.input-text {
+            transition: margin-bottom .3s ease;
+
+            &.mage-error {
+                margin-bottom: 20px;
+                & + .mage-error {
+                    margin-top: -20px;
+                }
+            }
+
+            &#password.mage-error {
+                margin-bottom: 30px;
+                & + .mage-error {
+                    margin-top: 0;
+                }
+            }
+        }
+
+        &.comment textarea.input-text {
+            &.mage-error {
+                margin-bottom: 30px;
+                & + .mage-error {
+                    margin-top: -20px;
+                }
+            }
+        }
+    }
+}
+
+.fieldset {
+    .actions-toolbar {
+        padding-top: 16px;
+    }
+    > .legend {
+        color: @color-dark;
+        margin-bottom: 15px;
+    }
+}
+
+.field.required > .label:not(.admin__field-label):after,
+.field._required > .label:not(.admin__field-label):after,
+.fieldset > .field.required > .label:not(.admin__field-label):after,
+.fieldset > .fields > .field.required > .label:not(.admin__field-label):after {
+    color: @color-denied;
+    content: "*";
+    font-size: 12px;
+    margin: 0 0 0 5px;
+}
+
+//Typography
+.legend,
+legend {
+    font-weight: 600;
+    + br {
+        display: none;
+    }
+}
+
+.input-text,
+input[type="text"],
+input[type="email"],
+input[type="password"],
+input[type="number"],
+select,
+textarea {
+    transition: 0.2s all ease;
+}
+
+.mobile,
+.tablet {
+    select {
+        width: auto;
+    }
+}
+
+input[type="number"] {
+    padding-right: 5px;
+}
+
+select[multiple="multiple"] {
+    padding: 0;
+    min-height: 0;
+}
+
+@media (min-width: @screen__m) {
+    select {
+        box-sizing: content-box;
+    }
+}
+
+textarea {
+    max-width: 100%;
+    max-height: 500px;
+}
+
+p.required {
+    color: @color-denied;
+}
+
+//Inline form
+.form-inline {
+    .make-flex();
+    .control {
+        input,
+        select,
+        textarea {
+            width: auto;
+        }
+    }
+}
+
+// Checkbox
+.radio,
+input[type="checkbox"],
+input[type="radio"] {
+    display: inline-block;
+    width: auto;
+}
+
+.field.choice {
+    position: relative;
+
+    > input[type=checkbox],
+    > input[type=radio] {
+        position: absolute;
+        z-index: -1;
+        opacity: 0;
+    }
+
+    > input[type=checkbox],
+    > input[type=radio] {
+        + .label {
+            &:before {
+                display: inline-block;
+                font-size: 16px;
+                line-height: 1rem;
+                width: 18px;
+                height: 18px;
+                font-style: normal;
+                vertical-align: sub;
+                color: @color-primary;
+                text-align: center;
+                padding-right: 3px;
+            }
+
+            span {
+                display: inline-block;
+            }
+        }
+    }
+
+    > input[type=checkbox] + .label {
+        &:before {
+            .font-icon__pseudo(@themeicon-check_box_outline_blank);
+        }
+    }
+    > input[type=checkbox]:checked + .label:before {
+        .font-icon__pseudo(@themeicon-check_box);
+    }
+    > input[type=checkbox]:disabled:checked + .label:before {
+        .font-icon__pseudo(@themeicon-check_box);
+        pointer-events: none;
+        opacity: .6;
+    }
+    > input[type=radio] + .label:before {
+        .font-icon__pseudo(@themeicon-radio_button_unchecked);
+    }
+    > input[type=radio]:checked + .label:before {
+        .font-icon__pseudo(@themeicon-radio_button_checked);
+    }
+    > input[type=checkbox]:disabled:checked + .label:before {
+        .font-icon__pseudo(@themeicon-radio_button_checked);
+        pointer-events: none;
+        opacity: .6;
+    }
+    > input[type=checkbox],
+    > input[type=radio] {
+        &:disabled + .label:before {
+            pointer-events: none;
+            opacity: .6;
+        }
+    }
+}
+
+//
+//  Messages styles
+//  ---------------------------------------------
+
+.mage-error:not(input):not(textarea),
+.mage-error[generated]:not(input):not(textarea) {
+    font-size: .8rem;
+    line-height: 1.2rem;
+    font-style: italic;
+    color: red;
+}
+
+& when (@media-target = 'mobile') {
+    // RTL
+    html.rtl {
+        .fieldset > .legend {
+            float: none;
+        }
+    }
+}
+
+& when (@media-target = 'desktop') {
+    // RTl
+    html.rtl {
+        .fieldset > .field:not(.choice) {
+            > .label {
+                float: right;
+                padding-right: 0;
+                padding-left: 15px;
+                text-align: left;
+            }
+            > .control {
+                float: right;
+            }
+        }
+
+        .field.custom-label .label {
+            right: 20px;
+            left: auto;
+        }
+    }
+}

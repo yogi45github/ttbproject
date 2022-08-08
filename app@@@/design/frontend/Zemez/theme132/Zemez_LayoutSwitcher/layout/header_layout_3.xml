@@ -1,0 +1,32 @@
+<?xml version="1.0"?>
+<page xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="urn:magento:framework:View/Layout/etc/page_configuration.xsd">
+    <body>
+        <referenceContainer name="header.container" htmlClass="page-header layout-3" />
+        <referenceContainer name="header.panel.grid-container">
+            <container name="logo.wrap" htmlTag="div" htmlClass="logo-wrap" before="-" />
+        </referenceContainer>
+        <referenceBlock name="header_top_block" remove="true" />
+
+        <move element="logo" destination="logo.wrap" before="-"/>
+        <move element="minicart" destination="header.panel.grid-container" after="header.switchers"/>
+        <referenceBlock name="header" remove="true"/>
+
+        <referenceContainer name="sm-header.nav.container">
+            <container name="header.menu.wrap" htmlTag="div" htmlClass="toggle-menu">
+                <block class="Magento\Framework\View\Element\Template" name="header.menu.title" template="Zemez_LayoutSwitcher::menu-title.phtml" before="-"/>
+            </container>
+            <container name="header_info_block.wrap" htmlTag="div" htmlClass="header-info">
+                <block class="Magento\Cms\Block\Block" name="header_info_block" after="-">
+                    <arguments>
+                        <argument name="block_id" xsi:type="string">header_info_block</argument>
+                    </arguments>
+                </block>
+            </container>
+        </referenceContainer>
+        <move element="catalog.topnav" destination="header.menu.wrap" after="header.menu.title" />
+        <move element="sm-header.nav.wrap" destination="header-wrapper" after="-" />
+        <move element="header-wrapper.additional" destination="header-wrapper" before="-" />
+        <move element="logo.wrap" destination="header.panel.grid-container" before="-"/>
+        <move element="theme_options.social_links.header" destination="sm-header.nav.container" after="-"/>
+    </body>
+</page>

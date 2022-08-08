@@ -1,0 +1,35 @@
+{% use 'blocks/tree.twig' %}
+{% use 'blocks/details.twig' %}
+{% use 'blocks/fastSearch.twig' %}
+{% use 'blocks/oemSearch.twig' %}
+
+<div id="pagecontent" class="qgroups-wrapper">
+    <div class="flex align-items-center space-between">
+        <h1>{{ 'carname'|t|replace({'%s': vehicle.brand ~ ' ' ~ vehicle.name}) }}</h1>
+        {% if showListPartsIcon %}
+            <a class="parts-list-icon" target="_blank" href="{{ createUrl('listoemparts', '', '', {'c': vehicle.catalog ?: '', 'ssd': vehicle.ssd ?: ssd, 'format': 'raw'}) }}"></a>
+        {% endif %}
+    </div>
+    {% set vehicleLink = createUrl('vehicle', '', '', {
+        'c': vehicle.catalog ?: c,
+        'vid': vehicle.vehicleid ?: vid ?: 0,
+        'ssd': vehicle.ssd ?: ssd,
+    }) %}
+    <div id="yqservice_toolbar" class="xboxcontent">
+        <div class="sorting">
+            <input type="radio" checked name="sortBy" id="byGroup">
+            <label for="byGroup">By groups</label>
+            <input type="radio" value="{{ vehicleLink }}" name="sortBy" id="byCats">
+            <label for="byCats">By categories</label>
+        </div>
+        {% if useApplicability and showApplicability %}
+            {{ block('oemSearch') }}
+        {% endif %}
+    </div>
+
+    <div class="flex">
+        {{ block('tree') }}
+        {{ block('details') }}
+    </div>
+</div>
+

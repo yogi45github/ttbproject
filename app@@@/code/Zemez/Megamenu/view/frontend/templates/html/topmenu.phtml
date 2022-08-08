@@ -1,0 +1,10 @@
+<?php if ($this->getNameInLayout() == 'catalog.topnav' || $this->getNameInLayout() == 'catalog.sidebarnav'): ?>
+    <?php $columnsLimit = $block->getColumnsLimit() ?: 0; ?>
+    <?php $_menu = $block->getHtml('level-top', 'submenu', $columnsLimit) ?>
+    <!-- Top Nav -->
+    <nav class="navigation tm-navigation<?php echo $this->_helper->isVertical() ? ' sidebar-nav' : '' ?>" role="navigation" >
+        <ul data-mage-init='{"megamenu":{"menus": "li > ul, .megamenu-wrapper"}}'>
+            <?php /* @escapeNotVerified */ echo $_menu; ?>
+        </ul>
+    </nav>
+<?php endif; ?>

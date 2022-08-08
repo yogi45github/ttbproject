@@ -1,0 +1,32 @@
+<ul>
+    <?php
+        $items = $block->getData('items');
+        // echo "<pre>";
+        // print_r($items);die;
+        $partnumber = $block->getData('partnumber');
+        if(count($items) > 0){
+            foreach($items as $item){
+            	echo "<li>";
+                echo "<b>Name</b>: ".$item->name;
+                echo "</li>";
+                $innerInterchangeItems = $item->interchange->items;
+                if(count($innerInterchangeItems) > 0){
+                    echo "<h3 class='part_h3'>Interchange Items</h3>";
+                    echo "<ul>";
+                    foreach($innerInterchangeItems as $innerInterchangeItem){
+                        echo "<li class='parts_list_li row'>";
+                        echo "<div class='col-m-2 search_parts_image'><img src='".$this->getUrl("/")."pub/media/theme_options/websites/1/TTB_grossist.png'></div>";
+                        echo "<div class='col-m-7'><div class='row'><div class='col-m-9 parts_name'><b>Name</b>: ". $innerInterchangeItem->name;
+                        echo " <br><b>Make</b>: ". $innerInterchangeItem->gapc_brand->name."</div><div class='col-m-3 search_part_sku'><span>".$innerInterchangeItem->mpn."</span> </div></div></div>";
+                        echo "<div class='col-m-3 parts_price_qunatity'> <p class='part_product_details'><span class='part_stock'>Stock: 240 </span><span class='part_price'>Pris: 275 Kr</span> </p> <a class='part_cart_link' href='".$this->getUrl("/")."parts/detail/index?partnumber=".$partnumber."&&inter=".$innerInterchangeItem->mpn."'> Product Detail";
+                        echo "</a></div></li>";
+                    }
+                    echo "</ul>";
+                }
+                echo "</li>";
+            }
+        } else {
+        	echo "Parts not found";
+        }
+    ?>
+</ul>

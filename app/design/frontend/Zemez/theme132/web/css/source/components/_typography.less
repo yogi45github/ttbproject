@@ -1,0 +1,127 @@
+//
+//  Typography
+//  _____________________________________________
+
+.lib-typography(@_font-weight: @font-weight__base) {
+    .lib-css(font-weight, @_font-weight);
+}
+
+& when (@media-target = 'mobile') {
+    .headings-styles(@i: 1) when (@i =< 6) {
+        @_font-size: "h@{i}__font-size";
+        @_font-weight: "h@{i}__font-weight";
+        @_line-height: "h@{i}__line-height";
+        .heading-@{i} {
+            font-size: @@_font-size;
+            font-weight: @@_font-weight;
+            line-height: @@_line-height;
+        }
+        h@{i}, .heading-@{i} {
+            letter-spacing: 0.02em;
+        }
+        .headings-styles(@i + 1);
+    }
+    .headings-styles();
+
+    h5, .heading-5, h6, .heading-6 {
+        text-transform: uppercase;
+    }
+
+    a {
+        transition: .3s ease;
+    }
+
+    em {
+        color: @color-primary;
+    }
+
+    pre {
+        white-space: normal;
+    }
+
+    dl {
+        dt {
+            font-weight: 700;
+        }
+        dd {
+            font-style: italic;
+            padding-left: 8px;
+        }
+    }
+
+    *,
+    ul,
+    ul > li,
+    ol > li {
+        margin: 0;
+    }
+
+    ul {
+        list-style-type: none;
+        padding-left: 0;
+    }
+
+    * + p {
+        margin-top: 10px;
+    }
+
+    * + h1 {
+        margin-top: 5px;
+    }
+
+    * + h2 {
+        margin-top: 10px;
+    }
+
+    * + h3 {
+        margin-top: 6px;
+    }
+
+    * + h4 {
+        margin-top: 18px;
+    }
+
+    * + h5 {
+        margin-top: 18px;
+    }
+
+    * + h6 {
+        margin-top: 18px;
+    }
+
+    h2 + p {
+        margin-top: 20px;
+    }
+}
+
+& when (@media-target = 'desktop') {
+    .headings-styles(@i: 1) when (@i =< 6) {
+        @_font-size-desktop: "h@{i}__font-size-desktop";
+        .heading() when not (@@_font-size-desktop = false) {
+            h@{i}, .heading-@{i} {
+                font-size: @@_font-size-desktop;
+            }
+        }
+        .heading();
+        .headings-styles(@i + 1);
+    }
+    .headings-styles();
+
+    * + h1 {
+        margin-top: 15px;
+    }
+
+    * + h2 {
+        margin-top: 18px;
+    }
+
+    * + h3 {
+        margin-top: 10px;
+    }
+
+    @media (min-width: @screen__xl) {
+        * + h1 {
+            margin-top: 23px;
+        }
+    }
+}

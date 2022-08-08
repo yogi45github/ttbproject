@@ -1,0 +1,16 @@
+<?xml version="1.0"?>
+<page xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="urn:magento:framework:View/Layout/etc/page_configuration.xsd">
+    <body>
+        <referenceContainer name="content" htmlClass="product-layout-3" htmlTag="div" />
+        <referenceBlock name="product.info.media.image" template="Zemez_LayoutSwitcher::product/gallery-sticky.phtml" />
+
+        <referenceContainer name="product.info.media" htmlId="left_column" htmlTag="div" />
+        <referenceContainer name="product.info.main" htmlId="right_column" htmlTag="div" />
+
+        <referenceContainer name="product-wrapper">
+            <container name="product.info.main.wrap" htmlId="right_column_wrap" htmlTag="div" before="-" after="product.info.media" />
+        </referenceContainer>
+        <move element="product.info.main" destination="product.info.main.wrap" />
+        <move element="product.info.details" destination="product.info.main" after="-" />
+    </body>
+</page>

@@ -1,0 +1,77 @@
+//
+//  Sections
+//  _____________________________________________
+
+.lib-data-tabs__base() {
+    > .item.title {
+        > .switch {
+            box-sizing: border-box;
+            letter-spacing: 0.2em;
+            text-align: center;
+            text-transform: uppercase;
+            @media (min-width: @screen__xxl) {
+                padding-left: 35px;
+                padding-right: 35px;
+            }
+        }
+    }
+    > div.item.title {
+        margin-top: 0;
+        > .switch {
+            border-color: @color-white;
+        }
+        &.active > .switch {
+            border-color: @tab-control__border-color;
+            &, &:hover, &:focus {
+                padding-bottom: @tab-control__padding-bottom;
+            }
+        }
+    }
+
+    > div.item.content {
+        border-left: none;
+        border-right: none;
+        border-bottom: none;
+    }
+}
+
+.lib-data-accordion__base() {
+    > .item.title {
+        position: relative;
+        &:before {
+            position: absolute;
+            top: 0;
+            right: 0;
+            font-size: 16px;
+            line-height: @accordion-control__line-height;
+            padding: @accordion-control__padding-top 0 @accordion-control__padding-bottom;
+            color: @color-dark;
+            cursor: pointer;
+        }
+        .font-icon(@themeicon-minus);
+        &[aria-expanded="false"]:before {
+            content: @themeicon-plus;
+        }
+
+        > .switch {
+            letter-spacing: 0.2em;
+            text-transform: uppercase;
+        }
+        &.active {
+            &:before {
+                content: @themeicon-minus;
+            }
+            > .switch {
+                color: @accordion-control__active__color;
+            }
+        }
+    }
+
+    > div.item.title {
+        margin-top: 25px;
+    }
+
+    > .item.content {
+
+    }
+}

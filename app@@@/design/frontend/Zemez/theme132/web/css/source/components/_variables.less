@@ -1,0 +1,480 @@
+//
+//  Zemez theme variables
+//  _____________________________________________
+
+//
+//  Responsive variables
+//  ---------------------------------------------
+
+@screen__xxs: 320px;
+@screen__xs: 480px;
+@screen__s: 640px;
+@screen__m: 768px;
+@screen__l: 1024px;
+@screen__xl: 1200px;
+@screen__xxl: 1632px;
+
+//
+//  Grid system
+//  ---------------------------------------------
+
+@column__count: 12;
+@gutter__width: 34px;
+
+@container__m: @screen__m;
+@container__l: @screen__l;
+@container__xl: @screen__xl;
+@container__xxl: @screen__xxl;
+
+@container__max-widths: m, l, xl, xxl;
+@screen__names: xxs, xs, m, l, xl, xxl;
+
+//
+//  Layout
+//  ---------------------------------------------
+
+@layout__max-width: none;
+@layout-indent__width: 0;
+@layout__width-xs-indent: 0;
+
+//
+//  Colors
+//  ---------------------------------------------
+
+@color-white: #fff;
+@color-black: #000;
+@color-gray: #707070;
+@color-gray-dark: #252525;
+@color-gray-light: #d4d4d4;
+@color-default: #888888;
+@color-dark: @color-black;
+@color-light: #a9a9a9;
+@color-lightest: #f4f4f4;
+@color-primary: #da012c;
+@color-secondary: #da012c;
+@color-allow: #3bb141;
+@color-denied: #ff5555;
+@color-unactive: #999999;
+
+@page__background-color: @color-white;
+@text__color: @color-default;
+@border-color__base: #eae9e9;
+
+//
+//  Typography
+//  ---------------------------------------------
+
+@p__margin-bottom: 0;
+
+//  Fonts
+@font-family-name__base: 'Muli';
+@font-family__base: @font-family-name__base, @font-family__sans-serif;
+@font-size__base: 12px;
+@line-height__base: 2;
+@font-weight__base: false; // 400
+
+//  Links
+@link__color: inherit;
+@link__hover__color: @color-primary;
+@link__hover__text-decoration: none;
+@link__active__text-decoration: none;
+@link__active__color: false;
+
+//  Focus
+@focus__box-shadow: false;
+
+//  Misc
+@hr__border-color: @border-color__base;
+@hr__border-style: solid;
+@hr__border-width: @border-width__base;
+
+@mark__color: @color-white;
+@mark__background-color: @color-primary;
+
+//  Headings
+@heading__font-family__base: false;
+@heading__font-weight__base: 800;
+@heading__line-height__base: 1.1;
+@heading__color__base: @color-dark;
+
+@h1__font-size: ceil((@font-size__base * 3.333)); // 40px
+@h1__font-size-desktop: ceil((@font-size__base * 7.5)); // 90px
+@h1__font-color: @heading__color__base;
+@h1__font-family: @heading__font-family__base;
+@h1__font-weight: @heading__font-weight__base;
+@h1__line-height: 1;
+@h1__margin-top: 0;
+@h1__margin-bottom: 0;
+@h1__margin-bottom__desktop: 0;
+
+@h2__font-size: ceil((@font-size__base * 2.5)); // 30px
+@h2__font-size-desktop: ceil((@font-size__base * 4)); // 48px
+@h2__font-color: @heading__color__base;
+@h2__font-family: @heading__font-family__base;
+@h2__font-weight: @heading__font-weight__base;
+@h2__line-height: (50 / 48);
+@h2__margin-top: 0;
+@h2__margin-bottom: 0;
+
+@h3__font-size: ceil((@font-size__base * 2)); // 24px
+@h3__font-size-desktop: ceil((@font-size__base * 3)); // 36px
+@h3__font-color: @heading__color__base;
+@h3__font-family: @heading__font-family__base;
+@h3__font-weight: @heading__font-weight__base;
+@h3__line-height: 1;
+@h3__margin-top: 0;
+@h3__margin-bottom: 0;
+
+@h4__font-size: ceil((@font-size__base * 1.833)); // 22px
+@h4__font-size-desktop: (@font-size__base * 2); // 24px
+@h4__font-color: @heading__color__base;
+@h4__font-family: @heading__font-family__base;
+@h4__font-weight: @font-weight__semibold;
+@h4__line-height: @heading__line-height__base;
+@h4__margin-top: 0;
+@h4__margin-bottom: 0;
+
+@h5__font-size: ceil((@font-size__base * 1.5)); // 18px
+@h5__font-size-desktop: (@font-size__base * 1.833); // 22px
+@h5__font-color: @heading__color__base;
+@h5__font-family: @heading__font-family__base;
+@h5__font-weight: @font-weight__bold;
+@h5__line-height: @heading__line-height__base;
+@h5__margin-top: 0;
+@h5__margin-bottom: 0;
+
+@h6__font-size: (@font-size__base * 1.333); // 16px
+@h6__font-size-desktop: false;
+@h6__font-color: @heading__color__base;
+@h6__font-family: @heading__font-family__base;
+@h6__font-weight: @font-weight__semibold;
+@h6__line-height: 1.3;
+@h6__margin-top: 0;
+@h6__margin-bottom: 0;
+
+//
+//  Smart header
+//  ---------------------------------------------
+
+@sm-header-main-color: @color-dark;
+@sm-header-contrast-color: @color-white;
+@sm-header-text-color: @color-dark;
+@sm-header-hover-color: @color-primary;
+@sm-header-panel-height: 56px;
+@sm-header-item-fontsize: 14px;
+@sm-header-item-lineheight: 16px;
+@sm-header-item-padding: 17px;
+@sm-header-item-border: 1px solid @border-color__base;
+@sm-header-item-bg-1: #f1f1f1;
+@sm-header-item-bg-2: #e7e7e7;
+@default-header-shadow: 0 3px 5px 0 fade(@color-black, 25%);
+
+//
+//  Icons
+//  ---------------------------------------------
+@font-awesome-family: 'FontAwesome';
+
+//
+//  Buttons
+//  ---------------------------------------------
+
+@button__font-family: @font-family__base;
+@button__font-size: @font-size__base;
+@button__font-weight: 800;
+@button__line-height: @button__font-size + 4;
+@button__padding: 12px 20px;
+@button__border-radius: 0;
+
+//  Default button
+@button__color: @color-white;
+@button__background: @color-black;
+@button__border: 1px solid @color-black;
+@button__hover__color: @color-black;
+@button__hover__background: none;
+@button__hover__border: @button__border;
+@button__active__color: @button__hover__color;
+@button__active__background: @button__hover__background;
+@button__active__border: @button__hover__border;
+
+//  Primary button
+@button-primary__background: @color-primary;
+@button-primary__border: 1px solid @color-primary;
+@button-primary__color: @color-white;
+@button-primary__hover__background: none;
+@button-primary__hover__border: 1px solid @color-primary;
+@button-primary__hover__color: @color-primary;
+@button-primary__active__background: @button-primary__hover__background;
+@button-primary__active__border: @button-primary__hover__border;
+@button-primary__active__color: @button-primary__hover__color;
+@button-primary__line-height: @button__line-height;
+@button-primary__padding: @button__padding;
+
+//  Large button
+@button__font-size__l: @font-size__l;
+@button__line-height__l: @font-size__l + 4;
+@button__padding__l: 14px 17px;
+
+//  Small button
+@button__font-size__s: 11px;
+@button__line-height__s: @button__font-size__s + 1;
+@button__padding__s: @indent__xs 8px;
+
+//
+//  Modals
+//  ---------------------------------------------
+
+@modal__background-color: @color-white;
+@modal__output-background-color: fade(@color-white, 35%);
+@modal__box-shadow: 0 0 12px 2px rgba(0, 0, 0, .35);
+
+@modal-popup__indent-vertical: 10vh;
+@modal-popup__padding: 16px;
+@modal-popup__width: 75%;
+@modal-popup__z-index: 1000;
+
+@modal-slide__first__indent-left: auto;
+@modal-slide__indent-left: 50px;
+@modal-slide__padding: 8px;
+@modal-slide__z-index: 1000;
+
+@modal-slide__width: 270px;
+@modal-slide-header__padding-vertical: 10px;
+
+@modal-popup-confirm__width: 700px;
+
+@modal-popup-image-box__border-color: @border-color__base;
+@modal-popup-image-box__max-width: 78rem;
+
+@modal-popup-image-box-preview-image__max-height: 54rem;
+@modal-popup-image-box-preview__max-width: @modal-popup-image-box-preview-image__max-height + 32px;
+
+//
+//  Breadcrumbs
+//  ---------------------------------------------
+
+@breadcrumbs__font-size: 12px;
+@breadcrumbs__container-margin: 0;
+@breadcrumbs__background: none;
+
+@breadcrumbs-separator__symbol: '|'; // false if use icon
+@breadcrumbs-separator__color: @border-color__base;
+
+@breadcrumbs-icon__use: true;
+@breadcrumbs-icon__font-content: @themeicon-chevron-right;
+@breadcrumbs-icon__font: @themeicon-font-family;
+@breadcrumbs-icon__font-size: 12px;
+@breadcrumbs-icon__font-line-height: 17px;
+@breadcrumbs-icon__font-color: @color-default;
+@breadcrumbs-icon__font-margin: 0 4px;
+@breadcrumbs-icon__font-vertical-align: middle;
+
+//  Current page
+@breadcrumbs-current__color: @color-default;
+@breadcrumbs-current__font-weight: @font-weight__regular;
+@breadcrumbs-current__background: false;
+@breadcrumbs-current__border: false;
+
+//  Link
+@breadcrumbs-link__color: @color-dark;
+@breadcrumbs-link__background: false;
+@breadcrumbs-link__border: false;
+@breadcrumbs-link__text-decoration: none;
+
+@breadcrumbs-link__visited__color: false;
+@breadcrumbs-link__visited__background: false;
+@breadcrumbs-link__visited__border: false;
+
+@breadcrumbs-link__hover__color: @color-primary;
+@breadcrumbs-link__hover__background: false;
+@breadcrumbs-link__hover__border: false;
+@breadcrumbs-link__hover__text-decoration: false;
+
+@breadcrumbs-link__active__color: false;
+
+//
+//  Dropdowns
+//  ---------------------------------------------
+
+@dropdown-list__margin-top: 4px;
+@dropdown-list__background: @color-white;
+@dropdown-list__border: 1px solid @color-gray;
+@dropdown-list__shadow: 0 1px 3px rgba(0, 0, 0, .15); // [''|none|value]
+
+@dropdown-list-pointer__border: @color-black;
+
+@dropdown-list-item__border: 0;
+@dropdown-list-item__padding: 3px @indent__xs;
+@dropdown-list-item__margin: 0;
+@dropdown-list-item__hover: @color-gray91;
+
+//
+//  Form
+//  ---------------------------------------------
+
+@form-element-input__background: @color-white;
+@form-element-input__border-color: @border-color__base;
+@form-element-input__border: 1px solid @form-element-input__border-color;
+@form-element-input__border-radius: 0;
+@form-element-input__height: 42px;
+@form-element-input__padding: 0 17px;
+@form-element-input__font-size: @font-size__base;
+@form-element-input__color: @color-default;
+
+//  Placeholder
+@form-element-input-placeholder__color: @color-dark;
+
+//  Focus state
+@form-element-input__focus__border: 1px solid @color-gray64;
+@form-element-input__focus__color: @color-dark;
+
+//  Form field label
+@form-field-label__color: @color-dark;
+@form-field-label__font-size: false;
+@form-field-label__font-family: false;
+@form-field-label__font-weight: @font-weight__regular;
+@form-field-type-label-inline__padding-top: 10px;
+
+//
+//  Custom select
+//  ---------------------------------------------
+@select2-height: 50px;
+@select2-padding-left: 20px;
+@select2-padding-right: 30px;
+
+@select2-color: @color-dark;
+@select2-background: @color-white;
+@select2-active-background: @color-white;
+@select2-active-shadow: 2px 2px 5px 0 fade(@color-black, 10%);
+
+@select2-border-width: 1px;
+@select2-border-color: @border-color__base;
+@select2-border-radius: 2px;
+
+@select2-results-background: @color-white;
+@select2-results-border: 1px solid @select2-border-color;
+@select2-results-padding: 15px 20px;
+@select2-results-font-size: 12px;
+
+//
+//  Pages
+//  ---------------------------------------------
+
+//  Pager link default
+@pager__font-size: 14px;
+@pager__font-weight: @font-weight__light;
+@pager__line-height: 32px;
+@pager__color: @color-dark;
+@pager__border: 1px solid @border-color__base;
+@pager__border-radius: 0;
+@pager__background: @color-white;
+@pager-item__width: 34px;
+@pager-item__spacing: 6px;
+@pager-item__padding: 0 4px;
+
+//  Pager link hover
+@pager__hover__color: @pager__color;
+@pager__hover__border: 1px solid @color-dark;
+@pager__hover__background: none;
+
+//  Pager current page
+@pager-current__font-weight: @pager__font-weight;
+@pager-current__color: @color-white;
+@pager-current__border: 1px solid @color-primary;
+@pager-current__background: @color-primary;
+
+//  Pager link.action default
+@pager-action__color: @color-dark;
+@pager-action__border: @pager__border;
+@pager-action__background: none;
+@pager-action__width: auto;
+@pager-action__spacing: 10px;
+@pager-actions__padding: 0 12px;
+
+//  Pager link.action hover
+@pager-action__hover__color: @pager-action__color;
+@pager-action__hover__border: @pager__hover__border;
+@pager-action__hover__background: false;
+
+//  Pager link.action icons
+@pager-icon__use: true;
+@pager-icon__previous-content: @themeicon-arrows-1_minimal-left;
+@pager-icon__next-content: @themeicon-arrows-1_minimal-right;
+@pager-icon__text-hide: true;
+@pager-icon__position: before;
+@pager-icon__font: @themeicon-font-family;
+@pager-icon__font-margin: 0;
+@pager-icon__font-vertical-align: top;
+@pager-icon__font-size: 20px;
+@pager-icon__font-line-height: @icon-font__line-height;
+
+@pager-item__margin: 0 @pager-item__spacing 0 0;
+@pager__visited__color: false;
+@pager__active__color: false;
+@pager-action__visited__color: false;
+@pager-action__active__color: false;
+
+//
+//  Tabs
+//  ---------------------------------------------
+
+@tab-control__font-size: @font-size__base;
+@tab-control__font-family: false;
+@tab-control__font-weight: @font-weight__bold;
+@tab-control__line-height: 20px;
+@tab-control__margin-right: 30px;
+@tab-control__padding-top: 10px;
+@tab-control__padding-right: 18px;
+@tab-control__padding-bottom: 9px;
+@tab-control__padding-left: 18px;
+@tab-control__border-color: @border-color__base;
+@tab-control__border-width: 1px;
+@tab-control__height: @tab-control__line-height + @tab-control__padding-top + @tab-control__padding-bottom + (2 * @tab-control__border-width);
+@tab-control__height__base: @tab-control__height;
+
+@tab-control__background-color: @color-white;
+@tab-control__color: @color-default;
+
+@tab-control__hover__background-color: @color-white;
+@tab-control__hover__color: @color-dark;
+
+@tab-control__active__background-color: @color-white;
+@tab-control__active__color: @color-dark;
+
+@tab-content__background-color: false;
+@tab-content__border-top-status: false;
+@tab-content__border: @tab-control__border-width solid @tab-control__border-color;
+@tab-content__margin-top: @tab-control__height;
+@tab-content__padding-top: 31px;
+@tab-content__padding-right: 0;
+@tab-content__padding-bottom: 0;
+@tab-content__padding-left: 0;
+
+//
+//  Accordions
+//  ---------------------------------------------
+
+@accordion-control__font-size: @tab-control__font-size;
+@accordion-control__line-height: @accordion-control__height;
+@accordion-control__border-top: false;
+@accordion-control__border-right: false;
+@accordion-control__border-bottom: @tab-control__border-width solid @tab-control__border-color;
+@accordion-control__border-left: false;
+@accordion-control__background-color: @tab-control__background-color;
+@accordion-control__color: @color-dark;
+@accordion-control__height: 20px;
+@accordion-control__margin-bottom: 25px;
+@accordion-control__padding-top: 5px;
+@accordion-control__padding-right: 30px;
+@accordion-control__padding-bottom: 11px;
+@accordion-control__padding-left: 0;
+
+@accordion-control__hover__background-color: @tab-control__hover__background-color;
+@accordion-control__hover__color: @color-primary;
+
+@accordion-control__active__background-color: @tab-control__active__background-color;
+@accordion-control__active__color: @tab-control__active__color;
+
+@accordion-content__background-color: @tab-control__active__background-color;
+@accordion-content__border: false;
+@accordion-content__margin: 0;
+@accordion-content__padding: 0;

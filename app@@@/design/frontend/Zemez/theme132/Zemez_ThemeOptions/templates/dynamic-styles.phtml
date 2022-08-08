@@ -1,0 +1,507 @@
+<?php /**   */ ?>
+<?php
+$optionsHelper = $this->helper('Zemez\ThemeOptions\Helper\Data');
+?>
+
+<?php if($optionsHelper->getLogoType() == 'text'): ?>
+    /** Logo **/
+    <?php $sloganPosition = $optionsHelper->getSloganPosition(); ?>
+    <?php $direction = 'row' ?>
+    <?php if($sloganPosition == 'top'): $direction = 'column-reverse';  ?>
+    <?php elseif($sloganPosition == 'bottom'): $direction = 'column';  ?>
+    <?php elseif($sloganPosition == 'left'): $direction = 'row-reverse'; endif; ?>
+    <?php
+        $logoFontSize = $optionsHelper->getLogoFontSize();
+        $logoLineHeight = $optionsHelper->getLogoLineHeight();
+        $logoTextColor = $optionsHelper->getLogoTextColor();
+        $sloganFontSize = $optionsHelper->getSloganFontSize();
+        $sloganLineHeight = $optionsHelper->getSloganLineHeight();
+        $sloganTextColor = $optionsHelper->getSloganTextColor();
+    ?>
+    .tm-logo-container {
+        display: inline-block;
+    }
+    .tm-logo-text {
+        display:flex;
+        flex-direction: <?php echo $direction; ?>;
+        flex-wrap: nowrap;
+        width: auto;
+    }
+    .tm-logo-text a.logo {
+        text-decoration: none
+    }
+    .tm-logo-text .logo{
+        max-width: 100%;
+        <?php echo $logoFontSize ? 'font-size: ' . $logoFontSize . 'px;' : '' ?>
+        <?php echo $logoLineHeight ? 'line-height: ' . $logoLineHeight . 'px;' : '' ?>
+        <?php echo $logoTextColor ? 'color: ' . $logoTextColor . ';' : '' ?>
+    }
+    .tm-logo-text .tm-slogan {
+        max-width: 100%;
+        <?php echo $sloganFontSize ? 'font-size: ' . $sloganFontSize . 'px;' : '' ?>
+        <?php echo $sloganLineHeight ? 'line-height: ' . $sloganLineHeight . 'px;' : '' ?>
+        <?php echo $sloganTextColor ? 'color: ' . $sloganTextColor . ';' : '' ?>
+    }
+    /** end Logo **/
+<?php elseif($optionsHelper->getLogoType() == 'image'): ?>
+    /** Logo **/
+    <?php $imageSloganPosition = $optionsHelper->getImageSloganPosition(); ?>
+    <?php $direction = 'row' ?>
+    <?php if($imageSloganPosition == 'top'): $direction = 'column-reverse';  ?>
+    <?php elseif($imageSloganPosition == 'bottom'): $direction = 'column';  ?>
+    <?php elseif($imageSloganPosition == 'left'): $direction = 'row-reverse'; endif; ?>
+    <?php
+    $imageSloganFontSize = $optionsHelper->getImageSloganFontSize();
+    $imageSloganLineHeight = $optionsHelper->getImageSloganLineHeight();
+    $imageSloganTextColor = $optionsHelper->getImageSloganTextColor();
+    ?>
+    .tm-logo-container {
+    display: inline-block;
+    }
+    .tm-logo-image {
+        display:flex;
+        flex-direction: <?php echo $direction; ?>;
+        flex-wrap: nowrap;
+        width: auto;
+    }
+    .tm-logo-image a.logo {
+        text-decoration: none
+    }
+    .tm-logo-text .logo{
+        max-width: 100%;
+    }
+    .tm-logo-image .tm-slogan {
+        max-width: 100%;
+        <?php echo $imageSloganFontSize ? 'font-size: ' . $imageSloganFontSize . 'px;' : '' ?>
+        <?php echo $imageSloganLineHeight ? 'line-height: ' . $imageSloganLineHeight . 'px;' : '' ?>
+        <?php echo $imageSloganTextColor ? 'color: ' . $imageSloganTextColor . ';' : '' ?>
+    }
+    /** end Logo **/
+<?php endif; ?>
+
+<?php if($optionsHelper->getColorSchemeStatus()): ?>
+
+/** Primary Color **/
+<?php if ($optionsHelper->getPrimaryColor()): ?>
+    /* put this selectors for primary color/background */
+        a:hover, .alink:hover,
+        .message.info a:hover,
+        .message.info a:active,
+        .message.error a:hover,
+        .message.error a:active,
+        .message.warning a:hover,
+        .message.warning a:active,
+        .message.notice a:hover,
+        .message.notice a:active,
+        .message.success a:hover,
+        .message.success a:active,
+        .product.data.items > .item.title > .switch:hover,
+        .breadcrumbs a:hover,
+        .cart.table-wrapper .action.help.map:hover,
+        .opc-wrapper .edit-address-link:hover,
+        .opc-block-shipping-information .shipping-information-title .action-edit:hover,
+        .action-auth-toggle:hover,
+        .checkout-payment-method .checkout-billing-address .action-cancel:hover,
+        .checkout-agreements-block .action-show:hover,
+        .cart-summary .block.giftcard .action.check:hover,
+        .gift-options .actions-toolbar .action-cancel:hover,
+        .table-comparison .wishlist.split.button > .action:hover,
+        .product-items .wishlist.split.button > .action:hover,
+        .paypal-button-widget .paypal-button:hover,
+        .cart.table-wrapper .action.help.map:hover,
+        .opc-wrapper .edit-address-link:hover,
+        .opc-block-shipping-information .shipping-information-title .action-edit:hover,
+        .action-auth-toggle:hover,
+        .checkout-payment-method .checkout-billing-address .action-cancel:hover,
+        .checkout-agreements-block .action-show:hover,
+        .cart-summary .block.giftcard .action.check:hover,
+        .gift-options .actions-toolbar .action-cancel:hover,
+        .table-comparison .wishlist.split.button > .action:hover,
+        .product-items .wishlist.split.button > .action:hover,
+        .paypal-button-widget .paypal-button:hover,
+        .grid.products-grid .owl-carousel .owl-nav .owl-prev:hover,
+        .grid.products-grid .owl-carousel .owl-nav .owl-next:hover,
+        .modes .modes-mode.active,
+        .modes a.modes-mode:hover,
+        .ui-dialog-titlebar-close:hover,
+        .ui-dialog-titlebar-close:hover,
+        button.map-show-info:hover,
+        .cart.table-wrapper .actions-toolbar > .action.map-show-info:hover,
+        .action-gift.map-show-info:hover,
+        button.map-show-info:hover,
+        .cart.table-wrapper .actions-toolbar > .action.map-show-info:hover,
+        .action-gift.map-show-info:hover,
+        .message.global.noscript a:hover,
+        .message.global.cookie a:hover,
+        .message.global.demo a:hover,
+        .my-credit-cards .action.delete:hover,
+        .my-credit-cards .action.delete:hover,
+        .my-credit-cards-popup .action.secondary:hover,
+        .my-credit-cards-popup .action.secondary:hover,
+        em, .color-primary,
+        .modal-custom .action-close:hover,
+        .modal-popup .action-close:hover,
+        .modal-slide .action-close:hover,
+        .modal-custom .action-close:focus,
+        .modal-popup .action-close:focus,
+        .modal-slide .action-close:focus,
+        .modal-custom .action-close:active,
+        .modal-popup .action-close:active,
+        .modal-slide .action-close:active,
+        .field.choice > input[type=checkbox] + .label:before,
+        .field.choice > input[type=radio] + .label:before,
+        .select2-container--default .select2-results__option[aria-selected=true],
+        .select2-container--default .select2-results__option--highlighted[aria-selected],
+        .grid.products-grid .product-item-info .product-item-actions .tocart:not(.stock):hover,
+        .grid.products-grid .product-item-info .product-item-actions .tocart:not(.stock):active,
+        .grid.products-grid .product-item-info .product-item-actions .tocart:not(.stock):focus,
+        .product-wrap .product.media .fotorama__arr:hover,
+        .product-wrap .product-info-stock-sku > .product.attribute.sku .value,
+        .product-wrap .product-brand-name a:hover,
+        .catalog-product-view .product.data.items .additional-attributes .attributes-caption,
+        .block.related .block-actions .select,
+        .block.upsell .block-actions button.action.select,
+        .block.upsell .block-actions .cart.table-wrapper .actions-toolbar > .action.action.select,
+        .block.upsell .block-actions .action-gift.action.select,
+        .abs-action-addto-product:hover,
+        .bundle-options-container .block-bundle-summary .product-addto-links > .action:hover,
+        .product-info-main .action.tocompare:hover,
+        .product-options-bottom .action.tocompare:hover,
+        .product-info-main .action.towishlist:hover,
+        .product-options-bottom .action.towishlist:hover,
+        .block-bundle-summary .action.towishlist:hover,
+        .minicart-wrapper .action.showcart:hover:before,
+        .minicart-wrapper .action.showcart:hover:after,
+        .minicart-wrapper .block-minicart .action.close:hover,
+        .minicart-wrapper .block-minicart .block-content .items-total .count,
+        .minicart-wrapper .block-minicart .block-content .items-total span:nth-child(2),
+        .minicart-wrapper .block-minicart .minicart-items .product-item > .product .product-item-name a:hover,
+        .minicart-wrapper .block-minicart .minicart-items .details-qty .update-cart-item,
+        .minicart-wrapper .block-minicart .minicart-items .product.options[role="tablist"] .toggle,
+        .minicart-wrapper .block-minicart .minicart-items .product.actions a:hover:before,
+        #gift-options-cart .gift-options-title,
+        #shopping-cart-table .cart.item .product-item-details .product-item-name a:hover,
+        .cart-container .cart-summary .checkout.methods .item .action.multicheckout:hover,
+        .cart-container .cart-summary .block .title[role="tab"] {
+        color: <?php echo $optionsHelper->getPrimaryColor(); ?>;
+        }
+
+        .opc-progress-bar .opc-progress-bar-item,
+        #opc-sidebar .items-in-cart > .title span:first-child,
+        .table-checkout-shipping-method td:first-child span.radio:before,
+        .field.required .control div.field-tooltip.toggle._active .field-tooltip-action:before,
+        ._keyfocus .field.required .control div.field-tooltip.toggle .field-tooltip-action:focus:before,
+        #checkout-step-payment input[name="billing-address-same-as-shipping"] + label span:before,
+        #checkout-step-payment .discount-code .payment-option-title,
+        .sidebar .account-navigation li.current strong,
+        .sidebar .account-navigation a,
+        .block-dashboard-info .box-title,
+        .block-dashboard-addresses .box-title,
+        .box-billing-address .box-title,
+        .box-address-shipping .box-title,
+        .block-dashboard-info .box-actions .action.edit:hover,
+        .block-dashboard-addresses .box-actions .action.edit:hover,
+        .box-billing-address .box-actions .action.edit:hover,
+        .box-address-shipping .box-actions .action.edit:hover,
+        .block-addresses-list .block-content .action.edit:hover,
+        .block-addresses-list .block-content .action.delete:hover,
+        .popup-authentication .block-title,
+        .account-nav .account-nav-content .item a:hover,
+        .account-nav .account-nav-content .item.current,
+        .page-product-downloadable .page-main .product-options-wrapper .legend,
+        .page-product-grouped .table.grouped .table-caption,
+        .filter-options .filter-options-content .item a:hover,
+        #cart-sidebar-reorder .product-item-link:hover,
+        #cart-sidebar-reorder .control .label:before,
+        .block-search form button.action.search:hover,
+        .block-search form .cart.table-wrapper .actions-toolbar > .action.action.search:hover,
+        .block-search form .action-gift.action.search:hover,
+        .cms-about-us .skills .value,
+        .about-us_services .about-us_services_txt i,
+        .cms-about-us .testimonials blockquote i,
+        .contact-index-index .contact-us-info .contact-us-info-description:not(.contact-us-info-description-email) a:hover,
+        .form.search.advanced legend.legend,
+        .sales-guest-form .admin__legend,
+        .shipping-delivery-page ul li:before,
+        .shipping-delivery-page [class*='themeicon-']:before,
+        .faq-page #faq-accordion .accordion-content p:before,
+        .support-page .boxes-block li div span:before,
+        .guarantee-page h4:before,
+        .terms-conditions-page ul h4:before,
+        .block-static-block a.category:hover span,
+        .footer.content .footer-col .footer.links li.current,
+        .footer.content .footer-col .footer.links li.current > *,
+        .footer.content .footer-col .footer.links li.current strong,
+        .sidebar .block-wishlist .wishlist-counter span,
+        .block-wishlist .wishlist-counter span,
+        #search_autocomplete .search-item .price-box .special-price .price,
+        .listing-gallery .fotorama__arr--prev .fotorama__arr__arr:hover:before,
+        .listing-gallery .fotorama__arr--next .fotorama__arr__arr:hover:before,
+        .action.primary:hover {
+        color: <?php echo $optionsHelper->getPrimaryColor(); ?>;
+        }
+
+        @media all and (min-width: 640px) {
+        .column .block-addbysku .action.remove:hover {
+        color: <?php echo $optionsHelper->getPrimaryColor(); ?>;
+        }
+        }
+
+        @media (min-width: 768px) {
+        .sm-header-nav-toggle:hover:before,
+        .sm-header-nav-toggle:hover:after {
+        color: <?php echo $optionsHelper->getPrimaryColor(); ?>;
+        }
+        }
+
+        @media only screen and (max-width: 767px) {
+        .product.data.items > .item.title > .switch:hover,
+        .sm-header_customer-menu-wrap.ui-dialog .switcher .switcher-trigger:hover,
+        .sm-header_customer-menu-wrap.ui-dialog .switcher .mage-dropdown-dialog a:hover,
+        .block-search .search .label.open:hover:after,
+        .list.products-list .product-item-info .action.tocart:hover,
+        .opc-estimated-wrapper .estimated-price {
+        color: <?php echo $optionsHelper->getPrimaryColor(); ?>;
+        }
+        }
+
+        mark,
+        .bg-primary,
+        .opc-progress-bar .opc-progress-bar-item._active > span:before,
+        .checkout-container .authentication-wrapper button.action-auth-toggle,
+        .checkout-container .authentication-wrapper .cart.table-wrapper .actions-toolbar > .action.action-auth-toggle,
+        .checkout-container .authentication-wrapper .action-gift.action-auth-toggle,
+        body.account .box a.action:hover,
+        .sidebar .price-slider .ui-slider-handle,
+        .sidebar .price-slider .ui-slider-range,
+        .faq-page #faq-accordion .accordion-trigger:before,
+        .support-page .boxes-block li div:hover,
+        .header-top,
+        .scrollToTop:hover,
+        .minicart-wrapper .action.showcart .counter.qty {
+        background: <?php echo $optionsHelper->getPrimaryColor(); ?>;
+        }
+
+
+        .swatch-attribute [class*="swatch-opt"] .swatch-option.image:hover,
+        [class*="swatch-opt"] .swatch-attribute .swatch-option.image:hover,
+        .swatch-attribute [class*="swatch-opt"] .swatch-option.image.selected,
+        [class*="swatch-opt"] .swatch-attribute .swatch-option.image.selected,
+        .swatch-attribute [class*="swatch-opt"] .swatch-option.image:not(.disabled):hover,
+        [class*="swatch-opt"] .swatch-attribute .swatch-option.image:not(.disabled):hover,
+        .support-page .boxes-block li div,
+        .listing-gallery .fotorama__thumb-border,
+        .css3-loader,
+        .action.primary:hover {
+        border-color: <?php echo $optionsHelper->getPrimaryColor(); ?>;
+        }
+
+        .cart-container .cart-summary .block.discount button.apply,
+        .cart-container .cart-summary .block.discount .cart.table-wrapper .actions-toolbar > .action.apply,
+        .cart-container .cart-summary .block.discount .action-gift.apply,
+        .action.primary,
+        .pages strong.page,
+        .block-event .slider-panel .slider .item .action.event,
+        .account .actions-toolbar .secondary a.action:hover,
+        .account .actions-toolbar .secondary button.action:hover,
+        .account .actions-toolbar .secondary .cart.table-wrapper .actions-toolbar > .action.action:hover,
+        .account .actions-toolbar .secondary .action-gift.action:hover {
+        background: <?php echo $optionsHelper->getPrimaryColor(); ?>;
+        border-color: <?php echo $optionsHelper->getPrimaryColor(); ?>;
+        }
+
+        @media (min-width: 768px) {
+        .bg-primary, .page-header.layout-3 .menu-title span {
+        background: <?php echo $optionsHelper->getPrimaryColor(); ?>;
+        }
+        }
+
+        @media (min-width: 1024px) {
+        .navigation.tm-navigation li.level-top .mm-label,
+        .page-header.layout-3 .page-header__content > .block-static-block + .sm-header-nav-wrap .menu-title span {
+        background: <?php echo $optionsHelper->getPrimaryColor(); ?>;
+        }
+        }
+
+        @media (min-width: 768px) {
+        .sidebar .navigation.tm-navigation .level0 > .level-top:hover,
+        .sidebar .navigation.tm-navigation .level0 > .level-top.ui-state-focus,
+        .color-primary,
+        .field.choice > input[type=checkbox] + .label:before,
+        .field.choice > input[type=radio] + .label:before,
+        .select2-container--default .select2-results__option[aria-selected=true],
+        .select2-container--default .select2-results__option--highlighted[aria-selected],
+        .customer-account ul a,
+        .customer-account .customer-name,
+        .header.links a,
+        .page-header .switcher .options .action.toggle.active,
+        .page-header .switcher .options .action.toggle:hover,
+        .page-header .switcher .options ul.switcher-dropdown a,
+        .page-header.layout-2 .minicart-wrapper .action.showcart:hover:before,
+        .page-header.layout-2 .minicart-wrapper .action.showcart:hover:after,
+        .product-layout-3 .product.data.items > .item.title:hover {
+        color: <?php echo $optionsHelper->getPrimaryColor(); ?>;
+        }
+        }
+
+        @media (min-width: 1024px) {
+        .navigation li.level-top .tm-megamenu a:hover,
+        .navigation li.level-top .tm-megamenu a.ui-state-active:hover,
+        .navigation li.level-top .tm-megamenu a.ui-state-focus:hover,
+        .navigation.tm-navigation li.level-top .tm-megamenu ul.level1 > li > a:hover,
+        .navigation.tm-navigation li.level-top .tm-megamenu ul.level1 > li > a.ui-state-active:hover,
+        .navigation.tm-navigation li.level-top .tm-megamenu ul.level1 > li > a.ui-state-focus:hover,
+        .navigation.tm-navigation li.level-top .tm-megamenu .product .product-name a:hover,
+        nav.navigation li.level-top .submenu .active > a,
+        nav.navigation li.level-top .ui-state-active,
+        nav.navigation li.level-top .ui-state-focus,
+        nav.navigation li.level-top > ul:not(.megamenu-wrapper) li > a:hover,
+        nav.navigation li.level-top > ul:not(.megamenu-wrapper) ul li > a:hover,
+        nav.navigation li.level-top > ul:not(.megamenu-wrapper) li > a.ui-state-focus,
+        nav.navigation li.level-top > ul:not(.megamenu-wrapper) ul li > a.ui-state-focus,
+        nav.navigation li.level-top > ul:not(.megamenu-wrapper) li > a.ui-state-active,
+        nav.navigation li.level-top > ul:not(.megamenu-wrapper) ul li > a.ui-state-active {
+        color: <?php echo $optionsHelper->getPrimaryColor(); ?>;
+        }
+        }
+
+        @media (min-width: 1200px) {
+        nav.navigation li.level-top .submenu .active > a,
+        nav.navigation li.level-top .ui-state-active,
+        nav.navigation li.level-top .ui-state-focus,
+        nav.navigation li.level-top > ul:not(.megamenu-wrapper) li > a:hover,
+        nav.navigation li.level-top > ul:not(.megamenu-wrapper) ul li > a:hover,
+        nav.navigation li.level-top > ul:not(.megamenu-wrapper) li > a.ui-state-focus,
+        nav.navigation li.level-top > ul:not(.megamenu-wrapper) ul li > a.ui-state-focus,
+        nav.navigation li.level-top > ul:not(.megamenu-wrapper) li > a.ui-state-active,
+        nav.navigation li.level-top > ul:not(.megamenu-wrapper) ul li > a.ui-state-active {
+        color: <?php echo $optionsHelper->getPrimaryColor(); ?>;
+        }
+        }
+
+        @media (min-width: 1632px) {
+        .page-header.layout-2 .minicart-wrapper .action.showcart .counter.qty {
+        color: <?php echo $optionsHelper->getPrimaryColor(); ?>;
+        }
+        }
+
+        @media (max-width: 1023px) {
+        .navigation.tm-navigation .level0 a:hover,
+        .navigation.tm-navigation .level0 a.ui-state-focus,
+        .navigation.tm-navigation .level0 a.ui-state-active,
+        .page-header.layout-2 .sm-header-nav-toggle:hover:before,
+        .page-header.layout-2 .sm-header-nav-toggle:hover:after,
+        .page-header.layout-2 .customer-account .customer-name:hover:before,
+        .page-header.layout-2 .header.links li.compare a:hover:before,
+        .page-header.layout-2 .header.links li.wishlist a:hover:before,
+        .page-header.layout-3 .sm-header-nav-toggle:hover:before,
+        .page-header.layout-3 .sm-header-nav-toggle:hover:after {
+        color: <?php echo $optionsHelper->getPrimaryColor(); ?>;
+        }
+        }
+<?php endif; ?>
+/**/
+
+/** Secondary Color **/
+
+/* put this selectors for secondary color/background */
+<?php if ($optionsHelper->getSecondaryColor()): ?>
+    .product-item .price-box .special-price,
+    .product-details .box-tocart .fieldset .special-price,
+    .product-wrap .product-info-price .price-box .special-price,
+    #search_autocomplete .search-item .price-box .special-price {
+    color: <?php echo $optionsHelper->getSecondaryColor(); ?>;
+    }
+<?php endif; ?>
+/**/
+
+body {
+    <?php if ($optionsHelper->getBodyBackgroundColor()): ?>
+        background-color: <?php echo $optionsHelper->getBodyBackgroundColor(); ?>;
+    <?php endif; ?>
+    <?php if ($optionsHelper->isBodyBackgroundImage()) : ?>
+        background-image: <?php echo $optionsHelper->getBodyBackgroundImage() ? 'url(' . $this->getBaseUrl() . 'pub/media/theme_options/' . $optionsHelper->getBodyBackgroundImage() . ')' : 'none' ?>;
+        background-size: <?php echo $optionsHelper->getBodyBackgroundImageSize(); ?>;
+        background-attachment: <?php echo $optionsHelper->getBodyBackgroundImageAttachment(); ?>;
+        background-position: <?php echo $optionsHelper->getBodyBackgroundImagePosition(); ?>;
+        background-repeat: <?php echo $optionsHelper->getBodyBackgroundImageRepeat(); ?>;
+    <?php endif; ?>
+}
+
+header.page-header {
+    <?php if ($optionsHelper->getHeaderBackgroundColor()): ?>
+        background-color: <?php echo $optionsHelper->getHeaderBackgroundColor(); ?>;
+    <?php endif; ?>
+    <?php if ($optionsHelper->isHeaderBackgroundImage()) : ?>
+        background-image: <?php echo $optionsHelper->getHeaderBackgroundImage() ? 'url(' . $this->getBaseUrl() . 'pub/media/theme_options/' . $optionsHelper->getHeaderBackgroundImage() . ')' : 'none' ?>;
+        background-size: <?php echo $optionsHelper->getHeaderBackgroundImageSize(); ?>;
+        background-attachment: <?php echo $optionsHelper->getHeaderBackgroundImageAttachment(); ?>;
+        background-position: <?php echo $optionsHelper->getHeaderBackgroundImagePosition(); ?>;
+        background-repeat: <?php echo $optionsHelper->getHeaderBackgroundImageRepeat(); ?>;
+    <?php endif; ?>
+}
+
+.page-footer .footer.content {
+    <?php if ($optionsHelper->getFooterBackgroundColor()): ?>
+        background-color: <?php echo $optionsHelper->getFooterBackgroundColor(); ?>;
+    <?php endif; ?>
+    <?php if ($optionsHelper->isFooterBackgroundImage()) : ?>
+        background-image: <?php echo $optionsHelper->getFooterBackgroundImage() ? 'url(' . $this->getBaseUrl() . 'pub/media/theme_options/' . $optionsHelper->getFooterBackgroundImage() . ')' : 'none' ?>;
+        background-size: <?php echo $optionsHelper->getFooterBackgroundImageSize(); ?>;
+        background-attachment: <?php echo $optionsHelper->getFooterBackgroundImageAttachment(); ?>;
+        background-position: <?php echo $optionsHelper->getFooterBackgroundImagePosition(); ?>;
+        background-repeat: <?php echo $optionsHelper->getFooterBackgroundImageRepeat(); ?>;
+    <?php endif; ?>
+}
+<?php endif; ?>
+
+/** Typography Settings  **/
+
+/*Primary font family*/
+body {
+    <?php if ($optionsHelper->getPrimaryFontFamily()): ?>
+        font-family: <?php echo $optionsHelper->getPrimaryFontFamily(); ?>;
+    <?php endif; ?>
+    <?php if ($optionsHelper->getPrimaryFontSize()): ?>
+        font-size: <?php echo $optionsHelper->getPrimaryFontSize(); ?>;
+    <?php endif; ?>
+    <?php if ($optionsHelper->getPrimaryLineHeight()): ?>
+        line-height: <?php echo $optionsHelper->getPrimaryLineHeight(); ?>;
+    <?php endif; ?>
+
+    <?php if ($optionsHelper->getPrimaryFontColor()): ?>
+        color: <?php echo $optionsHelper->getPrimaryFontColor(); ?>;
+    <?php endif; ?>
+}
+a {
+    <?php if ($optionsHelper->getPrimaryLinkColor()): ?>
+        color: <?php echo $optionsHelper->getPrimaryLinkColor(); ?>;
+    <?php endif; ?>
+}
+
+/*Secondary font family*/
+<?php if ($optionsHelper->getSecondaryFontFamily()): ?>
+    .welcome,
+    .switcher-options,
+    .header.links {
+        font-family: <?php echo $optionsHelper->getSecondaryFontFamily(); ?>;
+    }
+<?php endif; ?>
+/* Category page */
+<?php if ($columns = $optionsHelper->getProductItemWidth()): ?>
+@media screen and (min-width: 1200px) {
+    .grid-main .grid.products-grid .product-item{
+        -webkit-flex-basis: <?php echo $columns; ?>;
+        -ms-flex-preferred-size: <?php echo $columns; ?>;
+        flex-basis: <?php echo $columns; ?>;
+        width: <?php echo $columns; ?>;
+        max-width: <?php echo $columns; ?>;
+    }
+}
+<?php endif; ?>
+<?php if ($optionsHelper->isTiltJs()): ?>
+    .js-tilt-glare {
+        pointer-events: none;
+    }
+<?php endif ?>
+/* END Category page */

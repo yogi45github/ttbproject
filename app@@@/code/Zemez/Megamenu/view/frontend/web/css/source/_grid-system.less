@@ -1,0 +1,47 @@
+//
+//  Make columns
+//  ---------------------------------------------
+
+.mega-menu-columns-base(@_i: 1) when (@_i =< length(@mega-menu_screen__names)) {
+    @_resolution: extract(@mega-menu_screen__names, @_i);
+    [class*='col-@{_resolution}-'] {
+        position: relative;
+        width: 100%;
+        padding-right: floor((@mega-menu_gutter__width / 2));
+        padding-left: floor((@mega-menu_gutter__width / 2));
+        box-sizing: border-box;
+    }
+    .mega-menu-columns-base(@_i + 1);
+}
+
+@_resolution-count: length(@mega-menu_screen__names);
+.mega-menu-make-columns (@_i-resolution: 1) when (@_i-resolution < (@_resolution-count + 1)) {
+    @_resolution: extract(@mega-menu_screen__names, @_i-resolution);
+    @_i-numb: @mega-menu_column__count;
+    .make-columns__numb (@_i-numb) when (@_i-numb > 0) {
+        @media (min-width: ~"@{screen__@{_resolution}}") {
+            .col-@{_resolution}-@{_i-numb} {
+                flex-basis: (@_i-numb / @mega-menu_column__count) * 100%;
+                max-width: (@_i-numb / @mega-menu_column__count) * 100%;
+            }
+        }
+        .make-columns__numb(@_i-numb - 1);
+    }
+    .make-columns__numb(@_i-numb);
+    .mega-menu-make-columns(@_i-resolution + 1);
+}
+
+& when (@media-target = 'mobile') {
+    nav.tm-navigation {
+        .row {
+            display: flex;
+            flex-wrap: wrap;
+            margin-left: ceil((@mega-menu_gutter__width / -2));
+            margin-right: floor((@mega-menu_gutter__width / -2));
+            box-sizing: border-box;
+        }
+
+        .mega-menu-columns-base();
+        .mega-menu-make-columns();
+    }
+}

@@ -1,0 +1,13 @@
+#load_more_prd {
+    width: 27%;
+    margin: 4rem auto;
+    padding: 12px;
+    color: #fff;
+    border-radius: 5px;
+    font-size: 15px;
+    line-height: 1.25;
+    border: 1px solid #dee2e6;
+}
+.load_more_products {
+    text-align: center;
+}

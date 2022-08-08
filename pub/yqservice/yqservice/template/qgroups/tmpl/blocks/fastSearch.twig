@@ -1,0 +1,8 @@
+{% block fastSearch %}
+    {% spaceless %}
+        <input type="text" maxlength="20" size="50" id="qgsearchinput" class="border-radius-0" placeholder="{{ 'enter_group_name'|t }}"
+               title="{{ 'enter_group_name'|t }}"
+               onkeyup="QuickGroups.Search(this.value);" class="catalog_search_input">
+    {% endspaceless %}
+
+{% endblock %}

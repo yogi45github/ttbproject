@@ -1,0 +1,136 @@
+//
+//  Helpers
+//  _____________________________________________
+
+& when (@media-target = 'mobile') {
+    .d-none {
+        display: none;
+    }
+
+    .text-center {
+        text-align: center;
+    }
+
+    .text-right {
+        text-align: right;
+    }
+
+    .bg-dark {
+        background: @color-gray-dark;
+        color: @color-white;
+
+        h1, h2, h3, h4, h5, h6 {
+            color: @color-white;
+        }
+
+        ul.social-links a:hover {
+            color: @color-white;
+        }
+
+        .action.primary, .action.default {
+            &:hover, &:active, &:focus {
+                color: @color-white;
+                border-color: @color-white;
+            }
+        }
+
+        input {
+            &, &:focus {
+                border: none;
+            }
+        }
+    }
+
+    .bg-light {
+        background: @color-lightest;
+        color: @color-black;
+
+        input {
+            border-color: @color-white;
+        }
+    }
+
+    .bg-primary {
+        background: @color-primary;
+        color: @color-white;
+
+        h1, h2, h3, h4, h5, h6 {
+            color: @color-white;
+        }
+
+        .action.primary {
+            background-color: @color-white;
+            border-color: @color-white;
+            color: @color-dark;
+            &:hover, &:active, &:focus {
+                color: @color-white;
+                border-color: @color-white;
+                background: none;
+            }
+        }
+    }
+
+    body .bg-white {
+        background: @color-white;
+        color: @color-black;
+    }
+
+    .color-primary {
+        color: @color-primary;
+        &.a, a {
+            &:hover {
+                color: @color-dark;
+            }
+        }
+    }
+
+    .color-white {
+        color: @color-white;
+    }
+
+    .text-bold {
+        font-weight: 800;
+    }
+
+    .hidden-mobile {
+        @media (max-width: (@screen__m - 1)) {
+            &, &.action {
+                display: none;
+            }
+        }
+    }
+
+    .big {
+        font-size: 178%;
+    }
+
+    .mobile-overlay {
+        @media (max-width: (@screen__m - 1)) {
+            background: rgba(255, 255, 255, 0.7);
+        }
+    }
+
+    .no-gutter {
+        padding: 0;
+    }
+
+    body .no-margin {
+        margin: 0;
+    }
+}
+
+& when (@media-target = 'desktop') {
+    .gutter-left-percentage {
+        padding-left: ((@gutter__width * 50%) / @screen__xxl);
+    }
+
+    .gutter-right-percentage {
+        padding-right: ((@gutter__width * 50%) / @screen__xxl);
+    }
+
+    .order-l-first {
+        @media (min-width: @screen__l) {
+            order: -1;
+        }
+    }
+}

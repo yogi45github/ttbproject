@@ -1,0 +1,346 @@
+"block_id","title","identifier","content","creation_time","update_time","is_active"
+"1","Footer Column Content 2","footer_col_2","<div class=""footer-col"">
+	<h4>Why buy from us</h4>
+	<div class=""footer-col-content"">
+	    <ul>
+	        <li><a href=""{{store url=""""}}shipping-delivery"">Shipping & Delivery</a></li>
+	        <li><a href=""{{store url=""""}}secure-payment"">Secure payment</a></li>
+	        <li><a href=""{{store url=""""}}support"">Support</a></li>
+	        <li><a href=""{{store url=""""}}guarantee"">Guarantee</a></li>
+	        <li><a href=""{{store url=""""}}terms-conditions"">Terms & Conditions</a></li>
+	    </ul>
+	</div>
+</div>","2016-03-12 03:30:44","2018-08-27 14:46:34","1"
+"4","Footer Column Content 3","footer_col_3","<div class=""footer-col"">
+    <h4>My account</h4>
+    <div class=""footer-col-content"">
+        <ul>
+            <li><a href=""{{store url='customer/account/login/'}}"">Sign In</a></li>
+            <li><a href=""{{store url='checkout/cart/'}}"">View Cart</a></li>
+            <li><a href=""{{store url='wishlist/'}}"">My Wishlist</a></li>
+            <li><a href=""{{store url=""""}}faq"">FAQ</a></li>
+        </ul>
+    </div>
+</div>","2016-03-12 03:33:05","2018-08-27 14:46:19","1"
+"7","Footer Column Content 4","footer_col_4","<div class=""footer-col"">
+    <h4>Contacts</h4>
+    <div class=""footer-col-content contact-info"">
+        <p class=""themeicon-telephone"">
+            Got Questions ? Call us 24/7! <br>
+            <strong><a href=""callto:80080018588"">(800) 8001-8588</a>, <a href=""callto:0600874548"">(0600) 874 548</a></strong>
+        </p>
+        <p class=""themeicon-map-marker"">   
+            Adresses <br>
+            <strong>17 Princess Road, London, Greater London NW1 8JR, UK</strong>
+        </p>
+    </div>
+</div>","2016-03-12 03:35:20","2018-08-28 14:54:44","1"
+"10","Footer Column 1 Title","footer_col_1_title","<h4>Information</h4>","2017-06-15 12:45:27","2018-08-27 14:44:59","1"
+"11","Footer Column Content 1","footer_col_1","<ul>
+    <li><a href=""{{store direct_url=""about-us""}}"">About Us</a></li>
+    <li><a href=""{{store direct_url=""customer-service""}}"">Customer Service</a></li>
+    <li><a href=""{{store url=""""}}template-settings"">Template Settings</a></li>
+</ul>","2017-06-15 12:47:30","2018-08-27 14:44:09","1"
+"12","Header Top Block","header_top_block","<div class=""header-top"">
+	<div class=""container"">
+		<a href=""{{store url='e-vehicles-parts.html'}}"">Free Shipping on orders over $99. This offer is valid on all our store items</a>
+	</div>
+</div>","2018-07-16 11:45:54","2018-12-12 12:18:06","1"
+"13","Header Info","header_info_block","<i class=""themeicon-telephone""></i> Call us 24/7! <span class=""text-bold color-primary""><a href=""callto:80080018588"">(800) 8001-8588</a>, <a href=""callto:0600874548"">(0600) 874 548</a></span>","2018-07-16 15:50:46","2018-08-08 13:14:31","1"
+"14","Menu Banner","menu_banner","<a class=""banner hovered"" href=""{{store url='e-vehicles-parts.html'}}"">
+    <img src=""{{media url=""wysiwyg/menu-banner.jpg""}}"" alt="""" />
+    <div class=""banner-content top left"">
+        <h3 class=""color-white"">AC Motors, <br> Complete Systems</h3>
+        <span class=""action primary"">shop now</span>
+    </div>
+</a>","2018-07-20 10:02:57","2018-12-10 15:04:35","1"
+"15","Top Banner 1","top_banner_1","<a class=""banner no-margin"" href=""{{store url='e-vehicles-parts.html'}}"">
+    <img src=""{{media url=""wysiwyg/top-banner-1.jpg""}}"" alt="""" />
+    <div class=""banner-content left"">
+        <div class=""text-center mobile-overlay"">
+            <h6>limited time offer</h6>
+            <h2>Components and Systems <br> for Electric Vehicles</h2>
+            <p class=""hidden-mobile"">Our Store has a quality selection of electric car parts, components, conversion kits, and <br> charging station solutions for your Electric Vehicle or EV Conversion.</p>
+            <span class=""action primary hidden-mobile"">shop now</span>
+        </div>
+    </div>
+</a>","2018-08-15 06:24:07","2018-12-12 10:29:31","1"
+"16","Top Banner 2","top_banner_2","<a class=""banner banner-big"" href=""{{store url='e-vehicles-parts.html'}}"">
+    <img src=""{{media url=""wysiwyg/top-banner-2.jpg""}}"" alt="""" />
+    <div class=""banner-content"">
+        <h6 class=""color-white hidden-mobile"">E-Vehicles Parts</h6>
+        <h1 class=""color-white text-center""><span class=""big"">SALE</span><br> 50% OFF</h1>
+        <span class=""action primary hidden-mobile"">shop now</span>
+    </div>
+</a>","2018-08-15 06:25:55","2018-12-12 12:19:15","1"
+"17","Top Banner 3","top_banner_3","<a class=""banner banner-big"" href=""{{store url='e-vehicles-parts.html'}}"">
+    <img src=""{{media url=""wysiwyg/top-banner-3.jpg""}}"" alt="""" />
+    <div class=""banner-content right"">
+        <div>
+            <h6>New arrivals</h6>
+            <h1>E-DRIVE <br> MODULE</h1>
+            <span class=""action primary hidden-mobile"">shop now</span>
+        </div>
+    </div>
+</a>","2018-08-15 06:27:52","2018-12-12 07:54:41","1"
+"18","Home Banners 1","home_banners_1","<div class=""row"">
+    <div class=""col-m-6"">
+        <a class=""banner hovered"" href=""{{store url='e-vehicles-parts/motors.html'}}"">
+            <img src=""{{media url=""wysiwyg/banner-1.jpg""}}"" alt="""" />
+            <div class=""banner-content top left"">
+                <h6>Motor Drive Kits</h6>
+                <h3> <img src=""{{media url=&quot;wysiwyg/logo-mini.png&quot;}}"" alt="""" /> <span>Best <br> Brands!</span></h3>
+                <span class=""action primary"">shop now</span>
+            </div>
+        </a>
+    </div>
+    <div class=""col-m-6"">
+        <a class=""banner hovered"" href=""{{store url='e-vehicles-parts.html'}}"">
+            <img src=""{{media url=""wysiwyg/banner-2.jpg""}}"" alt="""" />
+            <div class=""banner-content top left"">
+                <h6 class=""color-white"">E-Vehicles</h6>
+                <h3 class=""color-white""> <img src=""{{media url=&quot;wysiwyg/logo-mini.png&quot;}}"" alt="""" /> <span>Lowest <br> Prices!</span></h3>
+                <span class=""action primary"">shop now</span>
+            </div>
+        </a>
+    </div>
+</div>","2018-08-21 12:06:02","2018-12-11 12:50:53","1"
+"19","Home Banners 2","home_banners_2","<div class=""row"">
+    <div class=""col-m-8"">
+        <a class=""banner hovered"" href=""{{store url='marine.html'}}"">
+            <img src=""{{media url=""wysiwyg/banner-3.jpg""}}"" alt="""" />
+            <div class=""banner-content top right"">
+                <div>
+                    <h6 class=""color-white"">Online Only</h6>
+                    <h3 class=""color-white""> <img src=""{{media url=&quot;wysiwyg/logo-mini.png&quot;}}"" alt="""" /> <span>Special <br> Deals</span></h3>
+                    <span class=""action primary hidden-mobile"">shop now</span>
+                </div>
+            </div>
+        </a>
+    </div>
+    <div class=""col-m-4 gutter-left-percentage"">
+        <a class=""banner hovered"" href=""{{store url='e-vehicles-parts/motors.html'}}"">
+            <img src=""{{media url=""wysiwyg/banner-4.jpg""}}"" alt="""" />
+            <div class=""banner-content top left"">
+                <h6>Motors</h6>
+                <h3> <img src=""{{media url=&quot;wysiwyg/logo-mini.png&quot;}}"" alt="""" /> <span>Sale! <br> 30% off!</span></h3>
+                <span class=""action primary"">shop now</span>
+            </div>
+        </a>
+    </div>
+</div>","2018-08-21 13:18:31","2018-12-11 13:05:39","1"
+"20","Home Banners 3","home_banners_3","<div class=""row"">
+    <div class=""col-m-4 gutter-right-percentage"">
+        <a class=""banner hovered"" href=""{{store url='marine.html'}}"">
+            <img src=""{{media url=""wysiwyg/banner-5.jpg""}}"" alt="""" />
+            <div class=""banner-content bottom right"">
+                <div>
+                    <h6 class=""color-white"">Comfort. Quality</h6>
+                    <h3 class=""color-white""> <img src=""{{media url=&quot;wysiwyg/logo-mini.png&quot;}}"" alt="""" /> <span>Sale <br> 10% off</span></h3>
+                    <span class=""action primary"">shop now</span>
+                </div>
+            </div>
+        </a>
+    </div>
+    <div class=""col-m-8"">
+        <a class=""banner hovered"" href=""{{store url='e-vehicles-parts.html'}}"">
+            <img src=""{{media url=""wysiwyg/banner-6.jpg""}}"" alt="""" />
+            <div class=""banner-content bottom left"">
+                <h6 class=""color-white"">Lights</h6>
+                <h3 class=""color-white""> <img src=""{{media url=&quot;wysiwyg/logo-mini.png&quot;}}"" alt="""" /> <span>High Quality Electric Spare Parts with <br> Competitive Price</span></h3>
+                <span class=""action primary hidden-mobile"">shop now</span>
+            </div>
+        </a>
+    </div>
+</div>","2018-08-21 13:41:26","2018-12-11 13:16:39","1"
+"21","Banner 1","banner_1","<a class=""banner hovered"" href=""{{store url='e-vehicles-parts/motors.html'}}"">
+    <img src=""{{media url=""wysiwyg/banner-7.jpg""}}"" alt="""" />
+    <div class=""banner-content top left"">
+        <h6>Motor Drive Kits</h6>
+        <h3> <img src=""{{media url=&quot;wysiwyg/logo-mini.png&quot;}}"" alt="""" /> <span>Best <br> Brands!</span></h3>
+        <span class=""action primary hidden-mobile"">shop now</span>
+    </div>
+</a>","2018-08-23 11:30:56","2018-12-11 14:33:40","1"
+"22","Banner 2","banner_2","<a class=""banner hovered"" href=""{{store url='e-vehicles-parts.html'}}"">
+    <img src=""{{media url=""wysiwyg/banner-8.jpg""}}"" alt="""" />
+    <div class=""banner-content top left"">
+        <h6 class=""color-white"">E-Vehicles</h6>
+        <h3 class=""color-white""> <img src=""{{media url=&quot;wysiwyg/logo-mini.png&quot;}}"" alt="""" /> <span>Lowest <br> Prices!</span></h3>
+        <span class=""action primary hidden-mobile"">shop now</span>
+    </div>
+</a>","2018-08-23 11:33:49","2018-12-11 14:35:28","1"
+"23","Sidebar Banners","sidebar_banners","<div class=""row"">
+    <div class=""col-xs-6 col-m-4 col-l-12"">
+        <a class=""banner hovered"" href=""{{store url='e-vehicles-parts.html'}}"">
+            <img src=""{{media url=""wysiwyg/banner-9.jpg""}}"" alt="""" />
+            <div class=""banner-content top left"">
+                <h3>Sale! <br> 20% OFF!</h3>
+                <span class=""action primary"">shop now</span>
+            </div>
+        </a>
+    </div>
+    <div class=""col-xs-6 col-m-4 col-l-12"">
+        <a class=""banner hovered"" href=""{{store url='marine.html'}}"">
+            <img src=""{{media url=""wysiwyg/banner-10.jpg""}}"" alt="""" />
+            <div class=""banner-content bottom left"">
+                <h3 class=""color-white"">Latest <br> Selection!</h3>
+                <span class=""action primary"">shop now</span>
+            </div>
+        </a>
+    </div>
+    <div class=""col-xs-6 col-m-4 col-l-12"">
+        <a class=""banner hovered"" href=""{{store url='karting.html'}}"">
+            <img src=""{{media url=""wysiwyg/banner-11.jpg""}}"" alt="""" />
+            <div class=""banner-content top left"">
+                <h3 class=""color-white"">High Quality Electric Spare Parts</h3>
+                <span class=""action primary"">shop now</span>
+            </div>
+        </a>
+    </div>
+    <div class=""col-xs-6 col-m-4 col-l-12"">
+        <a class=""banner hovered"" href=""{{store url='e-vehicles-parts/chargers.html'}}"">
+            <img src=""{{media url=""wysiwyg/banner-12.jpg""}}"" alt="""" />
+            <div class=""banner-content bottom left"">
+                <h3>Chargers & Cables</h3>
+                <span class=""action primary"">shop now</span>
+            </div>
+        </a>
+    </div>
+    <div class=""col-xs-6 col-m-4 col-l-12"">
+        <a class=""banner hovered"" href=""{{store url='marine.html'}}"">
+            <img src=""{{media url=""wysiwyg/banner-13.jpg""}}"" alt="""" />
+            <div class=""banner-content bottom left"">
+                <h3 class=""color-white"">Marine <br> Spare Parts</h3>
+                <span class=""action primary"">shop now</span>
+            </div>
+        </a>
+    </div>
+    <div class=""col-xs-6 col-m-4 col-l-12"">
+        <a class=""banner hovered"" href=""{{store url='e-bikes.html'}}"">
+            <img src=""{{media url=""wysiwyg/banner-14.jpg""}}"" alt="""" />
+            <div class=""banner-content top left"">
+                <h3>Hottest <br> Deals</h3>
+                <span class=""action primary"">shop now</span>
+            </div>
+        </a>
+    </div>
+</div>","2018-08-23 12:44:34","2018-12-11 14:51:14","1"
+"24","Banner 3","banner_3","<a class=""banner hovered"" href=""{{store url='e-vehicles-parts.html'}}"">
+    <img src=""{{media url=""wysiwyg/banner-15.jpg""}}"" alt="""" />
+    <div class=""banner-content text-center no-gutter"">
+        <div class=""custom-bg bg-primary"">
+            <h6>mid-year sale</h6>
+            <h2>Deals <br> up to 50 % off</h2>
+            <span class=""action primary hidden-mobile"">ready to shop?</span>
+        </div>
+    </div>
+</a>","2018-08-23 14:01:21","2018-12-12 08:43:01","1"
+"25","Categories List","categories_list","<div class=""categories-list"">
+<div class=""row"">
+    <div class=""col-xxs-6 col-m-4 col-l-2"">
+        <a class=""category"" href=""{{store url='e-vehicles-parts/motors.html'}}"">
+            <img src=""{{media url=""wysiwyg/category-1.jpg""}}"" alt="""" />
+            <span>Motors</span>
+        </a>
+    </div>
+    <div class=""col-xxs-6 col-m-4 col-l-2"">
+        <a class=""category"" href=""{{store url='e-vehicles-parts/controllers.html'}}"">
+            <img src=""{{media url=""wysiwyg/category-2.jpg""}}"" alt="""" />
+            <span>Controllers</span>
+        </a>
+    </div>
+    <div class=""col-xxs-6 col-m-4 col-l-2"">
+        <a class=""category"" href=""{{store url='e-vehicles-parts.html'}}"">
+            <img src=""{{media url=""wysiwyg/category-3.jpg""}}"" alt="""" />
+            <span>Motor Drive Kits</span>
+        </a>
+    </div>
+    <div class=""col-xxs-6 col-m-4 col-l-2"">
+        <a class=""category"" href=""{{store url='e-vehicles-parts/batteries-bms.html'}}"">
+            <img src=""{{media url=""wysiwyg/category-4.jpg""}}"" alt="""" />
+            <span>Batteries & BMS</span>
+        </a>
+    </div>
+    <div class=""col-xxs-6 col-m-4 col-l-2"">
+        <a class=""category"" href=""{{store url='e-vehicles-parts/chargers.html'}}"">
+            <img src=""{{media url=""wysiwyg/category-5.jpg""}}"" alt="""" />
+            <span>Chargers</span>
+        </a>
+    </div>
+    <div class=""col-xxs-6 col-m-4 col-l-2"">
+        <a class=""category"" href=""{{store url='e-vehicles-parts.html'}}"">
+            <img src=""{{media url=""wysiwyg/category-6.jpg""}}"" alt="""" />
+            <span>Power Transmission</span>
+        </a>
+    </div>
+</div>
+</div>","2018-08-27 11:57:33","2018-12-12 09:25:11","1"
+"26","Home Banners 4","home_banners_4","<div class=""row"">
+    <div class=""col-l-6"">
+        <a class=""banner hovered"" href=""{{store url='e-vehicles-parts.html'}}"">
+            <img src=""{{media url=""wysiwyg/banner-17.jpg""}}"" alt="""" />
+            <div class=""banner-content bottom left"">
+                <h6 class=""color-white"">Lights</h6>
+                <h3 class=""color-white""> <img src=""{{media url=&quot;wysiwyg/logo-mini.png&quot;}}"" alt="""" /> <span>High Quality Electric Spare Parts <br> with Competitive Price</span></h3>
+                <span class=""action primary hidden-mobile"">shop now</span>
+            </div>
+        </a>
+    </div>
+    <div class=""col-xs-6 col-l-3 order-l-first gutter-right-percentage"">
+        <a class=""banner hovered"" href=""{{store url='e-vehicles-parts/motors.html'}}"">
+            <img src=""{{media url=""wysiwyg/banner-16.jpg""}}"" alt="""" />
+            <div class=""banner-content bottom left"">
+                <h6>Motors</h6>
+                <h3> <img src=""{{media url=&quot;wysiwyg/logo-mini.png&quot;}}"" alt="""" /> <span>Sale! <br> 30% off!</span></h3>
+                <span class=""action primary"">shop now</span>
+            </div>
+        </a>
+    </div>
+    <div class=""col-xs-6 col-l-3 gutter-left-percentage"">
+        <a class=""banner hovered"" href=""{{store url='e-vehicles-parts/chargers.html'}}"">
+            <img src=""{{media url=""wysiwyg/banner-18.jpg""}}"" alt="""" />
+            <div class=""banner-content bottom left"">
+                <h3>Chargers & Cables</h3>
+                <span class=""action primary"">shop now</span>
+            </div>
+        </a>
+    </div>
+</div>","2018-08-27 12:47:47","2018-12-12 09:50:49","1"
+"27","Contact Us Info","contact_us_info","<!-- Contact Us Info -->
+<address class=""contact-us-info"">
+    <dl class=""contact-us-info-item"">
+        <dt><span class=""contact-us-info-icon themeicon-map-marker""></span>
+            <div class=""contact-us-info-title"">Address:</div>
+        </dt>
+        <dd>
+            <div class=""contact-us-info-description"">4578 Marmora Road, Glasgow, D04 89GR</div>
+        </dd>
+    </dl>
+    <dl class=""contact-us-info-item"">
+        <dt><span class=""contact-us-info-icon themeicon-telephone""></span>
+            <div class=""contact-us-info-title"">Phones:</div>
+        </dt>
+        <dd>
+            <div class=""contact-us-info-description""><a href=""tel:8001230045"">(800) 123-0045</a>; <a
+                    href=""tel:8001230046"">(800) 123-0046</a></div>
+        </dd>
+    </dl>
+    <dl class=""contact-us-info-item"">
+        <dt><span class=""contact-us-info-icon themeicon-clock""></span>
+            <div class=""contact-us-info-title"">We are open:</div>
+        </dt>
+        <dd>
+            <div class=""contact-us-info-description"">Mn-Fr: 10 am-8 pm</div>
+        </dd>
+    </dl>
+    <dl class=""contact-us-info-item"">
+        <dt><span class=""contact-us-info-icon themeicon-envelope""></span>
+            <div class=""contact-us-info-title"">E-mail:</div>
+        </dt>
+        <dd>
+            <div class=""contact-us-info-description contact-us-info-description-email""><a
+                    href=""mailto:info@demolink.org"">info@demolink.org</a></div>
+        </dd>
+    </dl>
+</address>
+<!-- END Contact Us Info -->","2018-09-13 08:21:21","2018-09-13 09:58:08","1"

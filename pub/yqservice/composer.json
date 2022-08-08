@@ -1,0 +1,15 @@
+{
+  "autoload": {
+    "psr-4": {
+      "yqservice\\": "yqservice/"
+    }
+  },
+  "require-dev": {},
+  "require": {
+    "twig/twig": "^1.0",
+    "ext-simplexml": "*",
+    "ext-soap": "*",
+    "ext-curl": "*",
+    "ext-json": "*"
+  }
+}

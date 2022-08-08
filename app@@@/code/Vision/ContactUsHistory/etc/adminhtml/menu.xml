@@ -1,0 +1,18 @@
+<?xml version="1.0"?>
+<!--
+/**
+ * @author Vitaliy Boyko <vision@i.ua>
+ */
+-->
+<config xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="urn:magento:module:Magento_Backend:etc/menu.xsd">
+    <menu>
+        <add id="Vision_ContactUsHistory::note"
+             title="Contact form notes"
+             translate="title"
+             module="Vision_ContactUsHistory"
+             sortOrder="110"
+             parent="Magento_Backend::marketing_communications"
+             action="contactus/index/index"
+             resource="Vision_ContactUsHistory::source"/>
+    </menu>
+</config>

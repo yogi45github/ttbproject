@@ -1,0 +1,19 @@
+{
+    "name" : "zemez/magento2-google-map",
+    "description": "Magento2 Google Map",
+    "type": "magento2-module",
+    "version": "1.1.2",
+
+    "autoload": {
+        "psr-4": {
+            "Zemez\\GoogleMap\\": ""
+        },
+        "files": [
+            "registration.php"
+        ]
+    },
+    "extra": {
+        "isStandalone": "false",
+        "magentoVersion": "v2.2.6"
+    }
+}

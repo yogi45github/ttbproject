@@ -1,0 +1,8 @@
+{% use 'blocks/oemSearch.twig' %}
+{% use 'blocks/unit.twig' %}
+{% use 'blocks/js.twig' %}
+{% spaceless -%}
+    {{ block('unit') }}
+
+    {{ block('js') }}
+{% endspaceless %}

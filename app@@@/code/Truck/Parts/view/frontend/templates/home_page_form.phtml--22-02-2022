@@ -1,0 +1,104 @@
+<div class="main-banner">
+	<div class="banner no-margin" >
+	    <img src="<?php echo $this->getUrl('pub/media')."wysiwyg/finalbanner.png" ?>" alt="" />
+	<div class="part_search_form">
+		<form id="vehicle_search_form">
+			<div class="part_search_input_wrapper row">
+				<div class="part_search_input part_search_active">
+					<input id="vin" type="radio" name="type" value="vin" class="part_search" checked>
+					<label for="vin">Reg.nr sökning</label>
+				</div> 
+				<div class="part_search_input">
+					<input id="oem" type="radio" name="type" value="oem" class="part_search">
+					<label for="oem">Manuel sökning</label>
+				</div>
+				<div class="part_search_input">
+					<input id="plate" type="radio" name="type" value="plate" class="part_search">
+					<label for="plate">Sök på OEM-nummer</label>
+				</div>
+			</div>
+			<div class="row">
+				<div class="col-m-11 part_search_submit">
+					<input type="text" name="search_input" id="search_input" placeholder="Sök på vin-nummer">
+					<input id="search_part_button" type="submit" name="submit" value="Sök">
+					<span id="search_input_error">this is a required field</span>
+				</div>
+			</div>
+		</form>
+	</div>
+	</div>
+</div>
+
+<script type="text/javascript">
+	// function createCookie(name,value,minutes) {
+	//     if (minutes) {
+	//         var date = new Date();
+	//         date.setTime(date.getTime()+(minutes*1000));
+	//         var expires = "; expires="+date.toGMTString();
+	//     } else {
+	//         var expires = "";
+	//     }
+	//     document.cookie = name+"="+value+expires+"; path=/";
+	// }
+	
+	//window.onload = function(){  
+		// createCookie("welcome", "welcome786", 1);
+		// var xx = document.cookie;
+		// if (xx.includes('welcome')) {
+		// 	alert('welcome back');
+		// }
+	//}  
+	require(['jquery', 'jquery/ui'], function($){ 
+	    $(document).ready(function(){
+	     	$('#vehicle_search_form').submit(function(evt){
+	     		evt.preventDefault()
+	     		$('#search_input_error').hide();
+	     		if($('#search_input').val() == ''){
+	     			$('#search_input_error').show();
+	     			return false;
+	     		} else{
+	     			if($('#vehicle_search_form input[name="type"]:checked').val() == 'oem'){
+	     				window.location.href = '<?php  echo $this->getUrl('/'); ?>parts/vehicle/index?oem='+$('#search_input').val();
+	     			} else if($('#vehicle_search_form input[name="type"]:checked').val() == 'vin'){
+	     				window.location.href = '<?php  echo $this->getUrl('/'); ?>parts/vehicle/index?vin='+$('#search_input').val();
+	     			} else {
+	     				window.location.href = '<?php  echo $this->getUrl('/'); ?>parts/vehicle/index?plate='+$('#search_input').val();;
+	     			}
+	     		}
+	     	});
+			$(".part_search_input_wrapper :input").click(function () {
+			    $(".part_search_input_wrapper :input").each(function() {
+			      if ($(this).is(":checked")) {
+			      	var placeholder_val = $(this).val();
+			      	$("#search_input").attr("placeholder", "Sök på "+ placeholder_val +"-nummer");
+			        $(this).parent().addClass('part_search_active');
+			      } else {
+			        $(this).parent().removeClass('part_search_active');
+			      }
+			    });
+			});
+	     	
+	    });
+	});
+	var slideIndex = 0;
+	showSlides();
+	function showSlides() {
+	  var i;
+	  var slides = document.getElementsByClassName("mySlides");
+	  var dots = document.getElementsByClassName("dot");
+	  for (i = 0; i < slides.length; i++) {
+	    slides[i].style.display = "none";  
+	  }
+	  slideIndex++;
+	  if (slideIndex > slides.length) {slideIndex = 1}    
+	  for (i = 0; i < dots.length; i++) {
+	    dots[i].className = dots[i].className.replace(" active", "");
+	  }
+	  slides[slideIndex-1].style.display = "block";  
+	  dots[slideIndex-1].className += " active";
+	  setTimeout(showSlides, 2000); // Change image every 2 seconds
+	}
+</script>
+<style type="text/css">
+	#search_input_error{display: none;}
+</style>

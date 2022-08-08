@@ -1,0 +1,104 @@
+
+& when (@media-target = 'mobile') {
+    .page-product-grouped {
+        .table.grouped {
+            .table-caption {
+                font-size: 18px;
+                line-height: 20px;
+                font-weight: 700;
+                color: @color-primary;
+                margin-bottom: 24px;
+                text-align: left;
+            }
+
+            th, td {
+                border-left: none;
+            }
+            thead th {
+                border-top: none;
+                border-bottom: none;
+                color: @color-light;
+                font-weight: 700;
+                padding-bottom: 16px;
+                &:first-child {
+                    padding-left: 0;
+                }
+                &:last-child {
+                    padding-right: 32px;
+                }
+
+                &.qty:after {
+                    content: ':';
+                }
+            }
+            tbody {
+                tr {
+                    color: @color-light;
+                    .price-box {
+                        font-size: 20px;
+                        line-height: 20px;
+                        margin-bottom: 0;
+                    }
+                }
+                td {
+                    padding-top: 10px;
+                    padding-bottom: 10px;
+                    &:before {
+                        border-bottom: none;
+                    }
+
+                    > * {
+                        vertical-align: sub;
+                    }
+
+                    &.qty {
+                        width: 100px;
+                        padding-right: 0;
+                        input {
+                            text-align: center;
+                        }
+                    }
+                    &:first-child {
+                        padding-left: 0;
+                    }
+                }
+                &:last-child tr {
+                    border-bottom: none;
+                }
+            }
+        }
+    }
+
+    // RTL
+    html.rtl {
+        .page-product-grouped {
+            .table.grouped thead th {
+                &:first-child {
+                    text-align: right;
+                }
+
+                &:last-child {
+                    padding-right: 0;
+                    padding-left: 32px;
+                    text-align: right;
+                }
+            }
+        }
+    }
+}
+
+& when (@media-target = 'desktop') {
+    .page-product-grouped {
+        .table.grouped {
+            thead, tbody {
+                tr {
+                    border-bottom: 1px solid @border-color__base;
+                }
+            }
+            tbody td {
+                padding-top: 30px;
+                padding-bottom: 30px;
+            }
+        }
+    }
+}

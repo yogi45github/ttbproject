@@ -1,0 +1,100 @@
+<?php
+/**
+ * Copyright © Magento, Inc. All rights reserved.
+ * See COPYING.txt for license details.
+ */
+
+// @codingStandardsIgnoreFile
+
+/** @var  $block \Magento\Sales\Block\Order\Item\Renderer\DefaultRenderer */
+$_item = $block->getItem();
+$description = $_item->getDescription();
+$product = $_item->getProduct();
+?>
+<tr id="order-item-row-<?= /* @escapeNotVerified */ $_item->getId() ?>">
+    <td class="col name" data-th="<?= $block->escapeHtml(__('Product Name')) ?>">
+        <?php 
+        if($product->getId() == 29){
+            $data = json_decode($description);?>
+            <strong class="product name product-item-name"><?= $data->name ?></strong><?php
+        }
+        else{?>
+            <strong class="product name product-item-name"><?= $block->escapeHtml($_item->getName()) ?></strong><?php
+        }?>
+        <?php if ($_options = $block->getItemOptions()): ?>
+            <?php if($product->getId() == 29){ 
+                foreach ($_options as $_option){
+                    $optionValues = explode("||", $_option['value']);
+                    foreach($optionValues as $optionValue){
+                        $optionValueData  = explode(":", $optionValue);
+                        if($optionValueData[0] != 'Name'){
+                            echo "<b>".$optionValueData[0]."</b>: ".$optionValueData[1]."<br>";
+                        }
+                    }
+                }
+            } else { ?>
+                <dl class="item-options">
+                    <?php foreach ($_options as $_option) : ?>
+                        <dt><?= $block->escapeHtml($_option['label']) ?></dt>
+                        <?php if (!$block->getPrintStatus()): ?>
+                            <?php $_formatedOptionValue = $block->getFormatedOptionValue($_option) ?>
+                            <dd>
+                                <?php if (isset($_formatedOptionValue['full_view'])): ?>
+                                    <?= $block->escapeHtml($_formatedOptionValue['full_view'], ['a']) ?>
+                                <?php else: ?>
+                                    <?=$block->escapeHtml($_formatedOptionValue['value'], ['a']) ?>
+                                <?php endif; ?>
+                            </dd>
+                        <?php else: ?>
+                            <dd>
+                                <?= nl2br($block->escapeHtml((isset($_option['print_value']) ? $_option['print_value'] : $_option['value']))) ?>
+                            </dd>
+                        <?php endif; ?>
+                    <?php endforeach; ?>
+                </dl>
+            <?php } ?>
+        <?php endif; ?>
+        <?php $addtInfoBlock = $block->getProductAdditionalInformationBlock(); ?>
+        <?php if ($addtInfoBlock) :?>
+            <?= $addtInfoBlock->setItem($_item)->toHtml() ?>
+        <?php endif; ?>
+        <?php if(!$product->getId() == 29){ ?>
+            <?= $block->escapeHtml($_item->getDescription()) ?>
+        <?php } ?>
+    </td>
+    <td class="col sku" data-th="<?= $block->escapeHtml(__('SKU')) ?>"><?= /* @escapeNotVerified */ $block->prepareSku($block->getSku()) ?></td>
+    <td class="col price" data-th="<?= $block->escapeHtml(__('Price')) ?>">
+        <?= $block->getItemPriceHtml() ?>
+    </td>
+    <td class="col qty" data-th="<?= $block->escapeHtml(__('Qty')) ?>">
+        <ul class="items-qty">
+        <?php if ($block->getItem()->getQtyOrdered() > 0): ?>
+            <li class="item">
+                <span class="title"><?= /* @escapeNotVerified */ __('Ordered') ?></span>
+                <span class="content"><?= /* @escapeNotVerified */ $block->getItem()->getQtyOrdered()*1 ?></span>
+            </li>
+        <?php endif; ?>
+        <?php if ($block->getItem()->getQtyShipped() > 0): ?>
+            <li class="item">
+                <span class="title"><?= /* @escapeNotVerified */ __('Shipped') ?></span>
+                <span class="content"><?= /* @escapeNotVerified */ $block->getItem()->getQtyShipped()*1 ?></span>
+            </li>
+        <?php endif; ?>
+        <?php if ($block->getItem()->getQtyCanceled() > 0): ?>
+            <li class="item">
+                <span class="title"><?= /* @escapeNotVerified */ __('Canceled') ?></span>
+                <span class="content"><?= /* @escapeNotVerified */ $block->getItem()->getQtyCanceled()*1 ?></span>
+            </li>
+        <?php endif; ?>
+        <?php if ($block->getItem()->getQtyRefunded() > 0): ?>
+            <li class="item">
+                <span class="title"><?= /* @escapeNotVerified */ __('Refunded') ?></span>
+                <span class="content"><?= /* @escapeNotVerified */ $block->getItem()->getQtyRefunded()*1 ?></span>
+            </li>
+        <?php endif; ?>
+        </ul>
+    </td>
+    <td class="col subtotal" data-th="<?= $block->escapeHtml(__('Subtotal')) ?>">
+        <?= $block->getItemRowTotalHtml() ?>
+    </td>
+</tr>

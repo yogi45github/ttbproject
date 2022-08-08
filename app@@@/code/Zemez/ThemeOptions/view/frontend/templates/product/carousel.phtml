@@ -1,0 +1,71 @@
+<?php
+/**
+ * Copyright © Magento, Inc. All rights reserved.
+ * See COPYING.txt for license details.
+ */
+
+// @codingStandardsIgnoreFile
+
+/**
+ * Product media data template
+ *
+ * @var $block \Magento\Catalog\Block\Product\View\Gallery
+ */
+$skuLink = $block->getProduct()->getUrlKey();
+?>
+<div class="product photo product-item-photo product-item-photo-gallery">
+    <div class="gallery-placeholder-mode-category listing-gallery sku-<?php echo $skuLink; ?> _block-content-loading"
+         data-gallery-role-mode-category="gallery-placeholder-mode-category"></div>
+</div>
+<?php
+if ( /* @escapeNotVerified */ $block->getImageAttribute('category_page_grid', 'width') &&  /* @escapeNotVerified */ $block->getImageAttribute('category_page_grid', 'height')) {
+    $img_width = $block->getImageAttribute('category_page_grid', 'width');
+    $img_Height = $block->getImageAttribute('category_page_grid', 'height');
+} elseif (/* @escapeNotVerified */ $block->getImageAttribute('category_page_list', 'width') &&  /* @escapeNotVerified */ $block->getImageAttribute('category_page_list', 'height')) {
+    $img_width = $block->getImageAttribute('category_page_list', 'width');
+    $img_Height = $block->getImageAttribute('category_page_list', 'height');
+}
+?>
+
+<script type="text/x-magento-init">
+    {
+        "[data-gallery-role-mode-category=gallery-placeholder-mode-category].sku-<?php echo $skuLink; ?>": {
+            "mage/gallery/gallery": {
+                "mixins":["magnifier/magnify"],
+                "magnifierOpts": <?php /* @escapeNotVerified */ echo $block->getMagnifier(); ?>,
+                "data": <?php /* @escapeNotVerified */ echo $block->getGalleryImagesJson(); ?>,
+                "options": {
+                    "nav": false,
+                    "loop": false,
+                    "keyboard": true,
+                    "arrows": true,
+                    "allowfullscreen" : false,
+                    "navtype": "slides",
+                    "navdir": "horizontal",
+                    "navposition": "bottom",
+                    "thumbborderwidth": 1,
+                    "thumbmargin": 10,
+                    "captions": false,
+                    "width": "<?php  echo $img_width; ?>",
+                    "height": "<?php echo $img_Height; ?>",
+                    "transition": "slide",
+                    "navarrows": true
+                },
+                "fullscreen": {
+                    "nav": "thumbs",
+                    "loop": "false",
+                    "navdir": "horizontal",
+                    "navarrows": "true",
+                    "arrows": "false"
+                },
+                "breakpoints": false
+            },
+            "productListingGallery" : {},
+            "Magento_ProductVideo/js/fotorama-add-video-events": {
+                "videoData": <?php /* @escapeNotVerified */ echo $block->getVideoData(); ?>,
+                "videoSettings": <?php /* @escapeNotVerified */ echo $block->getVideoSettings(); ?>,
+                "optionsVideoData": []
+            }
+        }
+    }
+</script>

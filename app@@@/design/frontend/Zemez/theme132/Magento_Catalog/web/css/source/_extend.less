@@ -1,0 +1,41 @@
+@import 'compare/_block.less';
+@import 'list/_grid.less';
+@import 'list/_list.less';
+@import 'module/_toolbar.less';
+@import 'product/_sidebar.less';
+@import 'product/_view.less';
+@import 'product/_related.less';
+@import 'product/_upsell.less';
+@import 'product/_crosssell.less';
+@import 'product/_downloadable.less';
+
+& when (@media-target = 'mobile') {
+    .category-view {
+        margin-top: 30px;
+    }
+
+    .sidebar .block-title strong {
+        font-size: 16px;
+        line-height: 1.4;
+        letter-spacing: 0.02em;
+        text-transform: uppercase;
+    }
+}
+
+//
+//  Action addto
+//  ---------------------------------------------
+
+& when (@media-common = true) {
+    .abs-action-addto-product {
+        background: none;
+        border: none;
+        color: @color-default;
+        letter-spacing: 0;
+        &:hover {
+            color: @color-primary;
+            border: none;
+            background: none;
+        }
+    }
+}

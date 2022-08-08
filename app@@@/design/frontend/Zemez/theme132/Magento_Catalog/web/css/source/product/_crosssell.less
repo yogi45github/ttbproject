@@ -1,0 +1,29 @@
+
+& when (@media-target = 'mobile') {
+    .block.crosssell {
+        margin-top: 50px;
+
+        .block-title.title {
+            padding-right: 90px;
+            @media (max-width: (@screen__xs - 1)) {
+                strong {
+                    font-size: 20px;
+                }
+            }
+        }
+
+        .owl-controls {
+            top: -30px;
+        }
+        .products-grid {
+            margin-top: 27px;
+        }
+        // RTL
+        html.rtl {
+            .block-title.title {
+                padding-right: 0;
+                padding-left: 90px;
+            }
+        }
+    }
+}

@@ -1,0 +1,167 @@
+//
+//  Page layouts
+//  _____________________________________________
+@layout-column-main__width-2-left: 100%;
+@layout-column-main__width-2-right: 100%;
+@layout-column-main__width-3: 100%;
+
+.lib-flex-degradation(@_total-columns, @_order) when (@_order = 1) {
+    float: none;
+}
+
+.lib-flex-degradation(@_total-columns, @_order) when (@_order = @_total-columns) {
+    float: none;
+}
+
+.lib-flex-degradation(@_total-columns, @_order) when (@_total-columns = 3) and (@_order = 2) {
+    display: block;
+}
+
+& when (@media-target = 'mobile') {
+    // Main styles
+    .columns {
+        display: block;
+        .column.main {
+            max-width: 100%;
+            padding-bottom: 0;
+        }
+    }
+
+    .breadcrumbs > .items,
+    .page-main > div {
+        .container-box;
+    }
+
+    .page-main {
+        padding-bottom: 30px;
+    }
+
+    .columns > .row {
+        @media (max-width: (@screen__l - 1)) {
+            .flex-direction(column);
+        }
+    }
+
+    .grid-main,
+    .grid-left,
+    .grid-right {
+        max-width: 100%;
+        padding: 0 floor((@gutter__width / 2));
+        box-sizing: border-box;
+    }
+
+    .grid-main {
+        .order(1);
+    }
+    .grid-left {
+        .order(2);
+    }
+    .grid-right {
+        .order(3);
+    }
+
+    .grid-left,
+    .grid-right {
+        .make-flex();
+        .flex-direction(column);
+        align-items: stretch;
+        margin-top: 32px;
+    }
+
+    .page-main .columns .sidebar {
+        &.sidebar-main,
+        &.sidebar-additional {
+            float: none;
+            clear: none;
+            width: 100%;
+            flex: 0 0 auto;
+            padding: 0;
+        }
+    }
+
+    .page-layout-3columns,
+    .page-layout-2columns-left,
+    .page-layout-2columns-right {
+        .column.main, .sidebar {
+            margin-top: 30px;
+        }
+    }
+}
+
+// Ipad offset fix
+& when (@media-target = 'mobile') {
+    .ipad .page-main .grid-left {
+        clear: both;
+    }
+}
+
+.media-width(@extremum, @break) when (@extremum = 'min') and (@break = @screen__l){
+    & when (@media-target = 'desktop') {
+        .grid-main {
+            flex-grow: 1;
+        }
+
+        .page-layout-3columns,
+        .page-layout-2columns-left,
+        .page-layout-2columns-right {
+            .grid-main {
+                .order(2);
+            }
+            .grid-left,
+            .grid-right {
+                margin-top: 0;
+                flex-basis: 25%;
+                max-width: 25%;
+            }
+        }
+
+        .page-layout-3columns {
+            .grid-main {
+                flex-basis: 50%;
+            }
+            .grid-left + .grid-right + .grid-main {
+                max-width: 50%;
+            }
+        }
+
+        .page-layout-2columns-left,
+        .page-layout-2columns-right {
+            .grid-main {
+                flex-basis: 75%;
+            }
+            * + .grid-main {
+                max-width: 75%;
+            }
+        }
+
+        .page-layout-3columns,
+        .page-layout-2columns-left {
+            .grid-left {
+                .order(1);
+            }
+        }
+
+        .page-layout-3columns,
+        .page-layout-2columns-right {
+            .grid-right {
+                .order(3);
+            }
+        }
+    }
+}
+
+& when (@media-target = 'desktop') {
+    .page-layout-3columns,
+    .page-layout-2columns-left,
+    .page-layout-2columns-right {
+        .column.main, .sidebar {
+            @media (min-width: @screen__xl) {
+                margin-top: 42px;
+            }
+        }
+    }
+
+    .page-main {
+        padding-bottom: 70px;
+    }
+}

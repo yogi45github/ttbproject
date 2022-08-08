@@ -1,0 +1,35 @@
+//
+//  Buttons
+//  _____________________________________________
+
+.lib-button() {
+    .lib-css(border-radius, @button__border-radius);
+    letter-spacing: 0.2em;
+    text-transform: uppercase;
+}
+
+.lib-button-primary() {
+    letter-spacing: 0.2em;
+    text-transform: uppercase;
+}
+
+& when (@media-common = true) {
+    button,
+    .action {
+        height: auto;
+        text-align: center;
+        transition: 0.3s all ease;
+    }
+    .action.default {
+        .lib-button();
+    }
+    .action.secondary {
+        .lib-button();
+        background: none;
+        color: @color-dark;
+        &:hover {
+            background: @color-dark;
+            color: @color-white;
+        }
+    }
+}

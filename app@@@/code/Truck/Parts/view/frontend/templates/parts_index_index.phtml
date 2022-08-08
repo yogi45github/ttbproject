@@ -1,0 +1,106 @@
+<a href="javascript:void(0)" onclick="history.back()" id="browserBack" class="back-btn"><i class="bi bi-chevron-left"></i> 
+    <?php echo __('Tillbaka'); ?>
+</a>
+<ul>
+    <?php
+    $items = $block->getData('items');
+    $partnumber = $block->getData('partnumber');
+    $notfound = 1;
+    $itemsArray = [];
+    $objectManager = \Magento\Framework\App\ObjectManager::getInstance();
+    $customerSession = $objectManager->get('Magento\Customer\Model\Session');
+    if(count($items) > 0){
+        foreach($items as $item){
+            $innerInterchangeItems = $item->interchange->items;
+            if(count($innerInterchangeItems) > 0){
+
+                echo "<ul>";
+                foreach($innerInterchangeItems as $innerInterchangeItem){
+                    $objectManager =   \Magento\Framework\App\ObjectManager::getInstance();
+                    $connection = $objectManager
+                                ->get('Magento\Framework\App\ResourceConnection')
+                                ->getConnection('\Magento\Framework\App\ResourceConnection::DEFAULT_CONNECTION'); 
+                    $articalName = str_replace(" ","", $innerInterchangeItem->mpn);
+                    $articalName_input = str_replace(" ","-", $innerInterchangeItem->gapc_brand->name)."-".str_replace(" ","-",$innerInterchangeItem->mpn);
+                    $result1 = $connection->fetchAll('SELECT * FROM `partly_product` WHERE `name` = "'.$articalName.'" AND `brand` = "'.$innerInterchangeItem->gapc_brand->name.'" ORDER BY `id` DESC');
+                    $result2 = $connection->fetchAll('SELECT * FROM `partly_product` WHERE `oem` = "'.$articalName.'" AND `brand` = "'.$innerInterchangeItem->gapc_brand->name.'" ORDER BY `id` DESC');
+                    if( (count($result1) > 0 && !in_array($result1[0]['id'], $itemsArray)) || (count($result2) > 0 && !in_array($result2[0]['id'], $itemsArray))){
+                        $notfound = 0;
+                        $itemsArray[] = $result1[0]['id'];
+                        //echo "<pre>";print_r($result1[0]['id']);
+                        echo "<li><b>".__('Produkt')."</b>: ".$item->name."</li>";
+                        echo "<li class='parts_list_li row align-items-center'>";
+                        echo "<div class='col-m-2 search_parts_image'><img src='".$this->getUrl("/")."pub/media/theme_options/websites/1/TTB_grossist.png'></div>";
+                        echo "<div class='col-m-7'><div class='row'><div class='col-m-9 parts_name'><b>".__('Produkt')."</b>:<span class='name_details_page'> ". str_replace([$innerInterchangeItem->gapc_brand->name,$innerInterchangeItem->mpn, '-'],"", $innerInterchangeItem->name)."</span>";
+                        echo " <br><b>".__('Fabrikat')."</b>: <span class='fabrikat_details_page'>". $innerInterchangeItem->gapc_brand->name."</span>";
+                        if($customerSession->isLoggedIn()) {
+                            echo " <br><b>".__('Lagersaldo: ')."</b><span class='stock_details_page'>".$result1[0]['stock']."</span>";
+                            echo " <br><b>".__('Pris: ')."</b><span class='price_details_page'>".$result1[0]['price'].": - (ex moms)"."</span>";
+                        }
+                        echo "</div>";
+                        //  echo "<div class='col-m-3 search_part_sku'><span>".$innerInterchangeItem->mpn."</span> </div>";
+                         echo " </div></div>";
+                        echo "<div class='col-m-3 parts_price_qunatity'>";
+                        
+                        if($customerSession->isLoggedIn()) {
+                        echo "<a class='part_cart_link' href='".$this->getUrl("/")."parts/detail/index?partnumber=".$partnumber."&&inter=".$innerInterchangeItem->mpn."'> Produktinformation</a>";
+                            echo '
+                            <div class="add-to-cart-from-list-custom">
+                                <div class="inputt-qty">
+                                <input type="hidden" name="qtyy" value="1" class="quantity-prd">
+                                <input type="hidden" name="partnumber" value="'.$partnumber.'">
+                                <input type="hidden" name="articalname" value="'.$articalName_input.'">
+                                <input type="hidden" name="name" value="'.$innerInterchangeItem->name.'">
+                                <input type="hidden" name="price" value="'.$result1[0]['price'].'">
+                                <input type="hidden" name="brand" value="'.$innerInterchangeItem->gapc_brand->name.'">
+                              </div>
+                              <span id="bundle-slide" class="action primary customize product-details2-button add-to-cart-from-list">
+                              <span>Lägg till i varukorgen</span>
+                            </span></div>
+                            ';
+                        }
+                        echo "</div></li>";
+                    }
+
+                }
+                echo "</ul>";
+            }
+            //echo "</li>";
+        }
+    }
+
+    if($notfound) {
+    	echo "Parts not found";
+    }
+    ?>
+</ul>
+<script type="text/javascript">
+    require(['jquery', 'jquery/ui'], function ($) {
+        $('.add-to-cart-from-list').on('click',function() {
+            $('body').loader('show');
+            var customurl = "<?php echo $this->getUrl().'parts/vehicle/listaddtocart/'?>";
+            var name_prd = $(this).parent().find("input[name=name]").val();
+            var partnumber_prd = $(this).parent().find("input[name=partnumber]").val();
+            var articalname_prd = $(this).parent().find("input[name=articalname]").val();
+            var price_prd = $(this).parent().find("input[name=price]").val();
+            var brand_prd = $(this).parent().find("input[name=brand]").val();
+            //console.log($(this).parent());
+            $.ajax({
+                url: customurl,
+                type: 'POST',
+                dataType: 'json',
+                data: {
+                    name: name_prd,
+                    partnumber: partnumber_prd,
+                    articalname: articalname_prd,
+                    price: price_prd,
+                    brand: brand_prd,
+                },
+                complete: function(response) {  
+                    $('body').loader('hide');  
+                    window.location.href = "<?php echo $this->getUrl().'checkout/cart';?>";
+                },
+            });
+        });
+    });
+</script>

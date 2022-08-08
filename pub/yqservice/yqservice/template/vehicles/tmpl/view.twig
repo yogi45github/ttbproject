@@ -1,0 +1,36 @@
+<div class="vehicles-page-wrapper">
+    {% use 'blocks/vinSearch.twig' %}
+    {% use 'blocks/frameSearch.twig' %}
+    {% use 'blocks/searchByOther.twig' %}
+    {% use 'blocks/vehicles.twig' %}
+    {% use 'blocks/searchVehicle.twig' %}
+    {% use 'blocks/groupedVehicles.twig' %}
+    {% if vehicles %}
+        {% if groupVehicles %}
+            {{ block('groupedVehicles') }}
+        {% else %}
+            {{ block('vehicles') }}
+        {% endif %}
+
+        <div class="flex flex-start">
+            {% for operation in cataloginfo.operations %}
+                {{ block('searchByOther') }}
+            {% endfor %}
+        </div>
+    {% else %}
+        <span>{{ notFoundReason ? notFoundReason : 'notfound'|t|replace({'%t': type.name, '%v': type.value }) }}</span>
+    {% endif %}
+    <script type="text/javascript">
+        jQuery('.yqservice_table.table tr.hastooltip').tooltip({
+            track: true,
+            delay: 0,
+            showURL: false,
+            fade: 250,
+            position: {my: 'center bottom'},
+            bodyHandler: function () {
+                var tooltipContext = jQuery(this).find('.ttp');
+                return tooltipContext.html();
+            }
+        });
+    </script>
+</div>

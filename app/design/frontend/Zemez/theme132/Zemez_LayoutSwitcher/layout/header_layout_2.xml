@@ -1,0 +1,19 @@
+<?xml version="1.0"?>
+<page xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="urn:magento:framework:View/Layout/etc/page_configuration.xsd">
+    <body>
+        <referenceContainer name="header.container" htmlClass="page-header layout-2" />
+        <referenceBlock name="header_top_block" remove="true" />
+        <move element="logo" destination="header.panel.grid-container" before="-"/>
+        <move element="sm.header.customer.menu.wrap" destination="sm-header.nav.container" before="minicart"/>
+        <referenceBlock name="header" remove="true"/>
+        <referenceContainer name="header.panel.grid-container">
+            <container name="header_info_block.wrap" htmlTag="div" htmlClass="header-info">
+                <block class="Magento\Cms\Block\Block" name="header_info_block" after="-">
+                    <arguments>
+                        <argument name="block_id" xsi:type="string">header_info_block</argument>
+                    </arguments>
+                </block>
+            </container>
+        </referenceContainer>
+    </body>
+</page>

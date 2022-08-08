@@ -1,0 +1,17 @@
+//
+//  LayoutSwitcher
+//  ---------------------------------------------
+@import '_header.less';
+@import '_footer.less';
+@import '_product.less';
+
+& when (@media-target = 'mobile') {
+    .layout-switcher {
+        .inner {
+            color: @color-dark;
+        }
+        select {
+            height: 30px;
+        }
+    }
+}

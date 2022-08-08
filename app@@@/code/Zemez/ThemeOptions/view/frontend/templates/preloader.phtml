@@ -1,0 +1,68 @@
+<?php
+$optionsHelper = $this->helper('Zemez\ThemeOptions\Helper\Data');
+?>
+
+<style>
+    #page-preloader{
+        background-color: <?php echo $optionsHelper->getBodyBackgroundColor() ?: '#ffffff' ?>;
+    <?php if ($optionsHelper->isBodyBackgroundImage()) : ?>
+        background-image: <?php echo $optionsHelper->getBodyBackgroundImage() ? 'url(' . $this->getBaseUrl() . 'pub/media/theme_options/' . $optionsHelper->getBodyBackgroundImage() . ')' : 'none' ?>;
+        background-size: <?php echo $optionsHelper->getBodyBackgroundImageSize(); ?>;
+        background-attachment: <?php echo $optionsHelper->getBodyBackgroundImageAttachment(); ?>;
+        background-position: <?php echo $optionsHelper->getBodyBackgroundImagePosition(); ?>;
+        background-repeat: <?php echo $optionsHelper->getBodyBackgroundImageRepeat(); ?>;
+    <?php endif; ?>
+    }
+
+    #page-preloader {
+        position: fixed;
+        left: 0;
+        top: 0;
+        right: 0;
+        bottom: 0;
+        z-index: 9999;
+    }
+    <?php if ($optionsHelper->getPrimaryColor()): ?>
+        .css3-loader {
+            border-color: <?php echo $optionsHelper->getPrimaryColor(); ?>;
+        }
+    <?php endif; ?>
+</style>
+
+<script type="text/javascript">
+    window.onload = function() {
+
+        function fadeOut(el){
+            el.style.opacity = 1;
+
+            var last;
+            var tick = function() {
+                el.style.opacity = +el.style.opacity - (new Date() - last) / 600;
+                last = +new Date();
+
+                if (+el.style.opacity > 0) {
+                    (window.requestAnimationFrame && requestAnimationFrame(tick)) || setTimeout(tick, 100);
+                } else{
+                    el.style.display = "none";
+                }
+            };
+            tick();
+        }
+
+        var pagePreloaderId = document.getElementById("page-preloader");
+        setTimeout(
+            function () {
+                fadeOut(pagePreloaderId)
+            }, 1000);
+    };
+</script>
+
+<div id="page-preloader">
+    <div class="centered-block">
+        <?php if ($block->getPreloaderType() == 'css_preloader'): ?>
+            <div class="css3-loader"></div>
+        <?php else: ?>
+            <img src="<?php echo  $block->getImageUrl() . $block->getPreloaderImage() ?>" alt="preloader image" />
+        <?php endif; ?>
+    </div>
+</div>

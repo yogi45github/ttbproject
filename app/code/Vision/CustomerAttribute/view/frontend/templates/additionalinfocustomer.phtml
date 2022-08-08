@@ -1,0 +1,26 @@
+<?php
+
+/** @var \Vision\CustomerAttribute\Block\AdditionalInfo $block */
+
+?>
+<?php
+
+	$ttb_id = '';
+   	if($block->getCustomer()->getCustomAttribute('ttb_id')) {
+    	$ttb_id = $block->getCustomer()->getCustomAttribute('ttb_id')->getValue();
+    }
+    $organisation_number = '';
+   	if($block->getCustomer()->getCustomAttribute('organisation_number')) {
+    	$organisation_number = $block->getCustomer()->getCustomAttribute('organisation_number')->getValue();
+    }
+?>
+
+<div class="khjkh">
+	<div class="field organisation_number">
+    	<label for="organisation_number" class="label"><span><?php /* @escapeNotVerified */
+            echo __('Organisationsnummer') ?></span></label>
+    	<div class="control">
+        	<input type="text" class="input-organisation_number" name="organisation_number" value="<?= $organisation_number ?>" />
+    	</div>
+	</div>
+</div>

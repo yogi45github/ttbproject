@@ -1,0 +1,14 @@
+{
+    "name" : "zemez/layout-switcher",
+    "description": "Layout Switcher",
+    "type": "magento2-module",
+    "version": "1.0.2",
+    "autoload": {
+        "psr-4": {
+            "Zemez\\LayoutSwitcher\\": ""
+        },
+        "files": [
+            "registration.php"
+        ]
+    }
+}

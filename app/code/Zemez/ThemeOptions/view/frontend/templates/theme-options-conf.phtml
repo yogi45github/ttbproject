@@ -1,0 +1,41 @@
+<?php
+/**
+ * Copyright © 2019 Zemez. All rights reserved.
+ * See COPYING.txt for license details.
+ */
+
+$optionsHelper = false;
+if(class_exists('Zemez\ThemeOptions\Helper\Data')) {
+	$optionsHelper = $this->helper('Zemez\ThemeOptions\Helper\Data');
+}
+?>
+<script type="text/x-magento-init">
+    {
+        "*": {
+            "themeOptions": {
+            	"isToTopButton": <?php echo $optionsHelper ? $optionsHelper->isToTopButton() : false; ?>,
+            	"isStickyMenu": <?php echo $optionsHelper ? $optionsHelper->isStickyMenu() : false; ?>,
+            	"isTiltJs": <?php echo $optionsHelper ? $optionsHelper->isTiltJs() : false; ?>,
+            	"stickParams" : {
+            		"scrollHide": true
+            	},
+            	"tiltParams": {
+            		"maxTilt": "10",
+            		"perspective": "100"
+            		<?php if ($optionsHelper->getTiltOptions() == 'tilt_glare'): ?>
+            			"glare": true,
+    					"maxGlare": ".75"
+    				<?php elseif ($optionsHelper->getTiltOptions() == 'tilt_floating'): ?>
+    					"reset": false
+    				<?php elseif ($optionsHelper->getTiltOptions() == 'tilt_scale'): ?>
+    					"scale": "1.1"
+    				<?php elseif ($optionsHelper->getTiltOptions() == 'tilt_x_axis'): ?>
+    					"axis": "x"
+    				<?php elseif ($optionsHelper->getTiltOptions() == 'tilt_y_axis'): ?>
+    					"axis": "y"
+    				<?php endif ?>
+            	}
+            }
+        }
+    }
+</script>

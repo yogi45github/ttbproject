@@ -1,0 +1,13 @@
+{
+    "name": "zemez/module-megamenu",
+    "type": "magento2-module",
+    "version": "2.2.0",
+    "autoload": {
+        "psr-4": {"Zemez\\Megamenu\\":""},
+        "files": [ "registration.php" ]
+    },
+    "extra": {
+        "isStandalone": "true",
+        "magentoVersion": "v2.3.0"
+    }
+}

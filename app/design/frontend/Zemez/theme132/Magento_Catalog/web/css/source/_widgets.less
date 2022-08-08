@@ -1,0 +1,170 @@
+// /**
+//  * Copyright © Magento, Inc. All rights reserved.
+//  * See COPYING.txt for license details.
+//  */
+
+//
+//  Common
+//  _____________________________________________
+
+& when (@media-common = true) {
+    .block-products-list {
+        margin-top: 0;
+        margin-bottom: 0;
+    }
+    * + .block-products-list {
+        margin-top: 30px;
+    }
+
+    .block-product-link,
+    .block-category-link {
+        &.widget {
+            display: block;
+            margin-bottom: @indent__base;
+        }
+    }
+
+    .block-product-link-inline {
+        &.widget {
+            margin: 0;
+        }
+    }
+
+    .block.widget {
+        .product-item-info {
+            width: auto;
+        }
+
+        .pager {
+            padding: 0;
+
+            .toolbar-amount {
+                float: none;
+                .lib-font-size(12);
+            }
+
+            .pages-item-previous {
+                padding-left: 0;
+            }
+
+            .pages-item-next {
+                position: relative;
+            }
+
+            .items {
+                white-space: nowrap;
+            }
+        }
+    }
+}
+
+//
+//  Desktop
+//  _____________________________________________
+
+.media-width(@extremum, @break) when (@extremum = 'min') and (@break = @screen__m) {
+    * + .block-products-list {
+        margin-top: 40px;
+        @media (min-width: @screen__xl) {
+            margin-top: 75px;
+        }
+    }
+
+    .block.widget .products-grid .product-item {
+        .sidebar & {
+            margin-left: 0;
+            width: 100%;
+
+            .actions-secondary {
+                display: block;
+                padding: 10px 0;
+            }
+        }
+    }
+
+    .sidebar .block.widget .pager {
+        .item:not(.pages-item-next):not(.pages-item-previous) {
+            &:extend(.abs-no-display-desktop all);
+        }
+
+        .pages-item-next {
+            padding: 0;
+
+            .action {
+                margin: 0;
+            }
+        }
+    }
+
+    .content-bottom {
+        .widget.block-products-list {
+            @media (min-width: @screen__l) {
+                flex-basis: 33.33%;
+                max-width: 33.33%;
+
+                .product-items {
+                    margin-top: -23px;
+                    .product-item {
+                        flex-basis: 100%;
+                        width: 100%;
+                        max-width: 100%;
+                        margin-top: 23px;
+                    }
+                }
+
+                .product-item-info {
+                    .make-flex();
+                    .product-img-wrap {
+                        flex-basis: 47%;
+                        max-width: 47%;
+                    }
+                    .product-item-details {
+                        flex-basis: 53%;
+                        max-width: 53%;
+                        padding-left: 26px;
+                        box-sizing: border-box;
+
+                        > *:first-child {
+                            margin-top: 0;
+                        }
+                    }
+                    .product-item-actions {
+                        .tocart {
+                            padding-top: 10px;
+                            padding-bottom: 10px;
+                            line-height: 0;
+
+                            .font-icon(@themeicon-cart);
+
+                            &:before {
+                                font-size: 24px;
+                                line-height: 1;
+                            }
+
+                            span {
+                                display: none;
+                            }
+                        }
+
+                        .actions-secondary {
+                            flex-basis: 66.67%;
+                            max-width: 66.67%;
+                            .action {
+                                padding-left: 0;
+                                padding-right: 0;
+                            }
+                        }
+                    }
+                }
+            }
+
+            @media (min-width: @screen__xxl) {
+                .product-item-info {
+                    .product-item-details {
+                        padding-top: 7px;
+                    }
+                }
+            }
+        }
+    }
+}

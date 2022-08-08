@@ -1,0 +1,174 @@
+<?php /**   */ ?>
+<?php
+$optionsHelper = $this->helper('Zemez\ThemeOptions\Helper\Data');
+?>
+
+<?php if($optionsHelper->getLogoType() == 'text'): ?>
+    /** Logo **/
+    <?php
+    $logoFontSize = $optionsHelper->getLogoFontSize();
+    $logoLineHeight = $optionsHelper->getLogoLineHeight();
+    $logoTextColor = $optionsHelper->getLogoTextColor();
+    ?>
+    .logo-text {
+        <?= $logoFontSize ? 'font-size: ' . $logoFontSize . 'px;' : '' ?>
+        <?= $logoLineHeight ? 'line-height: ' . $logoLineHeight . 'px;' : '' ?>
+        <?= $logoTextColor ? 'color: ' . $logoTextColor . ';' : '' ?>
+    }
+    <?php if($optionsHelper->isSlogan()): ?>
+        <?php
+        $sloganPosition = $optionsHelper->getSloganPosition();
+        $direction = 'row';
+        if ($sloganPosition == 'top') {
+            $direction = 'column-reverse';
+        } elseif($sloganPosition == 'bottom') {
+            $direction = 'column';
+        } elseif($sloganPosition == 'left') {
+            $direction = 'row-reverse';
+        }
+        $sloganFontSize = $optionsHelper->getSloganFontSize();
+        $sloganLineHeight = $optionsHelper->getSloganLineHeight();
+        $sloganTextColor = $optionsHelper->getSloganTextColor();
+        ?>
+        .logo {
+            display:flex;
+            flex-direction: <?= $direction; ?>;
+        }
+        .logo .slogan {
+            <?= $sloganFontSize ? 'font-size: ' . $sloganFontSize . 'px;' : '' ?>
+            <?= $sloganLineHeight ? 'line-height: ' . $sloganLineHeight . 'px;' : '' ?>
+            <?= $sloganTextColor ? 'color: ' . $sloganTextColor . ';' : '' ?>
+        }
+    <?php endif; ?>
+    /** end Logo **/
+<?php elseif($optionsHelper->getLogoType() == 'image'): ?>
+    /** Logo **/
+    <?php if($optionsHelper->isImageSlogan()): ?>
+        <?php
+        $imageSloganPosition = $optionsHelper->getImageSloganPosition();
+        $direction = 'row';
+        if ($imageSloganPosition == 'top') {
+            $direction = 'column-reverse';
+        } elseif ($imageSloganPosition == 'bottom') {
+            $direction = 'column';
+        } elseif ($imageSloganPosition == 'left') {
+            $direction = 'row-reverse';
+        }
+        $imageSloganFontSize = $optionsHelper->getImageSloganFontSize();
+        $imageSloganLineHeight = $optionsHelper->getImageSloganLineHeight();
+        $imageSloganTextColor = $optionsHelper->getImageSloganTextColor();
+        ?>
+        .logo {
+            display:flex;
+            flex-direction: <?= $direction; ?>;
+        }
+        .logo .slogan {
+            <?= $imageSloganFontSize ? 'font-size: ' . $imageSloganFontSize . 'px;' : '' ?>
+            <?= $imageSloganLineHeight ? 'line-height: ' . $imageSloganLineHeight . 'px;' : '' ?>
+            <?= $imageSloganTextColor ? 'color: ' . $imageSloganTextColor . ';' : '' ?>
+        }
+    <?php endif; ?>
+    /** end Logo **/
+<?php endif; ?>
+
+<?php if($optionsHelper->getColorSchemeStatus()): ?>
+    /** Primary Color **/
+    <?php if ($optionsHelper->getPrimaryColor()): ?>
+        /* put this selectors for primary color/background */
+        .actions-primary .action,
+        .primary .action, .action.primary,
+        .checkout.methods .action.primary {
+            background-color: <?= $optionsHelper->getPrimaryColor(); ?>;
+        }
+
+        .products .product-item .product-item-name a {
+            color: <?= $optionsHelper->getPrimaryColor(); ?>;
+        }
+    <?php endif; ?>
+    /**/
+
+    /** Secondary Color **/
+    <?php if ($optionsHelper->getSecondaryColor()): ?>
+        /* put this selectors for secondary color/background */
+        .filter-options-title {
+            color: <?= $optionsHelper->getSecondaryColor(); ?>;
+        }
+    <?php endif; ?>
+    /**/
+
+    <?php if ($optionsHelper->getBodyBackgroundColor()): ?>
+        body {
+            background-color: <?= $optionsHelper->getBodyBackgroundColor(); ?>;
+        }
+    <?php endif; ?>
+    <?php if ($optionsHelper->isBodyBackgroundImage()) : ?>
+        body {
+            background-image: <?= $optionsHelper->getBodyBackgroundImage() ? 'url(' . $this->getBaseUrl() . 'pub/media/theme_options/' . $optionsHelper->getBodyBackgroundImage() . ')' : 'none' ?>;
+            background-size: <?= $optionsHelper->getBodyBackgroundImageSize(); ?>;
+            background-attachment: <?= $optionsHelper->getBodyBackgroundImageAttachment(); ?>;
+            background-position: <?= $optionsHelper->getBodyBackgroundImagePosition(); ?>;
+            background-repeat: <?= $optionsHelper->getBodyBackgroundImageRepeat(); ?>;
+        }
+    <?php endif; ?>
+
+    <?php if ($optionsHelper->getHeaderBackgroundColor()): ?>
+        header.page-header {
+            background-color: <?= $optionsHelper->getHeaderBackgroundColor(); ?>;
+        }
+    <?php endif; ?>
+
+    <?php if ($optionsHelper->isHeaderBackgroundImage()) : ?>
+        header.page-header {
+            background-image: <?= $optionsHelper->getHeaderBackgroundImage() ? 'url(' . $this->getBaseUrl() . 'pub/media/theme_options/' . $optionsHelper->getHeaderBackgroundImage() . ')' : 'none' ?>;
+            background-size: <?= $optionsHelper->getHeaderBackgroundImageSize(); ?>;
+            background-attachment: <?= $optionsHelper->getHeaderBackgroundImageAttachment(); ?>;
+            background-position: <?= $optionsHelper->getHeaderBackgroundImagePosition(); ?>;
+            background-repeat: <?= $optionsHelper->getHeaderBackgroundImageRepeat(); ?>;
+        }
+    <?php endif; ?>
+
+
+    <?php if ($optionsHelper->getFooterBackgroundColor()): ?>
+        .page-footer {
+            background-color: <?= $optionsHelper->getFooterBackgroundColor(); ?>;
+        }
+    <?php endif; ?>
+
+    <?php if ($optionsHelper->isFooterBackgroundImage()) : ?>
+        .page-footer {
+            background-image: <?= $optionsHelper->getFooterBackgroundImage() ? 'url(' . $this->getBaseUrl() . 'pub/media/theme_options/' . $optionsHelper->getFooterBackgroundImage() . ')' : 'none' ?>;
+            background-size: <?= $optionsHelper->getFooterBackgroundImageSize(); ?>;
+            background-attachment: <?= $optionsHelper->getFooterBackgroundImageAttachment(); ?>;
+            background-position: <?= $optionsHelper->getFooterBackgroundImagePosition(); ?>;
+            background-repeat: <?= $optionsHelper->getFooterBackgroundImageRepeat(); ?>;
+        }
+    <?php endif; ?>
+
+    <?php if ($optionsHelper->getPrimaryFontColor()): ?>
+        body {
+            color: <?= $optionsHelper->getPrimaryFontColor(); ?>;
+        }
+    <?php endif; ?>
+
+    <?php if ($optionsHelper->getPrimaryLinkColor()): ?>
+        a {
+            color: <?= $optionsHelper->getPrimaryLinkColor(); ?>;
+        }
+    <?php endif; ?>
+<?php endif; ?>
+
+/* Category page */
+<?php if ($columns = $optionsHelper->getProductItemWidth()): ?>
+    @media screen and (min-width: 1024px) {
+        .grid-main .products-grid .product-item{
+            flex-basis: <?= $columns; ?>;
+            max-width: <?= $columns; ?>;
+        }
+    }
+<?php endif; ?>
+<?php if ($optionsHelper->isTiltJs()): ?>
+    .js-tilt-glare {
+        pointer-events: none;
+    }
+<?php endif ?>
+/* END Category page */

@@ -1,0 +1,14 @@
+<?xml version="1.0"?>
+<config xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="urn:magento:module:Zemez_ThemeOptions:etc/color_schemes.xsd">
+    <website code="base">
+        <scheme id="default" label="Default" color="#000080">
+            <param name="primary_color" value="#f76e2f" />
+            <param name="secondary_color" value="#d03092" />
+            <param name="body_background_color" value="#ffffff" />
+            <param name="header_background_color" value="#ffffff" />
+            <param name="footer_background_color" value="transparent" />
+            <param name="primary_font_color" value="#888888" />
+            <param name="primary_link_color" value="inherit" />
+        </scheme>
+    </website>
+</config>

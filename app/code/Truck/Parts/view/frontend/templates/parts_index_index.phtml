@@ -1,0 +1,195 @@
+<a href="javascript:void(0)" onclick="history.back()" id="browserBack" class="back-btn"><i class="bi bi-chevron-left"></i> 
+    <?php echo __('Tillbaka'); ?>
+</a>
+<ul>
+    <?php
+    $items = $block->getData('items');
+    $partnumber = $block->getData('partnumber'); 
+    $notfound = 1;
+    $itemsArray = [];
+    $objectManager = \Magento\Framework\App\ObjectManager::getInstance();
+    $customerSession = $objectManager->get('Magento\Customer\Model\Session');
+    $partly_res_error = '';
+    if (empty($items)) {
+        $partly_res_error = "Error: Not any product found from Partly in API response.";
+    }
+    if (strpos($partnumber, '`') !== false){
+        $partnumber = str_replace("`","#", $partnumber);
+    }
+    // if(!$customerSession->isLoggedIn()) {
+        //echo "Part Number: ".$partnumber; //die(' visionnn');
+        //echo "<pre>"; print_r($items);echo "<pre>"; //die('visionnn');
+    // }
+    if(count($items) > 0){
+        usort($items, function ($item1, $item2) {
+            return $item1->gapc_part->gapc_brand->name <=> $item2->gapc_part->gapc_brand->name;
+        });
+
+        $brand = null;
+        echo "<ul>";
+        foreach($items as $item){
+                //echo '<pre>';print_r($item); die('dsf');
+                $objectManager =   \Magento\Framework\App\ObjectManager::getInstance();
+                $connection = $objectManager
+                            ->get('Magento\Framework\App\ResourceConnection')
+                            ->getConnection('\Magento\Framework\App\ResourceConnection::DEFAULT_CONNECTION'); 
+                $articalName = str_replace(" ","", $item->gapc_part->part_number);
+                $articalNamewithDot = str_replace(" ",".", $item->gapc_part->part_number);
+                $articalNamerevomedDot = str_replace(".","", $item->gapc_part->part_number);
+                $articalwithoutslash = str_replace("/","", $item->gapc_part->part_number);
+                $articalNamerevomedDotminus = str_replace("-","", $articalNamerevomedDot);
+                $articalName_input = str_replace(" ","-", $item->gapc_part->gapc_brand->name)."-".str_replace(" ","-",$item->gapc_part->part_number);
+                $brand_to_compare = strtolower($item->gapc_part->gapc_brand->name);
+                $brand_uppercase = strtoupper($item->gapc_part->gapc_brand->name);
+                $partnum_to_compare = (int)$partnumber;
+               // echo $articalName;
+                if ($articalName != $partnum_to_compare || $articalName != $partnumber) {
+                    //Finding product without LIKE
+                    //echo "ONE part number: ".$articalNamerevomedDot. "articalName: ". $articalName; 
+                    // echo "Match found No LIKE required"; die('ffffff');
+                    //echo "Brand1: ".$item->gapc_brand->name;
+                    //echo "Part Number1: ".$item->mpn;
+                    $sql_query = "SELECT * FROM `partly_product` WHERE `brand` LIKE '%".str_replace("'","",$item->gapc_part->gapc_brand->name)."%' AND ( `name`= '".$articalName."' OR `name`= '".$articalwithoutslash."' OR `alternate` = '".$articalName."' OR REPLACE(name, '.','') LIKE '%".$articalName."%' OR REPLACE(name, ' ','') LIKE '%".$articalName."%' OR `name`= '".$articalNamerevomedDotminus."' OR `name` = '".$articalNamewithDot."' OR `name` = '".$articalNamerevomedDot."'  OR `oem` = '".$articalName."') ORDER BY `id` DESC";
+               }else{
+                    //echo "Part Number: ".$articalNamerevomedDot;
+                    $sql_query = "SELECT * FROM `partly_product` WHERE (`brand`= '".str_replace("'","",$item->gapc_part->gapc_brand->name)."' OR `brand`= '".str_replace("'","",$brand_to_compare)."' OR `brand`= '".str_replace("'","",$brand_uppercase)."') AND ( `name`= '".$partnumber."' OR `alternate` = '".$partnumber."' OR REPLACE(name, '.','') = '".$partnumber."' OR `oem` = '".$partnumber."') ORDER BY `id` DESC";
+                    //echo "Brand2: ".$item->gapc_brand->name;
+                    //echo "Part Number2: ".$item->mpn;
+               }
+                // die('one');
+                if ( $brand_to_compare =='elring') {
+                    $articalName = 'EL'.str_replace(".","", $item->gapc_part->part_number);
+                }
+                //echo "SELECT * FROM `partly_product` WHERE `brand` LIKE '%".str_replace("'","",$item->gapc_brand->name)."%' AND ( `name`= '".$articalName."' OR `alternate` = '".$articalName."' OR REPLACE(name, '.','') LIKE '%".$articalName."%' OR REPLACE(name, '.','') = '".$articalNamewithDot."' OR `name` = '".$articalNamerevomedDot."'  OR `oem` = '".$articalName."') ORDER BY `id` DESC";
+                // echo 'SELECT * FROM `partly_product` WHERE `brand` LIKE "%'.$item->gapc_brand->name.'%" AND (`alternate` = "'.$articalName.'" OR `name` LIKE "%'.$articalName.'%" OR REPLACE(name, ".","") = "'.$articalNamewithDot.'" OR `oem` = "'.$articalName.'") ORDER BY `id` DESC';
+                // echo "SELECT * FROM `partly_product` WHERE `brand` LIKE '%".$item->gapc_brand->name."%' AND (`alternate` = '".$articalName."' OR `name` LIKE '%".$articalName."%' OR REPLACE(name, '.','') = '".$articalNamewithDot."' OR `oem` = '".$articalName."') ORDER BY `id` DESC";
+                //echo "SELECT * FROM `partly_product` WHERE `brand` LIKE '%".str_replace("'","",$item->gapc_brand->name)."%' AND (`alternate` = '".$articalName."' OR REPLACE(name, '.','') LIKE '%".$articalName."%' OR REPLACE(name, '.','') = '".$articalNamewithDot."' OR `name` = '".$articalNamerevomedDot."'  OR `oem` = '".$articalName."') ORDER BY `id` DESC";
+                $result1 = $connection->fetchAll($sql_query);
+
+                $result2 =  $result3 = [];
+
+                if( (count($result3) > 0 && !in_array($result3[0]['id'], $itemsArray)) || (count($result1) > 0 && !in_array($result1[0]['id'], $itemsArray)) || (count($result2) > 0 && !in_array($result2[0]['id'], $itemsArray))){
+                    $notfound = 0;
+                    $ss = null;
+                    if($result1){
+                        $ss = $result1[0];
+                        $itemsArray[] = $result1[0]['id'];
+                    } 
+                    if($result2){
+                        $ss = $result2[0];
+                        $itemsArray[] = $result2[0]['id'];
+                    } 
+                    if($result3){
+                        $ss = $result3[0];
+                        $itemsArray[] = $result3[0]['id'];
+                    } 
+                    if($brand == null  || $item->gapc_part->gapc_brand->name != $brand){
+                        echo "<li class='custom-brand'><b>".__('Brand')."</b>: ". $item->gapc_part->gapc_brand->name."</li>";
+                        $brand =  $item->gapc_part->gapc_brand->name;
+                    }
+                    echo "<li><b>".__('Produkt')."</b>: ".$item->name."</li>";
+                    echo "<li class='parts_list_li row align-items-center'>";
+
+                    $innerInterchangeUrl = $this->getUrl("/")."pub/media/theme_options/websites/1/TTB_grossist.png";
+                    if(!empty($item->images) && count($item->images) > 0){
+                        $innerInterchangeUrl = $item->images[0]->large_url;
+                        echo "<div class='col-m-2 search_parts_image one'><img src='".$item->images[0]->large_url."'></div>";
+                    } else {
+                        echo "<div class='col-m-2 search_parts_image two'><img src='".$this->getUrl("/")."pub/media/theme_options/websites/1/TTB_grossist.png'></div>";
+                    }
+                    echo "<div class='col-m-7'><div class='row'><div class='col-m-9 parts_name'><ul><li><b>".__('Produkt')."</b>:<span class='name_details_page'> ". str_replace([$item->gapc_part->gapc_brand->name,$item->gapc_part->part_number, '-'],"", $item->name)."</span></li>";
+                    echo " <li><b>".__('Fabrikat:')."</b> <span class='fabrikat_details_page'>". $item->gapc_part->gapc_brand->name."</span></li>";
+                    if($customerSession->isLoggedIn()) {
+                        //echo "<pre>"; print_r($ss);
+                        echo " <li><b>".__('Lagersaldo: ')."</b><span class='stock_details_page'>".$ss['stock']."</span></li>";
+                        echo " <li><b>".__('Pris: ')."</b><span class='price_details_page'>".$ss['price'].": - (ex moms)"."</span></li>";
+                    }
+                    echo "</ul></div>";
+                     echo " </div></div>";
+                    echo "<div class='col-m-3 parts_price_qunatity'>";
+                    
+                    if($customerSession->isLoggedIn()) {
+                    echo "<a class='part_cart_link' href='".$this->getUrl("/")."parts/detail/index?partnumber=".$partnumber."&&inter=".$item->gapc_part->part_number."'> Produktinformation</a>";
+                        echo '
+                        <div class="add-to-cart-from-list-custom">
+                            <div class="inputt-qty">
+                            <input type="hidden" name="qtyy" value="1" class="quantity-prd">
+                            <input type="hidden" name="partnumber" value="'.$partnumber.'">
+                            <input type="hidden" name="articalname" value="'.$articalName_input.'">
+                            <input type="hidden" name="name" value="'.$item->name.'">
+                            <input type="hidden" name="price" value="'.$ss['price'].'">
+                            <input type="hidden" name="brand" value="'.$item->gapc_part->gapc_brand->name.'">
+                            <input type="hidden" name="img_url_hidden" value="'.$innerInterchangeUrl.'">
+                          </div>
+                          <span id="bundle-slide" class="action primary customize product-details2-button add-to-cart-from-list">
+                          <span>Lägg till i varukorgen</span>
+                        </span></div>
+                        ';
+                    }
+                    echo "</div></li>";
+                }
+
+
+        }
+        echo "</ul>";
+    }
+
+    if($notfound) {
+    	echo "Parts not found";
+        echo "<br>".$partly_res_error;
+    }
+    // if ($partly_res_error != ''); {
+    // }
+    ?>
+</ul>
+<script type="text/javascript">
+    require(['jquery', 'jquery/ui'], function ($) {
+        $('.add-to-cart-from-list').on('click',function() {
+            $('body').loader('show');
+            var customurl = "<?php echo $this->getUrl().'parts/vehicle/listaddtocart/'?>";
+            var name_prd = $(this).parent().find("input[name=name]").val();
+            var partnumber_prd = $(this).parent().find("input[name=partnumber]").val();
+            var articalname_prd = $(this).parent().find("input[name=articalname]").val();
+            var price_prd = $(this).parent().find("input[name=price]").val();
+            var brand_prd = $(this).parent().find("input[name=brand]").val();
+            var img_url_hidden = $(this).parent().find("input[name=img_url_hidden]").val();
+            //console.log($(this).parent());
+            $.ajax({
+                url: customurl,
+                type: 'POST',
+                dataType: 'json',
+                data: {
+                    name: name_prd,
+                    partnumber: partnumber_prd,
+                    articalname: articalname_prd,
+                    price: price_prd,
+                    brand: brand_prd,
+                    img_url_hidden: img_url_hidden,
+                },
+                complete: function(response) {  
+                    $('body').loader('hide');  
+                window.location.href = "<?php echo $this->getUrl().'checkout/cart';?>";
+                },
+            });
+        });
+    });
+</script>
+<style type="text/css">
+    .search_parts_image img { height: 200px ; width: 100%; object-fit: contain; }
+
+    li.parts_list_li{
+        margin-right: 0px !important;
+        margin-left: 0px !important;
+        margin-bottom: 4rem;
+    }
+
+    li.custom-brand {
+    background-color: #757575;
+    color: #fff;
+    padding-left: 2rem;
+}
+
+.column.main ul li {
+    font-size: 18px;
+}
+</style>

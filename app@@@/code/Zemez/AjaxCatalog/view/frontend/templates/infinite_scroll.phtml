@@ -1,0 +1,16 @@
+<?php /** @var \Zemez\AjaxCatalog\Block\InfiniteScroll $block */ ?>
+
+<?php if($block->isEnabled()): ?>
+    <div class="infiniteScroll_wrap">
+        <div id="infinite_loadMoreAnchor"
+             data-pages="<?php echo $block->getPagesToShow(); ?>">
+        </div>
+        <div id="infinite_lastPageNum"
+             data-pages="<?php echo $block->getPagesCount(); ?>">
+        </div>
+
+        <div class="actions" style="display:none">
+            <button class="action primary"><span><?php echo __('Show More'); ?></span><span class="count-primary-pages"></span></button>
+        </div>
+    </div>
+<?php endif; ?>

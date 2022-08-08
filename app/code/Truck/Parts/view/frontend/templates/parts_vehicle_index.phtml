@@ -1,0 +1,51 @@
+<div id="custom-iframe">
+	<?php if(isset($_GET['vin'])) { ?>
+		<iframe  onload="resizeIframe(this)" title="description" src="<?php echo $this->getUrl(); ?>pub/yqservice/index.php?task=vehicles&ft=FindVehicle&c=&identString=<?php echo $_GET['vin']; ?>&ssd=" width="100%"></iframe>
+	<?php } elseif(isset($_GET['oem'])) { ?>
+		<iframe  onload="resizeIframe(this)" title="description" src="<?php echo $this->getUrl(); ?>pub/yqservice/index.php?oem=<?php echo $_GET['oem']; ?>&task=vehicles&ft=findByOEM&c=" width="100%"></iframe>
+	<?php } elseif(isset($_GET['plate'])) { 
+			$request = array();
+	       	$request['username'] = 'info@ttbreservdelar.com';
+	       	$request['password'] = 'OTNOK!!!12354konto';
+	       	$request['carplate_no'] = $_GET['plate']; // CARPLATE NO
+	       	$request['web'] = 'swe';
+	       	$request['ip'] = '122.160.138.11';
+	       	$ch = curl_init('http://94.46.45.189/~livedatano/fcdetails.php');
+	       	curl_setopt($ch, CURLOPT_RETURNTRANSFER, true);
+	       	curl_setopt($ch, CURLOPT_POSTFIELDS, $request);
+	       	$response = curl_exec($ch);
+	       	curl_close($ch);
+	       	$data = json_decode($response); 
+	       	echo "<div class='pt-numbers'><div class='plate-number'>Registreringsnummer - ".$_GET['plate']."</div>";
+	       	if($data->type == 'success'){
+	       		echo "<div class='chassi-number'>Chassinummer - ".$data->Chassinummer."</div></div>";
+	       		?>
+	       		<iframe onload="resizeIframe(this)" title="description" src="<?php echo $this->getUrl(); ?>pub/yqservice/index.php?task=vehicles&ft=FindVehicle&c=&identString=<?php echo $data->Chassinummer; ?>&ssd=" width="100%"></iframe>
+	       		<?php
+	       	} else {
+	       		echo "Car not found";
+	       	}
+
+	?>
+	<?php } elseif(isset($_GET['menual'])) { ?>
+		<p><iframe  onload="resizeIframe(this)" title="description" src="<?php echo $this->getUrl(); ?>pub/yqservice/index.php?task=vehicles&ft=findByWizard2&c=YQSC1&ssd=<?php echo $_GET['menual']; ?>" width="100%"></iframe></p>
+	<?php } else { ?>
+		<p><iframe  onload="resizeIframe(this)" title="description" src="<?php echo $this->getUrl(); ?>pub/yqservice/index.php?task=catalogs" width="100%"></iframe></p>
+	<?php } ?>
+</div>
+
+<style type="text/css">
+	#custom-iframe iframe{ border: 0; }
+</style>
+
+<script type="text/javascript">
+  function resizeIframe(iframe) {
+  	if(iframe.height != (iframe.contentWindow.document.body.scrollHeight +50)+ "px"){
+  		console.log(iframe.height);
+	    iframe.height = iframe.contentWindow.document.body.scrollHeight +50;
+		iframe.height = iframe.height + "px";
+	    window.requestAnimationFrame(() => resizeIframe(iframe));
+    	document.getElementById("custom-iframe").scrollIntoView();
+	}
+  }
+</script> 

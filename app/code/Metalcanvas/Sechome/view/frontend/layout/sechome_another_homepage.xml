@@ -1,0 +1,29 @@
+<?xml version="1.0"?>
+<page xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" layout="2columns-left" xsi:noNamespaceSchemaLocation="../../../../../../../lib/internal/Magento/Framework/View/Layout/etc/page_configuration.xsd">
+     <body>		
+        <referenceContainer name="content">			
+			<block class="Metalcanvas\Sechome\Block\Another\Homepage" name="another_homepage" template="another/homepage.phtml">
+			</block>
+        </referenceContainer>  
+        <referenceBlock name="logo">
+            <arguments>
+                <argument name="logo_width" xsi:type="number">114</argument>
+                <argument name="logo_height" xsi:type="number">72</argument>
+            </arguments>
+        </referenceBlock> 
+        <!-- <move element="authorization-link" destination="minicart-wrapper" before="-" /> -->
+        <move element="authorization-link" destination = "header-wrapper" after="minicart" />
+        <move element="register-link" destination = "header-wrapper" after="minicart" />
+        
+        <referenceBlock name="top.links" remove="true"/>
+        <referenceBlock name="catalog.compare.sidebar" remove="true"/> 
+        <referenceBlock name="wishlist_sidebar" remove="true" />
+        <referenceBlock name="form.subscribe" remove="true"/>
+        <referenceBlock name="footer_links" remove="true" />
+        <referenceBlock name="copyright" remove="true" />
+        <referenceBlock name="report.bugs" remove="true" />
+        <referenceBlock name="sale.reorder.sidebar" remove="true"/>
+    
+        <!-- <container name="footer content" htmlTag="div" htmlClass="custt"/> -->
+    </body>
+</page>

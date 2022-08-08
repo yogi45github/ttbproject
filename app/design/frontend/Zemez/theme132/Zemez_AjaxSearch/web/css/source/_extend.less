@@ -1,0 +1,98 @@
+//
+//  TM_AjaxCatalog
+//  ---------------------------------------------
+
+// Local vars
+
+@_ajax-search__shadow-hover: 0 0 15px 0 fade(@color-primary, 85%);
+
+// Main Styles
+
+& when (@media-target = 'desktop') {
+    #search_mini_form {
+        #search {
+            padding-left: 20px;
+        }
+        .search-autocomplete {
+            min-width: 250px;
+        }
+    }
+}
+
+& when (@media-target = 'mobile') {
+    #search.input-text {
+        padding-left: 16px;
+    }
+
+    #search_mini_form .search-autocomplete {
+        box-shadow: 0 0 8px 0 rgba(0, 0, 0, 0.2);
+        ul li.search-item {
+            border: none;
+            transition: 0.3s all ease;
+            &:hover {
+                box-shadow: none;
+                background: @color-lightest;
+            }
+        }
+        &:after {
+            z-index: 1;
+        }
+    }
+
+    #search_autocomplete .search-item .price-box {
+        .price-box(); // _mixins.less
+
+        .price-label {
+            display: none;
+        }
+        .price-container .price {
+            font-size: 14px;
+        }
+        .special-price .price {
+            color: @color-secondary;
+        }
+        .special-price, .old-price {
+            display: inline-block;
+        }
+    }
+
+    [aria-haspopup="true"] + .search-autocomplete:after {
+        display: block;
+    }
+
+    // RTL
+    html.rtl {
+        #search_mini_form {
+            .search-autocomplete ul {
+                &[role=listbox] {
+                    margin-left: -20px;
+                    margin-right: 0;
+                }
+
+                li.search-item {
+                    padding-right: 15px;
+                    padding-left: 30px;
+                    text-align: right;
+
+                    a .search-thumb {
+                        float: right;
+                        margin-right: 0;
+                        margin-left: 10px;
+                    }
+                }
+            }
+
+            .search-item .price-box {
+                justify-content: flex-end;
+            }
+
+            #search {
+                padding-right: 25px;
+            }
+        }
+
+        body.ajax-loading #search.input-text:focus {
+            background-position: 99% 50%;
+        }
+    }
+}

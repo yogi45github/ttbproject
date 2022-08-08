@@ -1,0 +1,16 @@
+<?xml version="1.0"?>
+<page xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="urn:magento:framework:View/Layout/etc/page_configuration.xsd">
+    <body>
+        <referenceContainer name="footer-container" htmlClass="page-footer layout-2 bg-dark" />
+        <referenceContainer name="footer.grid-col1" remove="true" />
+        <referenceContainer name="footer.grid-col2" remove="true" />
+        <referenceContainer name="footer.grid-col3" remove="true" />
+        <referenceBlock name="theme_options.social_links.footer"  remove="true" />
+        <referenceContainer name="footer.grid-col4" htmlClass="col-m-12 col-l-7 col-xxl-6" />
+        <referenceContainer name="footer.grid-col5" htmlClass="col-m-12 col-l-5 col-xxl-6" />
+        <referenceContainer name="footer.panel" htmlClass="footer-panel bg-white" />
+
+        <move element="footer.grid-col5" destination="footer.grid-row" before="-" />
+        <move element="footer.google-map" destination="footer" after="footer.grid-container" />
+    </body>
+</page>

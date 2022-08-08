@@ -1,0 +1,270 @@
+//
+//  Rating variables
+//  _____________________________________________
+
+@rating-icon__count: 5;
+@rating-icon__content: @themeicon-star;
+@rating-icon__font: @themeicon-font-family;
+@rating-icon__font-size: 14px;
+@rating-icon__letter-spacing: 3px;
+@rating-icon__color: @color-default;
+@rating-icon__active__color: #ff8c2f;
+
+//
+//  Rating summary
+//  ---------------------------------------------------
+
+& when (@media-target = 'mobile') {
+    .product-reviews-summary {
+        .rating-summary {
+            left: 0;
+        }
+        .reviews-actions a {
+            display: inline-block;
+            padding-top: 4px;
+            margin-left: 5px;
+        }
+    }
+
+    .rating-summary .rating-result {
+        margin-left: 0;
+    }
+}
+
+//
+//  Review List
+//  ---------------------------------------------------
+
+& when (@media-target = 'mobile') {
+    .review-list {
+        .block-title strong {
+            margin-bottom: 12px;
+            font-size: 16px;
+            font-weight: @font-weight__semibold;
+        }
+
+        .review-title {
+            font-size: 14px;
+            line-height: 18px;
+            color: @color-dark;
+            font-weight: @font-weight__semibold;
+            margin-bottom: 4px;
+            @media (min-width: @screen__s) {
+                font-size: 16px;
+            }
+        }
+
+        .review-item {
+            margin-bottom: 30px;
+        }
+
+        //Rating
+        .review-ratings {
+            margin-top: 10px;
+            margin-bottom: 8px;
+        }
+        .rating-summary {
+            .make-flex();
+
+            & + .rating-summary {
+                margin-top: 10px;
+            }
+        }
+        .rating-label {
+            margin-right: 24px;
+        }
+        .rating-result {
+            display: inline-block;
+        }
+
+        //Details
+        .review-details {
+            .make-flex();
+
+            p + p {
+                margin-left: 4px;
+            }
+            p > * {
+                display: inline-block;
+            }
+
+            .review-author .review-details-value {
+                text-transform: uppercase;
+                font-weight: 700;
+            }
+        }
+    }
+}
+
+//
+//  Review Form
+//  ---------------------------------------------------
+
+& when (@media-target = 'mobile') {
+    .review-add {
+        .review-legend {
+            padding: 12px 24px;
+            background: @color-lightest;
+            color: @color-dark;
+            font-size: 16px;
+            line-height: 18px;
+            margin-bottom: 32px;
+            width: 100%;;
+
+            span {
+                float: left;
+                margin-right: 10px;
+                font-weight: 700;
+                color: @color-default;
+            }
+        }
+
+        .review-form {
+            max-width: none;
+
+            .fieldset {
+                margin-bottom: 0;
+            }
+        }
+
+        form .actions-toolbar, .column:not(.sidebar-additional) form .actions-toolbar {
+            margin-left: 0 !important;
+        }
+
+        .fieldset .review-legend.legend {
+            padding-top: 0;
+            padding-bottom: 0;
+            padding-left: 0;
+            margin-bottom: 20px;
+            text-transform: uppercase;
+            background: transparent;
+        }
+
+        .fieldset.review-fieldset > div.field[class*=review-field] {
+            margin-bottom: 8px;
+            max-width: 900px;
+
+            label.label {
+                max-width: 100px;
+                margin-bottom: 10px;
+            }
+
+            .control {
+                float: none;
+            }
+
+            &:last-child {
+                margin-bottom: 24px;
+            }
+        }
+
+        .review-field-text textarea {
+            min-height: 100px;
+
+            @media (min-width: @screen__m) {
+                min-height: 200px;
+            }
+
+            & + .mage-error {
+                margin-top: 0;
+            }
+        }
+    }
+
+    .review-field-ratings {
+        margin-bottom: 4px;
+
+        .review-field-rating {
+            .make-flex();
+            .control {
+                padding-bottom: 0;
+            }
+            .label {
+                padding-bottom: 0;
+            }
+        }
+        .control {
+            .mage-error {
+                top: 100%;
+                margin-top: 0;
+            }
+        }
+
+        .field {
+            padding: 0;
+        }
+
+        > .label {
+            color: @color-light;
+            font-size: 15px;
+            line-height: 16px;
+            font-weight: 700;
+            margin-right: 24px;
+        }
+
+        [id="Rating_rating_label"] {
+            display: none;
+        }
+    }
+    .review-control-vote {
+        .lib-rating-vote(@_icon-font-size: 18px, @_icon-letter-spacing: 8px);
+        height: 24px;
+        min-width: (@rating-icon__count * 26px);
+    }
+
+    // RTL
+    html.rtl {
+        .review-add .review-legend span {
+            float: right;
+            margin-right: 0;
+            margin-left: 10px;
+        }
+
+        .review-add .fieldset .review-legend.legend {
+            padding-right: 0;
+            padding-left: 24px;
+        }
+
+        .review-add .fieldset.review-fieldset > div.field[class*=review-field] label.label {
+            float: right;
+            margin-right: 0;
+            margin-left: 24px;
+            text-align: right;
+        }
+    }
+}
+
+// Customer reviews history
+//-----------------------------------
+
+& when (@media-target = 'mobile') {
+    .my-reviews-table__wrapper {
+        .table-title {
+            display: block;
+            margin-bottom: 16px;
+        }
+
+        .pager {
+            .make-flex();
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 20px;
+
+            .toolbar-amount,
+            .limiter {
+                flex-basis: auto;
+            }
+
+            .field {
+                padding: 0;
+            }
+        }
+
+        .table-wrapper.reviews {
+            margin-bottom: 26px;
+            caption {
+                display: none;
+            }
+        }
+    }
+}

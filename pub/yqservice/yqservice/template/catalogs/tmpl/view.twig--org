@@ -1,0 +1,41 @@
+<div class="catalogs">
+{#    <h1>Please select catalog</h1>#}
+    <div class="flex">
+        {% set sliced = 0 %}
+        {% for i in 1..columns %}
+            <div class="catalogs-search" style="flex-basis: {{ 100 / columns }}%">
+                {% set currentColumn = loop.index - 1 %}
+
+                <table class="table collapse yqservice_tablecatalog border-none" border="0">
+                    <tbody>
+                    {% set cCatalogs = catalogs|slice(0, elemCount)|slice(sliced, elemInRow + (currentColumn < rest ? 1 : 0)) %}
+                    {% for catalog in cCatalogs %}
+                        {% set catalogLink = createUrl('catalog', '', '', {
+                            'c': catalog.code,
+                            'ssd': '',
+                            'spi2': catalog.supportparameteridentification2 == true ? 't' : ''
+                        }) %}
+
+                        <tr onmouseout="this.classList.remove('over');" onmouseover="this.classList.add('over');"
+                            onclick="window.location='{{ catalogLink }}'" class="{{ letters ? '' : 'bordered' }}">
+                            <td>{% if letters %}<span class="gray letter">{{ catalog.name|first != cCatalogs[loop.index0 - 1].name|first ? catalog.name|first : '' }}</span>{% endif %}</td>
+                            <td valign="center">
+                                <a class="yqservice_tablecatalog"
+                                   href="{{ catalogLink }}{{ catalog.supportparameteridentification2 == true ? '&spi2=t' : '' }}">{{ catalog.name }}</a>
+                            </td>
+                        </tr>
+                    {% endfor %}
+                    </tbody>
+                </table>
+                {% set sliced = sliced + elemInRow + (currentColumn < rest ? 1 : 0) %}
+            </div>
+        {% endfor %}
+    </div>
+    {% if dev %}
+        <span class="revision-block">
+        {{ rev|capitalize }}<br/>
+        <small>{{ revDate|date('Y.m.d H:i') }}</small><br/>
+        <small>{{ revDesc }}</small>
+    </span>
+    {% endif %}
+</div>

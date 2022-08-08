@@ -1,0 +1,48 @@
+<?php
+/**
+ * Copyright © Magento, Inc. All rights reserved.
+ * See COPYING.txt for license details.
+ */
+
+// @codingStandardsIgnoreFile
+
+?>
+<?php
+$lid = $block->getRealOrderId();
+$objectManager = \Magento\Framework\App\ObjectManager::getInstance();
+$orderObj = $objectManager->create('Magento\Checkout\Model\Session')->getLastRealOrder();
+$resource = $objectManager->get('Magento\Framework\App\ResourceConnection');
+$connection = $resource->getConnection();
+$orderItems = $orderObj->getAllItems();
+$itemQty = array();
+foreach ($orderItems as $item) {
+    $productid = $item->getProduct()->getId();
+    if($productid == 29){
+        $itemdescription = $item->getDescription();
+        $data = json_decode($itemdescription);
+        $article_no = $data->artical;
+        $qtyordered = $item->getQtyOrdered();
+        $sql = "UPDATE `partly_product` SET `stock` = GREATEST(`stock` - ".$qtyordered.", 0) WHERE `name` = '".$article_no."'";
+        $connection->query($sql);
+    }
+}
+?>
+<?php /** @var $block \Magento\Checkout\Block\Onepage\Success */ ?>
+<div class="checkout-success">
+    <?php if ($block->getOrderId()):?>
+        <?php if ($block->getCanViewOrder()) :?>
+            <p><?= __('Your order number is: %1.', sprintf('<a href="%s" class="order-number"><strong>%s</strong></a>', $block->escapeHtml($block->getViewOrderUrl()), $block->escapeHtml($block->getOrderId()))) ?></p>
+        <?php  else :?>
+            <p><?= __('Your order # is: <span>%1</span>.', $block->escapeHtml($block->getOrderId())) ?></p>
+        <?php endif;?>
+            <p><?= /* @escapeNotVerified */ __('We\'ll email you an order confirmation with details and tracking info.') ?></p>
+    <?php endif;?>
+
+    <?= $block->getAdditionalInfoHtml() ?>
+
+    <div class="actions-toolbar">
+        <div class="primary">
+            <a class="action primary continue" href="<?= /* @escapeNotVerified */ $block->getContinueUrl() ?>"><span><?= /* @escapeNotVerified */ __('Continue Shopping') ?></span></a>
+        </div>
+    </div>
+</div>

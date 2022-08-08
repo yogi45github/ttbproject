@@ -1,0 +1,21 @@
+<?xml version="1.0"?>
+<config xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="urn:magento:module:Magento_Store:etc/config.xsd">
+	<default>
+		<vision_ajax_infinite_scroll>
+            <general>
+                <enabled>1</enabled>
+            </general>
+            <selectors>
+                <delay>100</delay>
+                <content>.products.wrapper</content>
+                <pagination>.toolbar .pages</pagination>
+                <next>.next</next>
+                <item>.product-item</item>
+            </selectors>
+            <design>
+                <loading_text><![CDATA[<em>Loading - Please Wait...</em>]]></loading_text>
+                <done_text><![CDATA[<em>No more products found!</em>]]></done_text>
+            </design>
+        </vision_ajax_infinite_scroll>
+    </default>
+</config>

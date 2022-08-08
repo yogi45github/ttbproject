@@ -1,0 +1,146 @@
+{% block details %}
+    <div class="column">
+        {% if details %}
+            <table class="table yqservice_table collapse stripped" id="viewtable">
+                <tbody>
+                <tr>
+                    <th id="c_pnc">{{ 'columndetailcodeonimage'|t }}</th>
+                    <th id="c_vars"></th>
+                    <th id="c_oem">{{ 'columndetailoem'|t }}</th>
+                    <th id="c_name">{{ 'columndetailname'|t }}</th>
+                    <th id="links"></th>
+                    <th id="c_tooltip"></th>
+                    <th id="c_flag" style="display:none;">{{ 'columndetailflag' }}</th>
+                    <th id="c_availability" style="display:none;">{{ 'wheretobuy'|t }}</th>
+                    <th id="c_note" style="display:none;">{{ 'wheretobuy'|t }}</th>
+                </tr>
+                {% set codeOnImage = '0' %}
+                {% for group in details %}
+                    {% set marketUrl = domain|replace({'{article}': detail.oem|url_encode, '{brand}': vehicle.brand|url_encode }) %}
+                    {% if group.name %}
+                        <tr id="d_{{ group.codeonimage }}" name="{{ group.codeonimage }}"
+                            class="g_highlight">
+                            <td name="c_pnc"
+                                class="g_ttd codeonimage {{ loop.index > 1 ? 'transparent-border': '' }}">
+                                {% if loop.index == 1 %}
+                                    {{ group.codeonimage }}
+                                {% endif %}
+                            </td>
+                            <td>
+                                {% if group|length > 1 %}
+                                    <span class="grey">{{ 'detailvariant'|t ~ (loop.index) ~ ': ' }}</span>
+                                {% endif %}
+                            </td>
+                            <td name=c_oem class="{{ group.oem != '' ? 'g_ttd' : '' }}">
+                                <a onclick="return window.parent.location.href = 'https://server.visionvivante.com:8080/truck3/parts/index/index?partnumber={{ group.oem }}'" href="javascript:void(0)">{{ group.oem }}</a>
+                            </td>
+                            <td name=c_name class="{{ group.name != '' ? 'g_ttd' : '' }}">
+                                {% if group.filter %}
+                                    <a href="javascript:void(0)" data-url="{{ filterUrl }}"
+                                       class="filter">{{ group.name ?: 'unitnotspecifed'|t }} {{ 'needconfirm'|t }}</a>
+                                {% else %}
+                                    {% if group.oem %}
+                                    <a onclick="return window.parent.location.href = 'https://server.visionvivante.com:8080/truck3/parts/index/index?partnumber={{ group.oem }}'">{{ group.name != '' ? group.name : 'unitnotspecifed'|t }}</a>
+                                    {% else %}
+                                    <a href="javascript:void(0)">{{ group.name != '' ? group.name : 'unitnotspecifed'|t }}</a>
+                                    {% endif %}
+                                {% endif %}
+                            </td>
+                            <td class="g_rowdatahint" name="c_tooltip"><div class="info"></div>
+                            </td>
+                            <td name="c_note" style="display:none;" class="g_ttd">
+                                {% for note in group.attributes %}
+                                    <div class="item">
+                                        <span class="name">{{ note.name }}</span>
+                                        <span class="value">{{ note.value }}</span>
+                                    </div>
+                                {% endfor %}
+                            </td>
+                        </tr>
+                    {% endif %}
+                    {% for detail in group %}
+                        {% set coi = 'i' ~ detail.codeonimage|t %}
+                        {% set filterUrl = createUrl('detailfilter', '', '', {
+                        'c': catalog,
+                        'cid': cid,
+                        'vid': vid ?: 0,
+                        'uid': unit.unitid ? unit.unitid : uid,
+                        'gid': gid,
+                        'oem': detail.oem,
+                        'brand':vehicle.brand|url_encode,
+                        'did': '',
+                        'f': detail.filter,
+                        'ssd': detail.ssd,
+                        'fromTask' : 'unit',
+                        'fromCatalogTask' : fromCatalogTask,
+                         'format': 'raw'
+                        }) %}
+                        {% set marketUrl = domain|replace({'{article}': detail.oem|url_encode, '{brand}': vehicle.brand|url_encode }) %}
+
+                        <tr id="d_{{ detail.codeonimage }}" name="{{ detail.codeonimage }}"
+                            class="g_highlight {% if detail.codeonimage in cois %} g_highlight_lock {% endif %} ">
+                            <td name="c_pnc"
+                                class="g_ttd codeonimage {{ loop.index > 1 ? 'transparent-border': '' }}">
+                                {% if loop.index == 1 %}
+                                    {{ detail.codeonimage }}
+                                {% endif %}
+                            </td>
+                            <td>
+                                {% if group|length > 1 %}
+                                    <span class="grey">{{ 'detailvariant'|t ~ (loop.index) ~ ': ' }}</span>
+                                {% endif %}
+                            </td>
+                            <td name=c_oem
+                                class="{{ detail.oem != '' ? 'g_ttd' : '' }}">
+                                {% if user or showOems %}
+                                    <a onclick="return window.parent.location.href = 'https://server.visionvivante.com:8080/truck3/parts/index/index?partnumber={{ detail.oem }}'" href="javascript:void(0)">{{ detail.oem }}</a>
+                                {% else %}
+                                    <a href="javascript:void(0)" class="logging">*****</a>
+                                {% endif %}
+                            </td>
+                            <td name=c_name class="{{ detail.name and detail.name != '' ? 'g_ttd' : '' }}">
+                                {% if detail.filter %}
+                                    <a href="javascript:void(0)" data-url="{{ filterUrl }}"
+                                       class="filter">{{ detail.name and detail.name != '' ? detail.name : 'unitnotspecifed'|t }} {{ 'needconfirm'|t }}</a>
+                                {% else %}
+                                    {% if user or showOems %}
+                                        {% if detail.oem %}
+                                         <a  onclick="return window.parent.location.href = 'https://server.visionvivante.com:8080/truck3/parts/index/index?partnumber={{ detail.oem }}'" href="javascript:void(0)">{{ detail.name and detail.name != '' ? detail.name : 'unitnotspecifed'|t }}</a>
+                                         {% else %}
+                                         <a  href="javascript:void(0)">{{ detail.name and detail.name != '' ? detail.name : 'unitnotspecifed'|t }}</a>
+                                         {% endif %}
+                                        <!-- <a href="{{ marketUrl and detail.oem ? marketUrl : 'javascript:void(0)' }}" {% if linkTarget %}target="{{ linkTarget }}"{% endif %}>{{ detail.name and detail.name != '' ? detail.name : 'unitnotspecifed'|t }}</a> -->
+                                    {% else %}
+                                        {{ detail.name and detail.name != '' ? detail.name : 'unitnotspecifed'|t }}
+                                    {% endif %}
+                                {% endif %}
+                            </td>
+                            <td>
+                                {% if detail.links %}
+                                    {% for detailLink in detail.links %}
+                                        <a href="{{ detailLink.getLink }}" class="detail-link-tooltip" data-label="{{ detailLink.label }}"><div class="link"></div></a>
+                                    {% endfor %}
+                                {% endif %}
+                            </td>
+                            <td class="g_rowdatahint" name="c_tooltip"><div class="info"></div></td>
+                            <td name="c_note" style="display:none;" class="g_ttd">
+                                {% for note in detail.attributes %}
+                                    <div class="item">
+                                        <span class="name">{{ note.name }}</span>
+                                        <span class="value">{{ note.value }}</span>
+                                    </div>
+                                {% endfor %}
+                            </td>
+                        </tr>
+                    {% endfor %}
+                {% endfor %}
+
+                </tbody>
+            </table>
+        {% else %}
+            <div class="no-items">
+                <span class="grey">{{ 'unitDetailsNoResulst'|t }}</span>
+            </div>
+        {% endif %}
+    </div>
+{% endblock %}

@@ -1,0 +1,123 @@
+
+& when (@media-target = 'mobile') {
+    //
+    // Account table
+    //-----------------------------------
+
+    .custome-downloadable-products__wrapper {
+        .table-title {
+            display: block;
+            margin-bottom: 16px;
+        }
+
+        .pager {
+            .make-flex();
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 20px;
+
+            .toolbar-amount,
+            .limiter {
+                flex-basis: auto;
+            }
+
+            .field {
+                padding: 0;
+            }
+        }
+
+        .table-downloadable-products {
+            margin-bottom: 26px;
+            caption {
+                display: none;
+            }
+
+            .col.title a.download:before {
+                .font-icon__pseudo(@themeicon-arrows-1_download);
+                padding: 0 4px 0 8px;
+            }
+        }
+    }
+
+    //
+    // Product page
+    //-----------------------------------
+
+    .page-product-downloadable .page-main {
+        .product-info-main {
+            .make-flex;
+            .flex-direction(column);
+        }
+
+        .product-info-price > .price-box {
+            display: none;
+        }
+
+        .product-options-wrapper {
+            float: none;
+            width: auto;
+            padding-top: 10px;
+            border-top: 1px solid @border-color__base;
+
+            .legend {
+                font-size: 18px;
+                line-height: 20px;
+                font-weight: 700;
+                color: @color-primary;
+            }
+
+            .fieldset > .field {
+                margin-bottom: 0;
+            }
+        }
+        .product-options-bottom {
+            float: none;
+            width: auto;
+
+            .price-box {
+                font-size: 20px;
+                line-height: 20px;
+                padding-bottom: 10px;
+                color: @color-dark;
+            }
+        }
+
+        .product-info-price {
+            .order(1);
+        }
+
+        .product-add-form {
+            .order(3);
+            margin-top: 20px;
+        }
+
+        .samples {
+            .order(2);
+            padding-top: 10px;
+            border-top: 1px solid @border-color__base;
+
+            .samples-item-title {
+                color: @color-light;
+                font-weight: 700;
+                display: inline-block;
+                margin-bottom: 8px;
+            }
+
+            dd {
+                font-style: normal;
+                padding-left: 0;
+            }
+        }
+    }
+}
+
+& when (@media-target = 'desktop') {
+    .page-product-downloadable .page-main {
+        .product-options-wrapper {
+            padding-top: 15px;
+        }
+        .samples {
+            padding-top: 20px;
+        }
+    }
+}

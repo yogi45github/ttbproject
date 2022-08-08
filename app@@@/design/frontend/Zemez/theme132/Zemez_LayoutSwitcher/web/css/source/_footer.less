@@ -1,0 +1,175 @@
+//
+//  Footer
+//  ---------------------------------------------
+
+// Footer 2
+& when (@media-target = 'mobile') {
+    .page-footer.layout-2 {
+        .block.newsletter {
+            .label {
+                display: none;
+            }
+        }
+
+        .footer-panel {
+            border-top: none;
+        }
+    }
+}
+
+& when (@media-target = 'desktop') {
+    .page-footer.layout-2 {
+        .contact-info {
+            display: flex !important;
+            flex-wrap: wrap;
+            margin-top: -20px;
+            > p {
+                margin-top: 20px;
+                flex-basis: 50%;
+                max-width: 50%;
+                padding-right: 20px;
+                box-sizing: border-box;
+            }
+        }
+
+        .block.newsletter {
+            margin-bottom: 30px;
+        }
+
+        .footer-col {
+            > h4 {
+                display: none;
+            }
+        }
+
+        @media (min-width: @screen__l) {
+            .block.newsletter {
+                .make-flex();
+                flex-wrap: wrap;
+                align-items: center;
+                margin-top: -6px;
+                margin-bottom: 50px;
+                .content {
+                    flex-grow: 1;
+                    max-width: 375px;
+                }
+                .form.subscribe {
+                    flex-wrap: nowrap;
+                }
+            }
+        }
+
+        @media (min-width: @screen__xl) {
+            .contact-info {
+                [class^='themeicon-'] {
+                    padding-left: 46px;
+                    &:before {
+                        font-size: 27px;
+                    }
+                }
+            }
+        }
+
+        .footer.content > .container {
+            padding-top: 48px;
+            padding-bottom: 0;
+        }
+
+        @media (min-width: @screen__xxl) {
+            .footer.content > .container {
+                padding-top: 63px;
+                padding-bottom: 10px;
+            }
+
+            .block.newsletter {
+                .title {
+                    font-size: 24px;
+                    margin-bottom: 0;
+                    margin-top: 10px;
+                    padding-right: 8px;
+                    text-transform: none;
+                }
+            }
+        }
+    }
+}
+
+// Footer 3
+& when (@media-target = 'mobile') {
+    .page-footer.layout-3 {
+        .footer-panel {
+            background: none;
+            border-top: 1px solid #515151;
+
+            .container {
+                padding-left: 0;
+                padding-right: 0;
+            }
+
+            .copyright {
+                text-align: left;
+            }
+        }
+
+        .contact-info {
+            color: @color-default;
+            strong, [class^="themeicon-"]:before {
+                color: @color-white;
+            }
+        }
+    }
+}
+
+& when (@media-target = 'desktop') {
+    .page-footer.layout-3 {
+
+        @media (min-width: @screen__l) {
+            position: relative;
+
+            .google-map {
+                position: absolute;
+                top: 0;
+                right: 0;
+                bottom: 0;
+                width: 38%;
+                .block-googlemap-footer {
+                    height: 100%;
+                }
+                #map_canvas_footer {
+                    height: 100% !important;
+                }
+            }
+
+            .footer.content {
+                > .container {
+                    padding-bottom: 0;
+                    > .row {
+                        width: ~'calc(60% +' @gutter__width ~')';
+                    }
+                }
+            }
+
+            .footer-panel {
+                width: 60%;
+                margin-top: 30px;
+            }
+
+        }
+
+        @media (min-width: @screen__xl) {
+            .google-map {
+                width: 47%;
+            }
+
+            .footer.content {
+                > .container > .row {
+                    width: ~'calc(49% +' @gutter__width ~')';
+                }
+            }
+
+            .footer-panel {
+                width: 49%;
+            }
+        }
+    }
+}

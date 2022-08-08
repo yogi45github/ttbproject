@@ -1,0 +1,66 @@
+<!--TkjOT3jahb1ln2YC56qLiJNUXt4ddzkW-->
+<meta name="google-site-verification" content="JM-sR4xvk_YysazUgo2OgHfG2KWDp_7zw9j4mQSPeRw" />
+
+<style>
+.amblog-index-index .sidebar.sidebar-main:before {
+    content: '';
+    position: unset !important;
+}
+.catalog-category-view .products-grid .product-item-details .product-item-actions {
+    text-align: center !important;
+}
+#cookie-status{
+    display: block !important;
+    position: absolute;
+    opacity: 0;
+}
+.cms-index-index main#maincontent {
+    display: none;
+}
+.cms-index-index .our-brands {
+    height: 129px;
+}
+.block.block-customer-login.block-header-customer-login.open {
+    display: block !important;
+}
+.category-description h1, .category-description h2 {
+    font-size: 20px;
+    font-weight: 700;
+}
+ol.products.list.items.product-items {
+    display: flex;
+    flex-wrap: wrap;
+}
+@media (max-width:767px) {
+/*.catalog-product-view .gallery-placeholder{
+height: 400px;
+overflow:hidden;
+}
+.catalog-product-view .gallery-placeholder .fotorama__stage__frame .fotorama__img{
+top:0 !important;
+left:0 !important;
+transform:none !important;
+}
+.catalog-product-view .fotorama__stage{
+ height:363px !important;
+margin-bottom: 0 !important;
+}
+.catalog-product-view .gallery-placeholder img {
+    height: 363px !important;
+object-fit:cover;
+}
+.catalog-product-view:not(.weltpixel-quickview-catalog-product-view) .product.media {
+    margin-bottom: 0 !important;
+}*/
+}
+</style>
+<script>
+require([
+    'jquery'], function ($) {
+    $(document).ready(function(){
+        $(".header.content .authorization-link a").click(function(){
+            $(".block-customer-login").toggle();
+        });
+    });
+});
+</script>

@@ -1,0 +1,8 @@
+<?php /** @var Zemez\ThemeOptions\Block\SocialLinks\Renderer\Font $block */ ?>
+<a href="<?php echo $block->getSocialUrl() ?>" target="_blank">
+    <i
+        class="fa <?php echo $block->getCssClass() ?>"
+        style="font-size: <?php echo $block->getFontSize() > 0 ? $block->getFontSize() : 14; ?>px; line-height: <?php echo $block->getLineHeight() > 0 ? $block->getLineHeight() : 50 ?>px;">
+
+    </i>
+</a>

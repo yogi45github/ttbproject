@@ -1,0 +1,265 @@
+<?php
+    $items = $block->getData('items');
+    $partnumber = $block->getData('partnumber');
+    $product = $block->getData('product');
+    $price = $block->getData('price');
+    $stock = $block->getData('stock');
+    $crossItems = $block->getData('crossItems');
+    $objectManager = \Magento\Framework\App\ObjectManager::getInstance();
+    $customerSession = $objectManager->get('Magento\Customer\Model\Session');
+    //echo "<pre>";
+    //print_r($crossItems);die;
+    if($product){ ?>
+      <div class="product-details2-breadcrumb">
+        <ul class="product-breadcrumb">
+          <li><a href="javascript:void(0)" onclick="history.back()" id="browserBack" class="back-btn"><?php echo __('Tillbaka'); ?></a></li>
+          <!-- <li><a href="#"><?php// echo __('Hem'); ?></a></li> -->
+          <li><?php echo $product->name; ?></li>
+        </ul>
+        
+        </div>
+
+        <div class="product-details2-wrapper">
+          <div class="row">
+            <div class="col-m-6">
+              <div class="product-details-img">
+                <img src="https://server.visionvivante.com:8080/truck3/pub/media/wysiwyg/banner-4.jpg" />
+              </div>
+            </div>
+
+            <div class="col-m-6">
+              <h4><?php echo str_replace([$product->gapc_brand->name,$product->mpn, '-'],"", $product->name); ?></h4>
+              <div class="product-details-info">
+                <?php $artinalname =  str_replace(" ","-", $product->gapc_brand->name)."-".str_replace(" ","-",$product->mpn); ?>
+                <p class="product-details-stock">SKU: <?php echo $artinalname;?></p>
+                <p class="product-details-stock"><?php echo __('Lagersaldo: '); echo $stock; ?></p>
+              </div>
+              <?php if($customerSession->isLoggedIn()) { ?>
+                <p class="product-details-pris">Pris: <?php echo $price; ?>: - (ex moms)</p>
+                <form name="customm-add-to-cart" action="<?php echo $this->getUrl("/"); ?>sechome/customaddproduct/addproduct/" method="post" novalidate="novalidate" id="add-prd-to-cart-custom">
+                  <div class="inputt-qty">
+                    <span class="qty-label"><?php echo __('Quantity');?></span>
+                    <input type="number" name="qtyy" value="1" class="quantity-prd">
+                    <input type="hidden" name="partnumber" value="<?php echo $partnumber; ?>">
+                    <input type="hidden" name="name" value="<?php echo $product->name; ?>">
+                    <input type="hidden" name="brand" value="<?php echo $product->gapc_brand->name; ?>">
+                    <input type="hidden" name="articalnumber" value="<?php echo $artinalname; ?>">
+                  </div>
+                  <button id="bundle-slide" class="action primary customize product-details2-button">
+                  <span>Lägg till i varukorgen</span>
+                </button>
+                </form>
+              <?php  } else { ?>
+                <div class="product-item-actions">
+                  <div class="actions-primary">
+                      <a href="<?php echo $this->getUrl(); ?>customer/account/login" class="action default tocart"><?php echo __('Login To See Price');?></a>
+                  </div>
+                </div><?php
+              } ?>
+
+              
+              <div class="description_product_page"><?php echo $product->description;?></div>
+            </div>
+          </div>
+
+
+          <div class="product-details-tab-wrapper">
+            <!-- Nav tabs -->
+            <ul class="nav nav-tabs">
+              <li class="active"><a data-toggle="tab" href="#included_service"><?= __('Produkt info') ?></a></li>
+              <li ><a data-toggle="tab" href="#dimensions"><?= __('Teknisk data') ?></a></li>
+              <?php if($product->gapc_position){ ?>
+                <li><a data-toggle="tab" href="#needed_assets">Part Type & Positions</a></li>
+              <?php } ?>
+              <!-- <li><a data-toggle="tab" href="#attributes">Attributes</a></li> -->
+              <li><a data-toggle="tab" href="#crossreferences"><?= __('Referensnummer') ?></a></li>
+            </ul>
+
+            <div class="tab-content">
+              <div id="dimensions" class="tab-pane fade">
+                <div class="product-details-table-list-wrapper">
+                  <table>
+                    <tr>
+                      <th class="table-heading">Teknisk data</th>
+                      <th class="table-heading">Value</th>
+                    </tr>
+                     <?php if(isset($product->width_mm)){?>
+                      <tr>
+                        <td>Bredd</td>
+                        <td><?php echo $product->width_mm;?>mm</td>
+                      </tr>
+                    <?php } ?>
+                    <?php if(isset($product->length_mm)){?>
+                      <tr>
+                        <td>Längd</td>
+                        <td><?php echo $product->length_mm;?>mm</td>
+                      </tr>
+                    <?php } ?>
+                    <?php if(isset($product->height_mm)){?>
+                      <tr>
+                        <td>Höjd</td>
+                        <td><?php echo $product->height_mm;?>mm</td>
+                      </tr>
+                    <?php } ?>
+                    <?php if(isset($product->weight_g)){?>
+                      <tr>
+                        <td>Vikt</td>
+                        <td><?php echo $product->weight_g;?>g</td>
+                      </tr>
+                    <?php } ?>
+                    <?php if($product->packing_unit){?>
+                      <tr>
+                        <td>Antal per förpackning</td>
+                        <td><?php echo $product->packing_unit;?></td>
+                      </tr>
+                    <?php } ?>
+                    
+                    <?php if(!empty($product->gapc_attributes)){
+                      foreach($product->gapc_attributes as $values){
+                        if($values->name == 'Outer diameter'){ ?>
+                          <tr>
+                            <td><?php echo __('Ytterdiameter');?></td>
+                            <td><?php echo $values->value;?></td>
+                          </tr>
+                        <?php } 
+                      }
+                    } ?>
+                  </table>
+                </div>
+              </div>
+              <div id="included_service" class="tab-pane fade in active">
+                <div class="product-details-table-list-wrapper">
+                  <table>
+                    <tr>
+                      <th class="table-heading">Produktinformation</th>
+                      <th class="table-heading">Value</th>
+                    </tr>
+                    <?php if($product->mpn){?>
+                      <tr>
+                        <td>Artikelnummer</td>
+                        <td><?php echo $product->mpn;?></td>
+                      </tr>
+                    <?php } ?>
+                    <?php if($product->gapc_brand->name){?>
+                      <tr>
+                        <td>Fabrikat</td>
+                        <td><?php echo $product->gapc_brand->name;?></td>
+                      </tr>
+                    <?php } ?>
+                      <?php if($product->gtin14){?>
+                      <tr>
+                        <td>Streckkod</td>
+                        <td><?php echo $product->gtin14;?></td>
+                      </tr>
+                    <?php } ?>
+                    <!-- <tr>
+                      <td>Is Universal?</td>
+                      <td><?php if($product->is_universal == 1){echo 'Yes';} ?></td>
+                    </tr>
+                      <tr>
+                        <td>Is OE?</td>
+                        <td><?php if($product->is_oe == 1){echo 'Yes';} ?></td>
+                      </tr>
+                      <tr>
+                        <td>Is Performance?</td>
+                        <td><?php if($product->is_performance == 1){echo 'Yes';} ?></td>
+                      </tr> -->
+                  </table>
+                </div>
+              </div>
+
+
+              <div id="needed_assets" class="tab-pane fade">
+                <div class="product-details-table-list-wrapper">
+                  <table>
+                    <tr>
+                      <th class="table-heading">Name</th>
+                      <th class="table-heading">Value</th>
+                    </tr>
+                    <?php if($product->gapc_position){ ?>
+                      <tr>
+                        <td>Position</td>
+                        <td><?php echo $product->gapc_position->name;?></td>
+                      </tr>
+                    <?php } ?>
+                  </table>
+                </div>
+              </div>
+
+              <div id="attributes" class="tab-pane fade">
+                <div class="product-details-table-list-wrapper">
+                  <table>
+                    <tr>
+                      <th class="table-heading">Name</th>
+                      <th class="table-heading">Value</th>
+                    </tr>
+
+                  </table>
+                </div>
+              </div>
+
+              
+
+              <div id="crossreferences" class="tab-pane fade">
+                <div class="product-details-table-list-wrapper">
+                  <table>
+                    <tr>
+                     <!--  <th class="table-heading">Varumärke</th> -->
+                      <th class="table-heading">Varumärke</th>
+                      <th class="table-heading">Referensnummer</th>
+                    </tr>
+                    <?php if(count($crossItems) > 0){ ?>
+                      <?php 
+                      // echo "<pre>";
+                      // print_r($crossItems);die;
+                      usort($crossItems, function($a, $b) {return strcmp($a->gapc_brand->name, $b->gapc_brand->name);});
+                      foreach ($crossItems as $key => $item) { 
+                          //$crossItemName = explode(' - ', $item->name);
+                        ?>
+                        <tr>
+                         <td><a href='<?php echo $this->getUrl("/")."parts/index/index?partnumber=".$item->mpn."&replacedoem=" ?>'><?php echo $item->gapc_brand->name; ?></a></td>
+                          <!-- <td><?php echo $item->gapc_brand->name; ?></td>             -->              
+                          <td><a href='<?php echo $this->getUrl("/")."parts/index/index?partnumber=".$item->mpn."&replacedoem=" ?>'><?php echo $item->mpn; ?></a></td>
+                        </tr>
+                      <?php } ?>
+                    <?php } ?>
+                  </table>
+                </div>
+              </div>
+
+            </div>
+          </div>
+        </div>
+    <?php } else {
+    	echo "Product not found";
+    }
+?>
+
+
+
+
+<script type="text/javascript">
+  require(['jquery', 'jquery/ui'], function ($) {
+    jQuery(".nav-tabs li.active").click();
+    jQuery(".nav-tabs li").click(function (e) {
+      e.preventDefault();
+      jQuery(".nav-tabs li").removeClass('active');
+      jQuery(this).addClass('active');
+      let tid = jQuery(this).find('a').attr('href');
+      console.log("ID:" + tid);
+      jQuery('.tab-pane').removeClass('active in');
+      jQuery(tid).addClass('active in');
+    });
+    jQuery('#add-prd-to-cart-custom').on('submit', function() {
+      var val = jQuery("input[name='qtyy']").val();
+      console.log(val);
+      if(val == 0){
+        jQuery("input[name='qtyy']").css("border","1px solid red");
+        return false;
+      }
+      else{
+        jQuery("input[name='qtyy']").css("border","1px solid #ddd");
+      }
+    });
+  });
+</script>

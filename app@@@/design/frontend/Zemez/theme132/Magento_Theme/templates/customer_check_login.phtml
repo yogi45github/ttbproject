@@ -1,0 +1,16 @@
+<?php
+    $objectManager = \Magento\Framework\App\ObjectManager::getInstance();
+    $customerSession = $objectManager->get('Magento\Customer\Model\Session');
+    if(!$customerSession->isLoggedIn()) { ?>
+        <script type="text/javascript">
+            require(['jquery'],function(jQuery){
+                jQuery(window).load(function(){
+                    setTimeout(function(){
+                        var customer_login_url = '<?php echo $this->getUrl();?>customer/account/login';
+                        jQuery('#ui-id-6').attr('href',customer_login_url);
+                        console.log(customer_login_url);
+                    },500);
+                });
+            });
+        </script>
+    <?php } ?>

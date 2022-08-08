@@ -1,0 +1,46 @@
+{% block vehicles %}
+    {% spaceless %}
+        {% for key, vehicle in vehicles %}
+            {% block table_row %}
+                {% set attr = vehicle.attributes %}
+                {% set link = supportQuickGroups ? vehicle.getQGLink(null, {'oem': oem, 'useApplicability' : useApplicability }) : vehicle.getVehicleLink(null, {'oem': oem, 'useApplicability' : useApplicability}) %}
+                    {% if 'name' in columns and not groupVehicles %}
+                        {{ vehicle.brand }}
+                    {% endif %}
+                    {% if 'brand' in columns and not groupVehicles %}
+                        {{ vehicle.name }}
+                    {% endif %}
+                    {% for key, value in headers %}
+                        {% if key in columns or groupVehicles %}
+                            {% if key != 'name' and key != 'brand' or (not attr and loop.index > 1 and groupVehicles) %}
+                                <div class="row">
+                                    <div class="col-m-3">
+                                        <span>
+                                            <b>{{key }}</b>
+                                        </span>
+                                    </div>
+                                    <div class="col-m-6">
+                                        <span id="shortdata{{loop.index}}" class="row-short-data" data="{{loop.index}}">
+                                            {% set viewData = attr ? attr[key].value : vehicle.brand ~ ' ' ~ vehicle.name %}
+                                            {{viewData}}
+                                        </span>
+                                        <span id="fulldata{{loop.index}}" class="row-full-data" data="{{loop.index}}">
+                                            {% set viewData = attr ? attr[key].value : vehicle.brand ~ ' ' ~ vehicle.name %}
+                                            {{viewData}}
+                                        </span>
+                                    </div>
+                                    <div class="col-m-3">
+                                        {% if viewData|length > 50 %}
+                                        <span id="showbutton{{loop.index}}" class="show-full-data" data="{{loop.index}}">visa allt</span>
+                                        <span id="hidebutton{{loop.index}}" class="hide-full-data" data="{{loop.index}}">visa mindre</span>
+                                        {% endif %}
+                                    </div>
+                                </div>
+                            {% endif %}
+                        {% endif %}
+                    {% endfor %}
+                    <a href="{{ link }}" class="modification-column showw-loader-on-click">Visa</a>
+            {% endblock %}
+        {% endfor %}
+    {% endspaceless %}
+{% endblock %}

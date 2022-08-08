@@ -1,0 +1,17 @@
+{
+  "name" : "zemez/ajax-search",
+  "autoload": {
+    "psr-4": {"Zemez\\AjaxSearch\\":""},
+    "files": [ "registration.php" ]
+  },
+  "description": "Ajax Search",
+  "require": {
+    "magento/module-search": "*"
+  },
+  "type": "magento2-module",
+  "version": "2.1.3",
+    "extra": {
+        "isStandalone": "false",
+        "magentoVersion": "v2.3.0"
+    }
+}

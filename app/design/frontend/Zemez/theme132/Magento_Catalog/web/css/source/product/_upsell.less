@@ -1,0 +1,46 @@
+//
+//  Upsell products
+//  ---------------------------------------------
+
+& when (@media-target = 'mobile') {
+    .block.upsell {
+        overflow: hidden;
+        margin-top: 30px;
+
+        .block-title.title {
+            padding-right: 90px;
+            @media (max-width: (@screen__xs - 1)) {
+                strong {
+                    font-size: 20px;
+                }
+            }
+        }
+
+        .block-actions button.action.select {
+            color: @color-primary;
+            &:hover {
+                text-decoration: underline;
+            }
+        }
+    }
+
+    .products-grid.products-upsell {
+        margin-top: 27px;
+    }
+
+    // RTL
+    html.rtl {
+        .block.upsell {
+            .block-title.title {
+                padding-right: 0;
+                padding-left: 90px;
+            }
+        }
+    }
+}
+
+& when (@media-target = 'desktop') {
+    .block.upsell {
+        margin-top: 50px;
+    }
+}

@@ -1,0 +1,17 @@
+{% block oemSearch %}
+    {% spaceless %}
+            <form name="findByOEM" id="findByOEM" class="float-right" onsubmit="checkOem(this); return false;">
+
+                <div id="OEMInput" class="g_input">
+                    <input placeholder="{{ 'findOems'|t }}" class="catalog_search_input small-input" name="oem"
+                           type="text" id="OEM" size="17" value=""/>
+                    <input type="submit" class="btn search small-input" name="oemSubmit" value="" id="oemSubmit"/>
+                </div>
+
+                <input type="hidden" name="task" value="applicabilitydetails"/>
+                <input type="hidden" name="ssd" value="{{ vehicle.ssd ?: ssd }}"/>
+                <input type="hidden" name="vid" value="{{ vehicle.vehicleid }}"/>
+                <input type="hidden" name="c" value="{{ cataloginfo.code }}"/>
+            </form>
+    {% endspaceless %}
+{% endblock %}

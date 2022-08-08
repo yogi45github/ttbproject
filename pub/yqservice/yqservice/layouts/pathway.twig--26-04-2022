@@ -1,0 +1,19 @@
+<div class="breadcrump-wrapper">
+    <ul class="breadcrumb" itemprop="breadcrumb">
+        <li><a href="javascript:void(0)" onclick="history.back()" id="browserBack" class="back-btn"><i class="bi bi-chevron-left"></i> Tillbaka</a></li>
+        <li><a  onclick="return window.parent.location.href ='https://server.visionvivante.com:8080/truck3/'" href="javascript:void(0)">Hem</a></li>
+        {% for item in pathway %}
+            {% if item.name != '' %}
+            {% if loop.index != 1 %}
+            <li class="{{ current|replace({'/' : ''}) == item.link ? 'current': '' }}">
+                {% if item.link != '' %}
+                    <a href="{{ item.link }}">{{ item.name }}</a>
+                {% else %}
+                    <a class="not-active" href="javascript:void(0)">{{ item.name }}</a>
+                {% endif %}
+            </li>
+            {% endif %}
+            {% endif %}
+        {% endfor %}
+    </ul>
+</div>

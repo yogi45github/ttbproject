@@ -1,0 +1,182 @@
+<?php
+    $objectManager = \Magento\Framework\App\ObjectManager::getInstance();
+    $storeManager = $objectManager->get('\Magento\Store\Model\StoreManagerInterface');
+    $baseurl = $storeManager->getStore()->getBaseUrl();
+    $categories = $objectManager->get('\Magento\Catalog\Model\ResourceModel\Category\CollectionFactory')->create();
+    $categories->addAttributeToSelect('*');
+
+    $categoryFactory = $objectManager->get('\Magento\Catalog\Model\CategoryFactory');
+    $store = $objectManager->get('Magento\Store\Model\StoreManagerInterface')->getStore();
+
+    $owlIds = [];
+?>
+
+<?php
+echo $this->getLayout()->createBlock('Magento\Cms\Block\Block')->setBlockId('homepage_banner')->toHtml();
+?>
+<!-- -----------------------------------------------Bestseller Block--------------------------------------------------- -->
+<section class="block__md">
+    <div class="container">
+        <div class="row">
+            <div class="col-md-12">
+                <h1 class="mb-0 mb-md-3"><?= __('Best Sellers')?></h1>
+                <div class="d-none d-md-flex justify-content-between align-items-center border-bottom">
+                    <ul class="nav nav-tabs tabs border-0" id="best_sell_cate_link">
+                        <?php
+                            $catid = array();
+                            $activeId = null;
+                            $activeCategoryName = $activeCategoryUrl = null;
+                            foreach ($categories as $category) {
+                                if($category['is_featured_now'] == '1' && ($category->getProductCollection()->count() >0)){ 
+                                    $catid[] =  $category->getId(); 
+                                    if(count($catid) == 1){
+                                        $activeId =  $category->getId(); 
+                                        $activeCategoryName =  $category->getName(); 
+                                        $activeCategoryUrl =  $category->getUrl(); 
+                                        echo '<li class="nav-item" data-cat-name="'.$category->getName().'" data-cat-url="'.$category->getUrl().'">
+                                            <a class="nav-link active" data-toggle="tab" href="#nav-item'.$category->getId().'">'.$category->getName().'</a></li>';
+                                    } else {
+                                        echo '<li class="nav-item" data-cat-name="'.$category->getName().'" data-cat-url="'.$category->getUrl().'">
+                                            <a class="nav-link" data-toggle="tab" href="#nav-item'.$category->getId().'">'.$category->getName().'</a></li>';
+                                    }                    
+                                }
+                            }
+                        ?>
+                    </ul>
+                    <a href="<?php echo $activeCategoryUrl; ?>" class="font-weight-bold" id="active_categoy_link"><?= __('View more in ')?><span id="active_categoy_name"><?php echo $activeCategoryName; ?></span> <i class="las la-arrow-right"></i></a>
+                </div>
+            </div>
+            <div class="col-md-12 my-3 my-md-4">
+                <div class="tab-content tab-content-owl-carousel">
+                <?php     
+                    foreach ($catid as $categoryId) {
+                        $category = $categoryFactory->create()->load($categoryId);
+                        $categoryProducts = $category->getProductCollection()
+                                                    ->addAttributeToSelect('*')->setPageSize(10);
+                        if(count($categoryProducts) >0){
+                            $owlIds[] = "#best__seller".$categoryId;
+                            if($categoryId == $activeId){
+                                echo '<div id="nav-item'.$categoryId.'" class="tab-pane active"><div id="best__seller'.$categoryId.'" class="owl-carousel owl-theme custom__owl__adjustment nav__show">';
+                            } else {
+                                echo '<div id="nav-item'.$categoryId.'" class="tab-pane fade"><div id="best__seller'.$categoryId.'" class="owl-carousel owl-theme custom__owl__adjustment nav__show">';
+                            }
+                            foreach ($categoryProducts as $product) {
+                                $imageUrl = $store->getBaseUrl(\Magento\Framework\UrlInterface::URL_TYPE_MEDIA) . 'catalog/product' . $product->getThumbnail(); 
+                                $productUrl = $product->getProductUrl();
+                                echo '<div class="item"><a href="'.$productUrl.'"><img src="'.$imageUrl.'" alt="hp" class="img-fluid"/><span class="owl__produt__name">'.$product->getName().'</span></a></div>';
+                            }
+                            echo '</div></div>';
+                        }
+                    }
+                ?>
+            </div>
+            </div>
+        </div>
+    </div>
+</section>
+<!-- ------------------------------------Three pictures block----------------------------------------------- -->
+<div class="three_pic_block block__md">
+    <?php
+    $storeName = \Magento\Framework\App\ObjectManager::getInstance()->get(\Magento\Store\Model\StoreManagerInterface::class)->getStore()->getName();
+    if($storeName == 'English'){
+        echo $this->getLayout()->createBlock('Magento\Cms\Block\Block')->setBlockId('3_pic_block')->toHtml();
+    }
+    elseif($storeName == 'Spanish'){
+        echo $this->getLayout()->createBlock('Magento\Cms\Block\Block')->setBlockId('3_pic_block_spanish')->toHtml();
+    }
+    ?>
+</div>
+<!-- ------------------------------------Last descripttion block----------------------------------------------- -->
+<div class="last_desc_block block__md">
+    <div class="container">
+        <div class="row justify-content-center">
+            <div class="col-md-10">
+                <?php
+                if($storeName == 'English'){
+                    echo $this->getLayout()->createBlock('Magento\Cms\Block\Block')->setBlockId('description_block')->toHtml();
+                }
+                elseif($storeName == 'Spanish'){
+                    echo $this->getLayout()->createBlock('Magento\Cms\Block\Block')->setBlockId('description_block_spanish')->toHtml();
+                }
+                ?>
+                </div>
+        </div>
+    </div>
+</div>
+<!-- ------------------------------------------COllection Categories---------------------------------------------------- -->
+<div class="container">
+    <hr>
+    <div class="block__md">
+        <div class="row categories">
+            <div class="col-md-12 d-flex align-items-center justify-content-between mb-1 mb-md-4">
+                <h3><?= __('Collection categories')?></h3>
+                <a href="<?php echo $baseurl;?>customcategory/custom/categorypage" class="font-weight-bold"><?= __('Browse all')?><i class="las la-arrow-right"></i></a>
+            </div>
+            <?php
+                foreach($catid as $categoryId){
+                    $category = $categoryFactory->create()->load($categoryId);?>
+                    <div class="col-md col-6">
+                        <h4><?php echo $category->getName();?></h4>
+                        <ul class="navbar-nav"><?php
+                            $childrenCategoryIds = $category->getChildren($category);
+                            $childrenCategoryIds1 = explode(',', $childrenCategoryIds);
+                            foreach($childrenCategoryIds1 as $cattid){
+                                $categoryids = $categoryFactory->create()->load($cattid);
+                                ?>
+                                    <a href="<?php echo $categoryids->getUrl();?>"><?php echo $categoryids->getName();?></a>
+                                </li>
+                            <?php }; ?>
+                        </ul>
+                    </div>
+                <?php }
+            ?>
+        </div>
+    </div>
+    <hr>
+    <div class="block__md">
+        <div class="row justify-content-center">
+            <div class="col-lg-6 col-md-7 text-center">
+                <h3><?= __("Don't miss out! Join our newsletter")?></h3>
+                <span class="text-muted"><?= __('Be the first to know about our exclusive promotions &amp; discounts!')?></span>
+                <?php echo $this->getLayout()->createBlock("Magento\Newsletter\Block\Subscribe")->setTemplate("Magento_Newsletter::subscribe.phtml")->toHtml(); ?>
+            </div>
+        </div>
+    </div>
+</div>
+
+<script type="text/javascript" xml="space">
+    require([
+        'jquery',
+        'popper',
+        'bootstrap',
+        'owlcarousel' 
+    ], function($){
+        $(document).ready(function() {
+            $('.header.content').addClass('navbar navbar-expand-lg navbar-light topbar__logo__section');
+            $("<?php echo implode(', ', $owlIds) ?>").each(function(){
+                $(this).owlCarousel({
+                    loop:false,
+                    margin:10,
+                    nav:true,
+                    responsive:{
+                        0:{
+                            items:2
+                        },
+                        600:{
+                            items:3
+                        },
+                        1000:{
+                            items:5
+                        }
+                    }
+                });
+                $('#best_sell_cate_link li.nav-item').click(function(){
+                    var categoryName = $(this).attr('data-cat-name');
+                    var categoryUrl = $(this).attr('data-cat-url');
+                    $('#active_categoy_name').text(categoryName);
+                    $('#active_categoy_link').attr('href', categoryUrl);
+                });
+            });
+        });
+    });
+</script>

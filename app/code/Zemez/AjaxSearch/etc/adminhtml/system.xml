@@ -1,0 +1,52 @@
+<?xml version="1.0"?>
+<config xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="urn:magento:module:Magento_Config:etc/system_file.xsd">
+    <system>
+        <tab id="zemez" translate="label" sortOrder="90">
+            <label>Zemez</label>
+        </tab>
+        <section id="ajaxsearch" translate="label" type="text" sortOrder="120" showInDefault="1" showInWebsite="1" showInStore="1">
+            <class>separator-top</class>
+            <label>Ajax Search</label>
+            <tab>zemez</tab>
+            <resource>Zemez_AjaxSearch::config_ajaxsearch</resource>
+            <group id="ajaxsearch" translate="label" type="text" sortOrder="90" showInDefault="1" showInWebsite="1" showInStore="1">
+                <label>Catalog Ajax Search Settings</label>
+                <field id="version" translate="label comment" type="label" sortOrder="1" showInDefault="1" showInWebsite="1" showInStore="1">
+                    <label>Version</label>
+                    <comment>Current module version.</comment>
+                    <frontend_model>Zemez\AjaxSearch\Block\Adminhtml\System\Config\Version</frontend_model>
+                </field>
+                <field id="ajaxsearch_default_active" translate="label comment" type="select" sortOrder="10" showInDefault="1" showInWebsite="0" showInStore="0">
+                    <label>Ajax Search</label>
+                    <comment>Set to “Enable” to use Ajax Search by default.</comment>
+                    <source_model>Magento\Config\Model\Config\Source\Enabledisable</source_model>
+                </field>
+                <field id="ajaxsearch_category_active" translate="label comment" type="select" sortOrder="10" showInDefault="1" showInWebsite="0" showInStore="0">
+                    <label>Ajax Search for Category</label>
+                    <comment>If Enabled, make sure that "Use Flat Catalog Category" option is active.</comment>
+                    <source_model>Magento\Config\Model\Config\Source\Enabledisable</source_model>
+                </field>
+                <field id="ajaxsearch_product_active" translate="label comment" type="select" sortOrder="10" showInDefault="1" showInWebsite="0" showInStore="0">
+                    <label>Product Ajax Search</label>
+                    <comment>If Enabled, make sure that "Use Flat Catalog Category" option is active.</comment>
+                    <source_model>Magento\Config\Model\Config\Source\Enabledisable</source_model>
+                </field>
+                <field id="ajaxsearch_default_number" translate="label comment" type="text" sortOrder="20" showInDefault="1" showInWebsite="0" showInStore="0">
+                    <label>Default Ajax Search Num. Result</label>
+                    <comment>Set the number of search results to show per one page.</comment>
+                    <validate>validate-digits</validate>
+                </field>
+                <field id="ajaxsearch_category_number" translate="label comment" type="text" sortOrder="20" showInDefault="1" showInWebsite="0" showInStore="0">
+                    <label>Category Ajax Search Result</label>
+                    <comment>Set the number of search results to show per one page.</comment>
+                    <validate>validate-digits</validate>
+                </field>
+                <field id="ajaxsearch_product_number" translate="label comment" type="text" sortOrder="30" showInDefault="1" showInWebsite="0" showInStore="0">
+                    <label>Product Ajax Search Result</label>
+                    <comment>Set the number of search results to show per one page.</comment>
+                    <validate>validate-digits</validate>
+                </field>
+            </group>
+        </section>
+    </system>
+</config>

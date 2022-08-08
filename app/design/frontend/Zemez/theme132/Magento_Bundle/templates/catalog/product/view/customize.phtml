@@ -1,0 +1,38 @@
+<?php
+/**
+ * Copyright © Magento, Inc. All rights reserved.
+ * See COPYING.txt for license details.
+ */
+
+// @codingStandardsIgnoreFile
+
+?>
+
+<?php $_product = $block->getProduct();
+$objectManager = \Magento\Framework\App\ObjectManager::getInstance();
+$customerSession = $objectManager->get('Magento\Customer\Model\Session');
+if($customerSession->isLoggedIn()) { ?>
+    <?php if ($_product->isSaleable() && $block->hasOptions()):?>
+        <div class="bundle-actions">
+            <button id="bundle-slide"
+                    class="action primary customize"
+                    type="button">
+                <span><?= /* @escapeNotVerified */ __('Customize and Add to Cart') ?></span>
+            </button>
+        </div>
+    <?php endif;?>
+<?php  } else { ?>
+    <div class="product-item-actions bundle-product-pagee">
+        <div class="actions-primary">
+            <a href="<?php echo $this->getUrl(); ?>customer/account/login" class="action default"><?php echo __('Login To See Price');?></a>
+        </div>
+    </div><?php
+} ?>
+<style type="text/css">
+    .page-product-bundle .product-item-actions {
+        display: none;
+    }
+    .page-product-bundle .product-item-actions.bundle-product-pagee {
+        display: block;
+    }
+</style>

@@ -1,0 +1,230 @@
+<?php 
+$objectManager = \Magento\Framework\App\ObjectManager::getInstance();
+$storeManager  = $objectManager->get('\Magento\Store\Model\StoreManagerInterface');
+$baseurl       = $storeManager->getStore()->getBaseUrl();
+?>
+<form class="form-custom" id="form-customm">
+	<div class="row">
+		<div class="form-group custom__form col-xs-12 col-m-12">
+			<label id="label_field" class="required">
+	            Juridiskt företagsnamn<em>*</em>
+	        </label>
+		   	<input name="name-custom" id="First-name-custom" value="" class="form-control" type="text" validate="{required:true}" placeholder="Företagsnamn">
+		</div>
+		<div class="form-group custom__form col-xs-12 col-m-12">
+			<label id="label_field" class="required">
+	            Organisationsnummer<em>*</em>
+	        </label>
+		   	<input name="name-custom" id="Organisationsnummer" value="" class="form-control" type="text" validate="{required:true}" placeholder="Organisationsnummer">
+		</div>
+		<div class="form-group custom__form col-xs-12 col-m-12">
+			<label id="label_field" class="required">
+	            Telefon<em>*</em>
+	        </label>
+		   	<input name="name-custom" id="Phone_Number_custom" value="" class="form-control" type="number" validate="{required:true}" placeholder="Telefon">
+		</div>
+		<div class="form-group custom__form col-xs-12 col-m-12">
+			<label id="label_field" class="required">
+	            Email <em>*</em>
+	        </label>
+		   	<input name="name-custom" id="email_custom" value="" class="form-control" type="email" validate="{required:true}" placeholder="Email">
+		</div>
+		<div class="form-group custom__form col-xs-12 col-m-12">
+			<label id="label_field" class="required">
+	            Gata leveransadress<em>*</em>
+	        </label>
+		   	<input name="name-custom" id="Order_Number_custom" value="" class="form-control" type="text" validate="{required:true}" placeholder="Gata">
+		</div>
+		<div class="form-group custom__form col-xs-12 col-m-12">
+			<label id="label_field" class="required">
+	            Postnummer leveransadress<em>*</em>
+	        </label>
+		   	<input name="name-custom" id="Zip_Code_custom" value="" class="form-control" type="text" validate="{required:true}" placeholder="Postnummer">
+		</div>
+		<div class="form-group custom__form col-xs-12 col-m-12">
+			<label id="label_field" class="required">
+	            Ort leveransadress <em>*</em>
+	        </label>
+		   	<input name="name-custom" id="Item_Name" value="" class="form-control" type="text" validate="{required:true}" placeholder="Ort">
+		</div>
+		<div class="form-group custom__form col-xs-12 col-m-12">
+			<label id="label_field" class="required">
+	            Gata fakturaadress <em>*</em>
+	        </label>
+		   	<input name="name-custom" id="Manufacturer_custom" value="" class="form-control" type="text" validate="{required:true}" placeholder="Gata">
+		</div>
+		<div class="form-group custom__form col-xs-12 col-m-12">
+			<label id="label_field" class="required">
+	            Postnummer fakturaadress <em>*</em>
+	        </label>
+		   	<input name="name-custom" id="Model_Number_custom" value="" class="form-control" type="text" validate="{required:true}" placeholder="Postnummer">
+		</div>
+		<div class="form-group custom__form col-xs-12 col-m-12">
+			<label id="label_field" class="required">
+	            Ort fakturaadress <em>*</em>
+	        </label>
+		   	<input name="name-custom" id="price-custom" value="" class="form-control" type="text" validate="{required:true}" placeholder="Ort">
+		</div>
+		<div class="form-group custom__form col-xs-12 col-m-12">
+			<label id="label_field" class="required">
+	            Söker reservdelar för
+	        </label>
+		   	<input name="name-custom" id="Item_Number_custom" value="" class="form-control" type="text" validate="{required:true}" placeholder="Söker reservdelar för">
+		</div>
+		<div class="form-group custom__form col-xs-12 col-m-12">
+			<label id="label_field" class="required">
+	            Ditt meddelande
+	        </label>
+		   	<textarea name="name-custom" id="Additional_Details" value="" class="form-control" placeholder="Ditt meddelande"></textarea>
+		</div>
+		<div class="col-xs-12">
+			<span class="custom_form_proce_match primary">Skicka</span>
+		</div>
+	</div>
+</form>
+
+<script>
+	requirejs(['jquery'], function($){
+		$(document).ready(function(){
+		    $(document).on('click',".custom_form_proce_match" ,function() {
+		        var name = $('#First-name-custom').val();
+		        var lname = $('#Organisationsnummer').val();
+		        var email = $('#email_custom').val();
+		        var phone = $('#Phone_Number_custom').val();
+		        var orderno = $('#Order_Number_custom').val();
+		        var zipcode = $('#Zip_Code_custom').val();
+		        var item_name = $('#Item_Name').val();
+		        var manufacturer = $('#Manufacturer_custom').val();
+		        var price = $('#price-custom').val();
+		        var model_number = $('#Model_Number_custom').val();
+		        var Item_number = $('#Item_Number_custom').val();
+		        var additional_details = $('#Additional_Details').val(); 
+		        var testEmail = /^[A-Z0-9._%+-]+@([A-Z0-9-]+\.)+[A-Z]{2,4}$/i;
+	    		var emailtrue = '0';
+	    		var inputval = '0';
+	    		var pattern = /^(http|https)?:\/\/[a-zA-Z0-9-\.]+\.[a-z]{2,4}/;
+
+		        if(name == ''){
+		            $('#First-name-custom').addClass("error");
+		            inputval = '0';
+		        }
+		        else{
+		        	$('#First-name-custom').removeClass("error");
+		        	inputval = '1';
+		    	}
+		    	if(lname == ''){
+		            $('#Organisationsnummer').addClass("error");
+		            inputval = '0';
+		        }
+		        else{
+		        	$('#Organisationsnummer').removeClass("error");
+		        	inputval = '1';
+		    	}
+		    	if(phone == ''){
+		            $('#Phone_Number_custom').addClass("error");
+		            inputval = '0';
+		        }
+		        else{
+		        	$('#Phone_Number_custom').removeClass("error");
+		        	inputval = '1';
+		    	}
+		    	if(orderno == ''){
+		            $('#Order_Number_custom').addClass("error");
+		            inputval = '0';
+		        }
+		        else{
+		        	$('#Order_Number_custom').removeClass("error");
+		        	inputval = '1';
+		    	}
+		    	if(zipcode == ''){
+		            $('#Zip_Code_custom').addClass("error");
+		            inputval = '0';
+		        }
+		        else{
+		        	$('#Zip_Code_custom').removeClass("error");
+		        	inputval = '1';
+		    	}
+		    	if(item_name == ''){
+		            $('#Item_Name').addClass("error");
+		            inputval = '0';
+		        }
+		        else{
+		        	$('#Item_Name').removeClass("error");
+		        	inputval = '1';
+		    	}
+		    	if(manufacturer == ''){
+		            $('#Manufacturer_custom').addClass("error");
+		            inputval = '0';
+		        }
+		        else{
+		        	$('#Manufacturer_custom').removeClass("error");
+		        	inputval = '1';
+		    	}
+		    	if(model_number == ''){
+		            $('#Model_Number_custom').addClass("error");
+		            inputval = '0';
+		        }
+		        else{
+		        	$('#Model_Number_custom').removeClass("error");
+		        	inputval = '1';
+		    	}
+		    	if(price == ''){
+		            $('#price-custom').addClass("error");
+		            inputval = '0';
+		        }
+		        else{
+		        	$('#price-custom').removeClass("error");
+		        	inputval = '1';
+		    	}
+		        if(testEmail.test(email)){
+			        $('#email_custom').removeClass("error");
+			        emailtrue = '1';
+		        }
+		        else{
+		        	$('#email_custom').addClass("error");
+		          	emailtrue = '0';
+		        }
+		        if(inputval == '1' && emailtrue == '1'){
+		        	$('body').trigger('processStart');
+		        	$.ajax({
+		            type:"POST", 
+		            url : '<?php echo $baseurl."email/customerapplication/index/"; ?>',
+		            data:{
+		            	name : name,
+						lname : lname,
+						email : email,
+						phone : phone,
+						orderno : orderno,
+						zipcode : zipcode,
+						item_name : item_name,
+						manufacturer : manufacturer,
+						model_number : model_number,
+						Item_number : Item_number,
+						price : price,
+						additional_details : additional_details,
+		            },
+		            success: function(result) {
+		            	$('.mail_sent_text').show();
+		            	$('.price_match_custom_page .col-md-5').hide();
+		            	jQuery('#form-customm').trigger("reset");
+		            	$('body').trigger('processStop');
+		            }
+		          })
+		        } 
+		    });
+		});
+    });
+</script>
+<style>
+    .error{
+        outline: 1px solid red;
+    }    
+    .error_url{
+    	display: none;
+    	color: red;
+    }
+    .mail_sent_text{
+    	display: none;
+    	color: red;
+    }
+</style>

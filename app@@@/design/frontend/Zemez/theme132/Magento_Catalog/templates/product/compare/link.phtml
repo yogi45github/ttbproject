@@ -1,0 +1,21 @@
+<?php
+/**
+ * Copyright © Magento, Inc. All rights reserved.
+ * See COPYING.txt for license details.
+ */
+
+// @codingStandardsIgnoreFile
+?>
+<li class="item link compare" data-bind="scope: 'compareProducts'" data-role="compare-products-link">
+    <span class="no-display" data-bind="css: {'no-display': !compareProducts().count}">
+      <a class="action compare" title="<?= /* @escapeNotVerified */ __('Compare Products') ?>"
+         data-bind="attr: {'href': compareProducts().listUrl}"
+      >
+          <span><?= /* @escapeNotVerified */ __('Compare') ?></span>
+          <span class="counter qty" data-bind="text: num = isNaN(parseInt(compareProducts().countCaption)) ? 0 : parseInt(compareProducts().countCaption)"></span>
+      </a>
+    </span>
+</li>
+<script type="text/x-magento-init">
+{"[data-role=compare-products-link]": {"Magento_Ui/js/core/app": <?= /* @escapeNotVerified */ $block->getJsLayout() ?>}}
+</script>

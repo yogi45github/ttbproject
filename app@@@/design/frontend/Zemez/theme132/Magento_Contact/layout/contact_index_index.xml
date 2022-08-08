@@ -1,0 +1,47 @@
+<?xml version="1.0"?>
+<!--
+/**
+ * Copyright © Magento, Inc. All rights reserved.
+ * See COPYING.txt for license details.
+ */
+-->
+<page xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" layout="1column" xsi:noNamespaceSchemaLocation="urn:magento:framework:View/Layout/etc/page_configuration.xsd">
+    <head>
+        <title>Contact Us</title>
+    </head>
+    <body>
+        <referenceContainer name="main.content">
+            <container name="contact.us.googlemap.wrapper" before="-">
+                <block class="Magento\Framework\View\Element\Template" name="contact.us.googlemap" template="Magento_Theme::text.phtml" before="-">
+                    <arguments>
+                        <argument name="tag" xsi:type="string">div</argument>
+                        <argument name="css_class" xsi:type="string">contact-us_googlemap__wrapper</argument>
+                    </arguments>
+                </block>
+            </container>
+        </referenceContainer>
+        <referenceContainer name="content">
+            <container name="contact.us.wrapper" htmlClass="row" htmlTag="div" before="-">
+                <container name="contact.us.banner.wrapper" htmlClass="col-m-12" htmlTag="div" before="-">
+                    <block class="Magento\Cms\Block\Block" name="contact_us_banner" before="-">
+                        <arguments>
+                            <argument name="block_id" xsi:type="string">contact_us_banner</argument>
+                        </arguments>
+                    </block>
+                </container>
+                <container name="contact.us.form.wrapper" htmlClass="col-m-7 col-xl-8 col-xxl-9" htmlTag="div" before="-">
+                    <block class="Magento\Contact\Block\ContactForm" name="contactForm" template="Magento_Contact::form.phtml">
+                        <container name="form.additional.info" label="Form Additional Info"/>
+                    </block>
+                </container>
+                <container name="contact.us.info.wrapper" htmlClass="col-m-5 col-xl-4 col-xxl-3" htmlTag="div" after="contact.us.form.wrapper">
+                    <block class="Magento\Cms\Block\Block" name="contact_us_info" before="-">
+                        <arguments>
+                            <argument name="block_id" xsi:type="string">contact_us_info</argument>
+                        </arguments>
+                    </block>
+                </container>
+            </container>
+        </referenceContainer>
+    </body>
+</page>

@@ -1,0 +1,233 @@
+//
+//  List
+//  ---------------------------------------------
+
+& when (@media-target = 'mobile') {
+    .list.products-list {
+        .product-item-info {
+            position: relative;
+            .make-flex();
+            align-items: flex-start;
+
+            a.product-item-photo {
+                flex-basis: 42%;
+                max-width: 42%;
+            }
+
+            .product-item-details {
+                flex-basis: 58%;
+                max-width: 58%;
+                padding-left: 12px;
+
+                @media (min-width: @screen__xs) {
+                    padding-left: 20px;
+                }
+
+                .product-reviews-summary {
+                    margin: 0 0 9px;
+                    @media (max-width: (@screen__s - 1)) {
+                        .action.add {
+                            display: none;
+                        }
+                    }
+                }
+            }
+
+            .product-item-name {
+                margin-top: 0;
+            }
+
+            .product-item-description {
+                margin-top: 7px;
+                a {
+                    color: @color-dark;
+                    &:hover {
+                        color: @color-primary;
+                    }
+                }
+            }
+
+            .swatch-attribute-options {
+                margin-left: 0;
+            }
+
+            .product-item-actions {
+                margin-top: 5px;
+                @media (min-width: @screen__xs) {
+                    margin-top: 15px;
+                }
+                .actions-primary {
+                    margin-right: 20px;
+                }
+                .actions-secondary {
+                    .action {
+                        margin-right: 20px;
+                    }
+                }
+            }
+
+            .quick-view-button {
+                position: absolute;
+                top: 0;
+                left: 0;
+                z-index: 9;
+            }
+
+            @media (min-width: @screen__s) {
+                .product-item-name {
+                    font-size: 14px;
+                }
+            }
+            @media (max-width: (@screen__m - 1)) {
+                .product-item-description {
+                    display: none;
+                }
+
+                .action.tocart {
+                    padding: 0;
+                    background: none;
+                    border: none;
+                    color: @color-default;
+                    .font-icon(@themeicon-cart);
+                    &:before {
+                        font-size: 24px;
+                        line-height: 1;
+                    }
+
+                    &:hover {
+                        color: @color-primary;
+                    }
+
+                    span {
+                        display: none;
+                    }
+                }
+            }
+        }
+
+        .product-item + .product-item {
+            margin-top: 33px;
+        }
+    }
+
+    // RTL
+    html.rtl {
+        .list.products-list {
+            .product-item-info {
+                .product-item-details {
+                    padding-left: 0;
+                    padding-right: 12px;
+
+                    @media (min-width: @screen__xs) {
+                        padding-right: 20px;
+                    }
+                }
+
+                .swatch-attribute-options {
+                    margin-right: 0;
+                }
+
+                .product-item-actions {
+                    .actions-primary {
+                        margin-right: 0;
+                        margin-left: 20px;
+                    }
+                    .actions-secondary {
+                        .action {
+                            margin-right: 0;
+                            margin-left: 20px;
+                        }
+                    }
+                }
+
+                .quick-view-button {
+                    left: auto;
+                    right: 0;
+                }
+            }
+        }
+    }
+}
+
+& when (@media-target = 'desktop') {
+    .list.products-list {
+        .product-item-info {
+            a.product-item-photo {
+                flex-basis: 32%;
+                max-width: 32%;
+            }
+
+            .product-item-details {
+                flex-basis: 68%;
+                max-width: 68%;
+                padding-left: 36px;
+            }
+
+            div[class^="swatch-opt-"] {
+                margin-top: 17px;
+            }
+
+            @media (min-width: @screen__xl) {
+                .actions-primary {
+                    margin-right: 35px;
+                }
+
+                .actions-secondary {
+                    .action {
+                        margin-right: 30px;
+                    }
+                }
+            }
+
+            @media (min-width: @screen__xxl) {
+                .product-item-actions {
+                    .action.tocart {
+                        min-width: 195px;
+                    }
+                    .actions-secondary {
+                        .action {
+                            margin-right: 46px;
+                        }
+                    }
+                }
+            }
+        }
+    }
+
+    // RTL
+    html.rtl {
+        .list.products-list {
+            .product-item-info {
+                .product-item-details {
+                    padding-left: 0;
+                    padding-right: 36px;
+                }
+
+                @media (min-width: @screen__xl) {
+                    .actions-primary {
+                        margin-right: 0;
+                        margin-left: 35px;
+                    }
+
+                    .actions-secondary {
+                        .action {
+                            margin-right: 0;
+                            margin-left: 30px;
+                        }
+                    }
+                }
+
+                @media (min-width: @screen__xxl) {
+                    .product-item-actions {
+                        .actions-secondary {
+                            .action {
+                                margin-right: 0;
+                                margin-left: 46px;
+                            }
+                        }
+                    }
+                }
+            }
+        }
+    }
+}

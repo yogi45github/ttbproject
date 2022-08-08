@@ -1,0 +1,13 @@
+<?xml version="1.0"?>
+<page xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="urn:magento:framework:View/Layout/etc/page_configuration.xsd">
+    <body>
+        <referenceContainer name="footer-container" htmlClass="page-footer layout-3 bg-dark" />
+        <referenceContainer name="footer.grid-col1" remove="true" />
+        <referenceContainer name="footer.grid-col2" remove="true" />
+        <referenceContainer name="footer.grid-col3" remove="true" />
+        <referenceContainer name="footer.grid-col4" htmlClass="col-m-6" />
+        <referenceContainer name="footer.grid-col5" htmlClass="col-m-6" />
+
+        <move element="footer.panel" destination="footer.grid-container" after="-" />
+    </body>
+</page>

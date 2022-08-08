@@ -1,0 +1,33 @@
+<?xml version="1.0"?>
+<page xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="urn:magento:framework:View/Layout/etc/page_configuration.xsd">
+    <head>
+        <css src="Zemez_ThemeOptions::fonts/font-awesome-4.5.0/css/font-awesome.min.css" />
+    </head>
+    <body>
+        <referenceBlock name="logo" template="Zemez_ThemeOptions::html/header/logo.phtml" />
+        <referenceContainer name="after.body.start">
+            <block class="Zemez\ThemeOptions\Block\Preloader" name="preloader" />
+        </referenceContainer>
+        <referenceContainer name="header-wrapper">
+            <block class="Zemez\ThemeOptions\Block\SocialLinks" name="theme_options.social_links.header" after="top.search">
+                <action method="setPosition">
+                    <argument name="position" xsi:type="string">header</argument>
+                </action>
+                <block class="Zemez\ThemeOptions\Block\SocialLinks\Renderer\Image" as="renderer.image" />
+                <block class="Zemez\ThemeOptions\Block\SocialLinks\Renderer\Font" as="renderer.font" />
+            </block>
+        </referenceContainer>
+        <referenceContainer name="footer">
+            <block class="Zemez\ThemeOptions\Block\SocialLinks" name="theme_options.social_links.footer" after="-">
+                <action method="setPosition">
+                    <argument name="position" xsi:type="string">footer</argument>
+                </action>
+                <block class="Zemez\ThemeOptions\Block\SocialLinks\Renderer\Image" as="renderer.image" />
+                <block class="Zemez\ThemeOptions\Block\SocialLinks\Renderer\Font" as="renderer.font" />
+            </block>
+        </referenceContainer>
+        <referenceContainer name="before.body.end">
+            <block class="Magento\Framework\View\Element\Template" name="theme-opt-conf" template="Zemez_ThemeOptions::theme-options-conf.phtml" />
+        </referenceContainer>
+    </body>
+</page>

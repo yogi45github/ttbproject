@@ -1,0 +1,7 @@
+<?php
+
+namespace yqservice;
+
+define('YQSERVICE_DIR', __DIR__);
+
+app::start();

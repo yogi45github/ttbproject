@@ -1,0 +1,21 @@
+{% block plateSearch %}
+    {% spaceless %}
+        <form name="findByPlate" id="findByPlate">
+            <div>
+                <select class="select" name="country_code" id="country-code">
+                    {% for code in plateCountryCodes %}
+                        <option value="{{ code }}" {{ input.country_code == code ? 'selected="selected"' : '' }}>{{ code }}</option>
+                    {% endfor %}
+                </select>
+            </div>
+            <div id="plateInput" class="g_input">
+                <input class="catalog_search_input" name="plate_number" type="text" id="plate-number" size="17"
+                       value="{{ input.plate_number }}"/>
+                <input type="submit" class="btn search" name="plateSubmit" value="" id="plateSubmit"/>
+            </div>
+            <input type="hidden" name="task" value="vehicles"/>
+            <input type="hidden" name="ft" value="findByPlate"/>
+        </form>
+        <span class="example gray">{{ 'searchbyplateexample'|t }}</span>
+    {% endspaceless %}
+{% endblock %}

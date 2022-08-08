@@ -1,0 +1,17 @@
+<div class="oemparts">
+    <table class="table collapse">
+        <tr>
+            <td colspan="2">Total: <strong>{{ total }}</strong></td>
+        </tr>
+        <tr>
+            <th>{{ 'columndetailoem'|t }}</th>
+            <th>{{ 'columndetailname'|t }}</th>
+        </tr>
+        {% for part in data %}
+            <tr>
+                <td>{{ part.oem }}</td>
+                <td>{{ part.name }}</td>
+            </tr>
+        {% endfor %}
+    </table>
+</div>

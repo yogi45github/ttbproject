@@ -1,0 +1,21 @@
+<?xml version="1.0"?>
+<!--
+/**
+ * @author Vitaliy Boyko <vision@i.ua>
+ */
+-->
+<config xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="urn:magento:framework:ObjectManager/etc/config.xsd">
+
+    <preference for="Magento\Contact\Controller\Index\Post" type="Vision\ContactUsHistory\Controller\Index\Post" />
+
+    <preference for="Vision\ContactUsHistory\Api\Data\NoteDataInterface" type="Vision\ContactUsHistory\Data\NoteData" />
+    <preference for="Vision\ContactUsHistory\Api\Command\DeleteNotesInterface" type="Vision\ContactUsHistory\Command\DeleteNotesCommand" />
+    <preference for="Vision\ContactUsHistory\Api\Command\SaveNotesInterface" type="Vision\ContactUsHistory\Command\SaveNotesCommand" />
+    <preference for="Vision\ContactUsHistory\Api\Query\GetNoteByIdInterface" type="Vision\ContactUsHistory\Query\GetNoteById" />
+    <preference for="Vision\ContactUsHistory\Api\Query\GetNotesListInterface" type="Vision\ContactUsHistory\Query\GetNotesList" />
+
+    <type name="Vision\ContactUsHistory\Service\ProcessNoteService">
+        <plugin name="admin_notify_about_new_note"
+                type="Vision\ContactUsHistory\Plugin\Model\Note\Command\NoteProcessorAdminNotificationPlugin"/>
+    </type>
+</config>
